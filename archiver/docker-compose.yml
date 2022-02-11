@@ -1,0 +1,34 @@
+version: '3.6'
+networks:
+  archiver-net:
+services:
+  archiver:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: archiver
+    environment:
+      DB_NAME: archiver
+      DB_USER: archiver
+      DB_PASSWORD: archiver
+      SPRING_R2DBC_URL: r2dbc:postgresql://archiver-db:5432/archiver
+      SPRING_FLYWAY_URL: jdbc:postgresql://archiver-db:5432/archiver
+#      DEVELOPMENT_MODE: "true"
+#      APP_LOGGING_LEVEL: DEBUG
+    ports:
+      - "8090:8080"
+    networks:
+      - archiver-net
+    depends_on:
+      - archiver-db
+  archiver-db:
+    image: timescale/timescaledb:2.5.1-pg14
+    container_name: librarian-db
+    environment:
+      POSTGRES_USER: archiver
+      POSTGRES_PASSWORD: archiver
+      POSTGRES_DB: archiver
+    ports:
+      - "5432:5432"
+    networks:
+      - archiver-net
