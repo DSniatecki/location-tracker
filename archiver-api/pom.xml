@@ -11,14 +11,15 @@
     <description>Archiver openAPI definitions</description>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>17</java.version>
+        <kotlin.version>1.6.0</kotlin.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-z8</project.build.sourceEncoding>
+        <jackson.version>2.13.0</jackson.version>
+        <springframework.version>5.3.10</springframework.version>
         <src.api.dir>src/main</src.api.dir>
         <build.oapi-doc.dir>${project.build.outputDirectory}/api</build.oapi-doc.dir>
-        <jackson.version>2.13.0</jackson.version>
-        <kotlin.version>1.5.31</kotlin.version>
-        <springframework.version>5.3.10</springframework.version>
     </properties>
 
     <dependencies>
