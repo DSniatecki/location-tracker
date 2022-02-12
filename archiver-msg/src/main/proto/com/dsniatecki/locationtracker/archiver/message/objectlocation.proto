@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package archiver;
+
+import "com/dsniatecki/locationtracker/archiver/message/common.proto";
+option optimize_for = SPEED;
+option java_package = "com.dsniatecki.locationtracker.archiver.message";
+option java_outer_classname = "ObjectLocationProto";
+
+message ObjectLocationRequestsResponse {
+  oneof message {
+    ObjectLocations objectLocations = 1;
+    archiver.common.ErrorResponse errorResponse = 2;
+  }
+}
+
+message ObjectLocationRequests {
+  repeated ObjectLocationRequest requests = 1;
+}
+
+message ObjectLocationRequest {
+  string objectId = 1;
+  archiver.common.DateTime effectiveAt = 2;
+  int64 tolerance = 3;
+}
+
+message ObjectLocations {
+  repeated ObjectLocation objectLocations = 1;
+}
+
+message ObjectLocation {
+  string objectId = 1;
+  archiver.common.DateTime receivedAt = 2;
+  archiver.common.Decimal latitude = 3;
+  archiver.common.Decimal longitude = 4;
+}
+
+
