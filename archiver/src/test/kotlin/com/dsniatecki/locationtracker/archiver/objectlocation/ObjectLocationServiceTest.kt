@@ -21,7 +21,9 @@ import org.springframework.test.context.DynamicPropertySource
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
 
-@SpringBootTest(classes = [ArchiverApplication::class])
+@SpringBootTest(
+    properties = ["spring.rabbitmq.listener.direct.auto-startup=false"],
+    classes = [ArchiverApplication::class])
 @Testcontainers
 internal class ObjectLocationServiceTest(
     @Autowired private val objectLocationService: ObjectLocationService,
@@ -39,7 +41,7 @@ internal class ObjectLocationServiceTest(
         @DynamicPropertySource
         @JvmStatic
         fun registerProperties(registry: DynamicPropertyRegistry) {
-            registerDbProperties(registry, dbContainer)
+            registerDbProperties(dbContainer, registry)
         }
     }
 
