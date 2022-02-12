@@ -7,9 +7,7 @@ import java.time.ZoneId
 import java.time.ZoneOffset
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
 
-@Configuration
 class UtilsConfig(
     @Value("\${archiver.tolerance}") private val defaultTolerance: Duration,
     @Value("\${archiver.time-zone.id}") private val timeZoneId: String,

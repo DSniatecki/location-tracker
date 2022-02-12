@@ -8,11 +8,9 @@ import com.dsniatecki.locationtracker.archiver.utils.createTimeRecorderMetric
 import io.micrometer.core.instrument.MeterRegistry
 import java.time.Duration
 import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
 import org.springframework.data.r2dbc.convert.MappingR2dbcConverter
 import org.springframework.r2dbc.core.DatabaseClient
 
-@Configuration
 class ObjectLocationConfig {
 
     @Bean
