@@ -1,3 +1,0 @@
-Grafana:                http://localhost:3000       admin - admin
-Prometheus:             http://localhost:9090
-RabbitMq console:       http://localhost:15672      guest - guest

@@ -60,7 +60,7 @@ services:
     container_name: prometheus
     command: --config.file=/etc/prometheus/prometheus.yml --log.level=debug
     volumes:
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./utils/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
     networks:
@@ -69,7 +69,7 @@ services:
     image: grafana:latest
     container_name: grafana
     build:
-      context: grafana
+      context: utils/grafana
     ports:
       - "3000:3000"
     environment:
