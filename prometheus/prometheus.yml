@@ -1,0 +1,15 @@
+global:
+  scrape_interval: 5s
+  evaluation_interval: 30s
+
+scrape_configs:
+  - job_name: prometheus
+    honor_labels: true
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: archiver-observability
+    honor_labels: true
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ["archiver:8080"]
