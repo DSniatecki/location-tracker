@@ -16,8 +16,8 @@ services:
       SPRING_RABBITMQ_OBJECT_LOCATION_EXCHANGE: archiver.exchange
       SPRING_RABBITMQ_OBJECT_LOCATION_STORE_ROUTING_KEY: archiver-object-location-source
       SPRING_RABBITMQ_SSL_ENABLED: "false"
-    # DEVELOPMENT_MODE: "true"
-    # APP_LOGGING_LEVEL: DEBUG
+#      DEVELOPMENT_MODE: "true"
+#      APP_LOGGING_LEVEL: DEBUG
     ports:
       - "8080:8080"
     networks:
@@ -41,8 +41,8 @@ services:
       SPRING_RABBITMQ_OBJECT_LOCATION_SOURCE_QUEUE: archiver.object.location.source.queue
       SPRING_RABBITMQ_OBJECT_LOCATION_REQUEST_QUEUE: archiver.object.location.request.queue
       SPRING_RABBITMQ_SSL_ENABLED: "false"
-    # DEVELOPMENT_MODE: "true"
-    # APP_LOGGING_LEVEL: DEBUG
+#      DEVELOPMENT_MODE: "true"
+#      APP_LOGGING_LEVEL: DEBUG
     ports:
       - "8090:8080"
     networks:
