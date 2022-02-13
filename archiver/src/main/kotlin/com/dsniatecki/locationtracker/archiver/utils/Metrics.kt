@@ -21,17 +21,17 @@ private class CounterMetric(private val counter: LongAdder = LongAdder()) : Coun
     }
 }
 
-fun createTimeRecorderMetric(name: String, description: String, metricsRegistry: MeterRegistry): TimeRecorder =
+fun createTimeRecorderMetric(name: String, description: String, meterRegistry: MeterRegistry): TimeRecorder =
     TimeRecorderMetric(
         Timer.builder(name)
             .description(description)
             .publishPercentileHistogram()
-            .register(metricsRegistry)
+            .register(meterRegistry)
     )
 
-fun createCounterMetric(name: String, description: String, metricsRegistry: MeterRegistry): Counter {
+fun createCounterMetric(name: String, description: String, meterRegistry: MeterRegistry): Counter {
     val operationsCounter = CounterMetric()
-    Gauge.builder(name) { operationsCounter.count() }.description(description).register(metricsRegistry)
+    Gauge.builder(name) { operationsCounter.count() }.description(description).register(meterRegistry)
     return operationsCounter
 }
 

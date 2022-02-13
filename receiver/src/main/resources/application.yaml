@@ -1,0 +1,38 @@
+receiver:
+  time-zone-id: "UTC"
+
+spring:
+  rabbitmq:
+    address-shuffle-mode: random
+    host: ""
+    password: ""
+    username: ""
+    virtual-host: ""
+    object-location:
+      exchange: ""
+      store:
+        routing-key:
+        pool-size: 4
+        batch-size: 250
+        buffer-limit: 10000
+        timeout-millis: 1000
+    dynamic: false
+    ssl:
+      enabled: true
+
+management:
+  endpoint:
+    info:
+      enabled: true
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "info, metrics, prometheus, health"

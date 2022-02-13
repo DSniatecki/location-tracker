@@ -68,24 +68,24 @@ class AmqpConfig(
     @Bean
     fun objectLocationSourceListener(
         objectLocationService: ObjectLocationService,
-        metricsRegistry: MeterRegistry
+        meterRegistry: MeterRegistry
     ): ObjectLocationSourceListener =
         ObjectLocationSourceListener(
             objectLocationService = objectLocationService,
             timeRecorder = createTimeRecorderMetric(
                 "object_location_source_listener_time",
                 "Time of saving object locations via rabbitMQ ObjectLocationSourceListener",
-                metricsRegistry
+                meterRegistry
             ),
             savedCounter = createCounterMetric(
                 "object_location_source_listener_saved",
                 "Number of saved object locations via rabbitMQ ObjectLocationSourceListener",
-                metricsRegistry
+                meterRegistry
             ),
             errorCounter = createCounterMetric(
                 "object_location_source_listener_errors",
                 "Number of errors that occurred in rabbitMQ ObjectLocationSourceListener",
-                metricsRegistry
+                meterRegistry
             )
         )
 
@@ -93,7 +93,7 @@ class AmqpConfig(
     fun objectLocationRequestListener(
         objectLocationService: ObjectLocationService,
         rabbitTemplate: RabbitTemplate,
-        metricsRegistry: MeterRegistry
+        meterRegistry: MeterRegistry
     ): ObjectLocationRequestListener =
         ObjectLocationRequestListener(
             objectLocationService = objectLocationService,
@@ -101,17 +101,17 @@ class AmqpConfig(
             timeRecorder = createTimeRecorderMetric(
                 "object_location_request_listener_time",
                 "Time of requesting Object Locations via rabbitMQ ObjectLocationRequestListener",
-                metricsRegistry
+                meterRegistry
             ),
             foundCounter = createCounterMetric(
                 "object_location_request_listener_found",
                 "Number of requested Object Locations via rabbitMQ ObjectLocationRequestListener",
-                metricsRegistry
+                meterRegistry
             ),
             errorCounter = createCounterMetric(
                 "object_location_request_listener_errors",
                 "Number of errors that occurred in rabbitMQ ObjectLocationRequestListener",
-                metricsRegistry
+                meterRegistry
             )
         )
 }

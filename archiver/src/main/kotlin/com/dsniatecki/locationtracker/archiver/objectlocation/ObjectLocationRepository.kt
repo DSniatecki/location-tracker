@@ -41,7 +41,7 @@ class ObjectLocationRepository(
             .recorded(findTimeRecorder)
 
     fun saveAll(objectLocationRows: Iterable<ObjectLocationRow>): Mono<Unit> =
-        if (objectLocationRows.count() > 0) saveElements(objectLocationRows) else Mono.just(Unit)
+        if (objectLocationRows.count() > 0) saveElements(objectLocationRows) else Mono.empty()
 
     private fun resolveSearchStartsAt(at: LocalDateTime, tolerance: Duration): LocalDateTime =
         at.minusSeconds(tolerance.toSeconds())
@@ -50,7 +50,7 @@ class ObjectLocationRepository(
         databaseClient.sql(createInsertSqlQuery(objectLocationRows))
             .fetch()
             .one()
-            .flatMap { Mono.just(Unit) }
+            .flatMap { Mono.empty<Unit>() }
             .doOnEach { saveCounter.increment() }
             .recorded(saveTimeRecorder)
 

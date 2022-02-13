@@ -17,30 +17,30 @@ class ObjectLocationConfig {
     fun objectLocationRepository(
         databaseClient: DatabaseClient,
         converter: MappingR2dbcConverter,
-        metricsRegistry: MeterRegistry
+        meterRegistry: MeterRegistry
     ): ObjectLocationRepository =
         ObjectLocationRepository(
             databaseClient = databaseClient,
             converter = converter,
             findCounter = createCounterMetric(
-                "object_location_query_find_time",
-                "Time of query responsible for finding object location",
-                metricsRegistry
-            ),
-            findTimeRecorder = createTimeRecorderMetric(
                 "object_location_query_find_count",
                 "Number of executed queries responsible for finding object location",
-                metricsRegistry
+                meterRegistry
+            ),
+            findTimeRecorder = createTimeRecorderMetric(
+                "object_location_query_find_time",
+                "Time of query responsible for finding object location",
+                meterRegistry
             ),
             saveCounter = createCounterMetric(
-                "object_location_query_save_time",
-                "Time of query responsible for saving object locations",
-                metricsRegistry
-            ),
-            saveTimeRecorder = createTimeRecorderMetric(
                 "object_location_query_save_count",
                 "Number of executed queries responsible for saving object locations",
-                metricsRegistry
+                meterRegistry
+            ),
+            saveTimeRecorder = createTimeRecorderMetric(
+                "object_location_query_save_time",
+                "Time of query responsible for saving object locations",
+                meterRegistry
             )
         )
 
