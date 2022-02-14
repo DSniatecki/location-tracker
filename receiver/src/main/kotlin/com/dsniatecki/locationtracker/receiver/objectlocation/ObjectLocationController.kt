@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.server.ResponseStatusException
+import reactor.core.publisher.Mono
+import validate
 
 @RestController
 @RequestMapping(path = ["/api"])
@@ -25,7 +27,10 @@ class ObjectLocationController(
     @ResponseStatus(HttpStatus.CREATED)
     fun saveObjectLocation(@RequestBody objectLocation: ObjectLocation): Publisher<Unit> {
         logger.debug { "Saving new object location: $objectLocation." }
-        return objectLocationService.save(objectLocation)
+        return Mono.just(objectLocation)
+            .map { it.validate() }
+            .flatMap { objectLocationService.save(it) }
+            .onErrorMap({ it is IllegalStateException }) { ResponseStatusException(HttpStatus.BAD_REQUEST, it.message) }
             .onErrorMap({ it is IllegalArgumentException }) { ResponseStatusException(HttpStatus.BAD_REQUEST, it.message) }
     }
 }
