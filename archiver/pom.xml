@@ -16,7 +16,7 @@
     <artifactId>archiver</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Archiver</name>
-    <description>Service responsible for archiving objects location</description>
+    <description>Service responsible for archiving and querying objects locations</description>
 
     <properties>
         <java.version>17</java.version>
