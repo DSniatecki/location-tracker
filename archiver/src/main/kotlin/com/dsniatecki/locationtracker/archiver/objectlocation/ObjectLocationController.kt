@@ -38,7 +38,7 @@ class ObjectLocationController(
     ): Publisher<ObjectLocation> {
         val toleranceDuration = tolerance?.let { Duration.ofSeconds(it) }
         logger.debug { "Returning effective object locations for object id: $objectId, effective at: '$effectiveAt' " +
-            "and tolerance: $tolerance seconds ." }
+                "and tolerance: $tolerance seconds ." }
         return objectLocationService.getEffectiveAt(objectId, effectiveAt, toleranceDuration)
             .switchIfEmpty(Mono.error(NoSuchElementException("Effective object locations for object id: $objectId, " +
                 "effective at: '$effectiveAt' and tolerance: $tolerance seconds does not exist.")))
@@ -49,7 +49,10 @@ class ObjectLocationController(
     @ResponseStatus(HttpStatus.CREATED)
     fun saveObjectLocations(@RequestBody objectLocations: Iterable<ObjectLocation>): Publisher<Unit> {
         logger.debug { "Saving new ${objectLocations.count()} object locations." }
-        return objectLocationService.saveAll(objectLocations)
+        return Mono.just(objectLocations)
+            .map { objectLocations.map { it.validate() } }
+            .flatMap { objectLocationService.saveAll(it) }
+            .onErrorMap({ it is IllegalStateException }) { ResponseStatusException(HttpStatus.BAD_REQUEST, it.message) }
             .onErrorMap({ it is IllegalArgumentException }) { ResponseStatusException(HttpStatus.BAD_REQUEST, it.message) }
             .onErrorMap({ it is DataIntegrityViolationException }) { ResponseStatusException(HttpStatus.CONFLICT, it.message) }
     }
