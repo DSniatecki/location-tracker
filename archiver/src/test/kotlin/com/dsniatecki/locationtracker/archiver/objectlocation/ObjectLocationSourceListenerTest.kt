@@ -97,6 +97,13 @@ internal class ObjectLocationSourceListenerTest(
 
     @Test
     @Timeout(value = TIMEOUT_VALUE_MILLIS, unit = TimeUnit.MILLISECONDS)
+    fun `Should send message with invalid object location to dead letter queue`() {
+        sendViaRabbitMq(createTestObjectLocation("INVALID_ID"))
+        assertThat(countDeadLettersRetrying()).isEqualTo(1)
+    }
+
+    @Test
+    @Timeout(value = TIMEOUT_VALUE_MILLIS, unit = TimeUnit.MILLISECONDS)
     fun `Should send corrupted message to dead letter queue`() {
         sendViaRabbitMq(invalidMsg)
         assertThat(countDeadLettersRetrying()).isEqualTo(1)

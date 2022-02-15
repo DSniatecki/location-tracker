@@ -5,7 +5,6 @@ import com.dsniatecki.locationtracker.archiver.message.utils.toBigDecimal
 import com.dsniatecki.locationtracker.archiver.message.utils.toProtoDecimal
 import com.dsniatecki.locationtracker.archiver.message.utils.toUtcOffsetDateTime
 import com.dsniatecki.locationtracker.archiver.message.utils.toUtcProtoDateTime
-import com.dsniatecki.locationtracker.archiver.objectlocation.ObjectLocation
 
 fun ObjectLocationProto.ObjectLocation.toObjectLocation(): ObjectLocation =
     ObjectLocation(

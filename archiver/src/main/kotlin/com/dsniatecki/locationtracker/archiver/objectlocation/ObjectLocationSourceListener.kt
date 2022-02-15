@@ -55,4 +55,5 @@ data class ObjectLocationSourceListener(
         objectLocationsProtos.map { it.objectLocationsList }
             .flatten()
             .map { it.toObjectLocation() }
+            .map { it.validate() }
 }
