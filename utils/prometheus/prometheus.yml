@@ -13,9 +13,13 @@ scrape_configs:
     metrics_path: /actuator/prometheus
     static_configs:
       - targets: ["archiver:8080"]
+        labels:
+          service: "archiver"
 
   - job_name: receiver-observability
     honor_labels: true
     metrics_path: /actuator/prometheus
     static_configs:
       - targets: [ "receiver:8080" ]
+        labels:
+          service: "receiver"
