@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.*
 import validate
 
-internal class ExtensionsKtTest {
+internal class ExtensionsTest {
 
     @Test
     fun `Should pass validation`() {
@@ -31,10 +31,16 @@ internal class ExtensionsKtTest {
             latitude = BigDecimal("24.1212421299"),
             longitude = BigDecimal("64.4212764399")
         )
-        assertThat(testObjectLocation1.validate())
-            .isEqualTo(testObjectLocation1.copy(latitude = BigDecimal("24.12124200"), longitude = BigDecimal("64.42127600")))
-        assertThat(testObjectLocation2.validate())
-            .isEqualTo(testObjectLocation2.copy(latitude = BigDecimal("24.12124213"), longitude = BigDecimal("64.42127644")))
+        assertAll(
+            {
+                assertThat(testObjectLocation1.validate())
+                    .isEqualTo(testObjectLocation1.copy(latitude = BigDecimal("24.12124200"), longitude = BigDecimal("64.42127600")))
+            },
+            {
+                assertThat(testObjectLocation2.validate())
+                    .isEqualTo(testObjectLocation2.copy(latitude = BigDecimal("24.12124213"), longitude = BigDecimal("64.42127644")))
+            }
+        )
     }
 
     @Test
@@ -59,8 +65,10 @@ internal class ExtensionsKtTest {
             latitude = BigDecimal("91.12124212"),
             longitude = BigDecimal("64.42127643")
         )
-        assertThrows(IllegalStateException::class.java) { testObjectLocation1.validate() }
-        assertThrows(IllegalStateException::class.java) { testObjectLocation2.validate() }
+        assertAll(
+            { assertThrows(IllegalStateException::class.java) { testObjectLocation1.validate() } },
+            { assertThrows(IllegalStateException::class.java) { testObjectLocation2.validate() } }
+        )
     }
 
     @Test
@@ -75,7 +83,9 @@ internal class ExtensionsKtTest {
             latitude = BigDecimal("24.12124212"),
             longitude = BigDecimal("180.42127643")
         )
-        assertThrows(IllegalStateException::class.java) { testObjectLocation1.validate() }
-        assertThrows(IllegalStateException::class.java) { testObjectLocation2.validate() }
+        assertAll(
+            { assertThrows(IllegalStateException::class.java) { testObjectLocation1.validate() } },
+            { assertThrows(IllegalStateException::class.java) { testObjectLocation2.validate() } }
+        )
     }
 }
