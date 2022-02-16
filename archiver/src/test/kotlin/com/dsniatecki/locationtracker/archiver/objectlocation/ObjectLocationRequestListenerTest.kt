@@ -26,6 +26,7 @@ import java.util.UUID
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertAll
 import org.springframework.amqp.core.Message
 import org.springframework.amqp.core.MessageProperties
 import org.springframework.amqp.rabbit.core.RabbitTemplate
@@ -91,10 +92,11 @@ internal class ObjectLocationRequestListenerTest(
             .build()
         objectLocationService.saveAll(objectLocations).block()
         val response = sendAndReceiveObjectLocation(objectLocationRequests)
-        assertThat(response.objectLocations.objectLocationsList).satisfies {
-            assertThat(it.size).isEqualTo(1)
-            assertThat(it[0].toObjectLocation()).isEqualTo(createTestObjectLocation(object1Id))
-        }
+        val objectLocationList = response.objectLocations.objectLocationsList
+        assertAll(
+            { assertThat(objectLocationList.size).isEqualTo(1) },
+            { assertThat(objectLocationList[0].toObjectLocation()).isEqualTo(createTestObjectLocation(object1Id)) }
+        )
         assertThat(countDeadLetters()).isEqualTo(0)
     }
 
@@ -108,11 +110,12 @@ internal class ObjectLocationRequestListenerTest(
             .build()
         objectLocationService.saveAll(objectLocations).block()
         val response = sendAndReceiveObjectLocation(objectLocationRequests)
-        assertThat(response.objectLocations.objectLocationsList).satisfies {
-            assertThat(it.size).isEqualTo(2)
-            assertThat(it[0].toObjectLocation()).isEqualTo(createTestObjectLocation(object1Id))
-            assertThat(it[1].toObjectLocation()).isEqualTo(createTestObjectLocation(object2Id))
-        }
+        val objectLocationList = response.objectLocations.objectLocationsList
+        assertAll(
+            { assertThat(objectLocationList.size).isEqualTo(2) },
+            { assertThat(objectLocationList[0].toObjectLocation()).isEqualTo(createTestObjectLocation(object1Id)) },
+            { assertThat(objectLocationList[1].toObjectLocation()).isEqualTo(createTestObjectLocation(object2Id)) }
+        )
         assertThat(countDeadLetters()).isEqualTo(0)
     }
 
@@ -131,10 +134,10 @@ internal class ObjectLocationRequestListenerTest(
         val objectLocations = listOf(createTestObjectLocation(object1Id), createTestObjectLocation(object2Id))
         objectLocationService.saveAll(objectLocations).block()
         val response = sendAndReceiveObjectLocation(invalidMsg)
-        assertThat(response).satisfies {
-            assertThat(it.errorResponse).isNotNull
-            assertThat(it.errorResponse.errorMessage).isNotEmpty()
-        }
+        assertAll(
+            { assertThat(response.errorResponse).isNotNull },
+            { assertThat(response.errorResponse.errorMessage).isNotEmpty }
+        )
         assertThat(countDeadLetters()).isEqualTo(0)
     }
 

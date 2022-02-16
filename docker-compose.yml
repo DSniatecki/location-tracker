@@ -84,6 +84,8 @@ services:
       - "9090:9090"
     networks:
       - location-tracker-net
+    depends_on:
+      - receiver
   grafana:
     image: grafana:latest
     container_name: grafana
@@ -95,4 +97,6 @@ services:
       - "3000:3000"
     networks:
       - location-tracker-net
+    depends_on:
+      - receiver
 
