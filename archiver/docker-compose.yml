@@ -5,7 +5,6 @@ services:
   archiver:
     build:
       context: .
-      dockerfile: Dockerfile
     container_name: archiver
     environment:
       DB_NAME: archiver
@@ -23,7 +22,7 @@ services:
     # DEVELOPMENT_MODE: "true"
     # APP_LOGGING_LEVEL: DEBUG
     ports:
-      - "8090:8080"
+      - "10030:8080"
     networks:
       - archiver-net
     depends_on:
@@ -37,7 +36,7 @@ services:
       POSTGRES_PASSWORD: archiver
       POSTGRES_DB: archiver
     ports:
-      - "5432:5432"
+      - "11030:5432"
     networks:
       - archiver-net
   archiver-msg-broker:

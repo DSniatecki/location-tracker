@@ -16,10 +16,8 @@ services:
       SPRING_RABBITMQ_OBJECT_LOCATION_EXCHANGE: archiver.exchange
       SPRING_RABBITMQ_OBJECT_LOCATION_STORE_ROUTING_KEY: archiver-object-location-source
       SPRING_RABBITMQ_SSL_ENABLED: "false"
-#      DEVELOPMENT_MODE: "true"
-#      APP_LOGGING_LEVEL: DEBUG
     ports:
-      - "8080:8080"
+      - "10020:8080"
     networks:
       - location-tracker-net
     depends_on:
@@ -41,10 +39,8 @@ services:
       SPRING_RABBITMQ_OBJECT_LOCATION_SOURCE_QUEUE: archiver.object.location.source.queue
       SPRING_RABBITMQ_OBJECT_LOCATION_REQUEST_QUEUE: archiver.object.location.request.queue
       SPRING_RABBITMQ_SSL_ENABLED: "false"
-#      DEVELOPMENT_MODE: "true"
-#      APP_LOGGING_LEVEL: DEBUG
     ports:
-      - "8090:8080"
+      - "10030:8080"
     networks:
       - location-tracker-net
     depends_on:
@@ -58,7 +54,7 @@ services:
       POSTGRES_PASSWORD: archiver
       POSTGRES_DB: archiver
     ports:
-      - "5432:5432"
+      - "11030:5432"
     networks:
       - location-tracker-net
   archiver-msg-broker:
@@ -72,6 +68,33 @@ services:
       - "5671:5671"
       - "5672:5672"
       - "15672:15672"
+    networks:
+      - location-tracker-net
+  storage:
+    build:
+      context: storage
+    container_name: storage
+    environment:
+      DB_NAME: storage
+      DB_USER: storage
+      DB_PASSWORD: storage
+      SPRING_R2DBC_URL: r2dbc:postgresql://storage-db:5432/storage
+      SPRING_FLYWAY_URL: jdbc:postgresql://storage-db:5432/storage
+    ports:
+      - "10010:8080"
+    networks:
+      - location-tracker-net
+    depends_on:
+      - storage-db
+  storage-db:
+    image: postgres:14-alpine
+    container_name: storage-db
+    environment:
+      POSTGRES_USER: storage
+      POSTGRES_PASSWORD: storage
+      POSTGRES_DB: storage
+    ports:
+      - "11010:5432"
     networks:
       - location-tracker-net
   grafana:
