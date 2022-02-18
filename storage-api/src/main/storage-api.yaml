@@ -1,0 +1,107 @@
+openapi: "3.0.0"
+info:
+  title: Storage API
+  version: 0.0.1
+
+paths:
+
+  /objects:
+    get:
+      tags:
+        - object-controller
+      operationId: getAllObjects
+      responses:
+        200:
+          description: All Objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Object'
+    post:
+      tags:
+        - object-controller
+      operationId: saveObject
+      requestBody:
+        description: Object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewObject'
+      responses:
+        '201':
+          description: Object was saved
+        '400':
+          description: Object is invalid
+
+  /objects/{objectId}:
+    get:
+      tags:
+        - object-controller
+      operationId: getObject
+      parameters:
+        - name: objectId
+          in: path
+          required: true
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            example: 'c039e9fc-8b46-11ec-a8a3-0242ac120002'
+      responses:
+        200:
+          description: Object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Object'
+        404:
+          description: Object for given id not found
+
+components:
+  schemas:
+
+    NewObject:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 128
+          example: 'Super Track'
+        imageUrl:
+          type: string
+          minLength: 4
+          maxLength: 256
+          example: 'https://location.tracker.images.com/x139e9fc-8b46-11ec-a8a3-0242ac120337'
+      required:
+        - name
+
+    Object:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 1
+          maxLength: 128
+          example: 'x139e9fc-8b46-11ec-a8a3-0242ac120337'
+        name:
+          type: string
+          minLength: 1
+          maxLength: 128
+          example: 'Super Track'
+        imageUrl:
+          type: string
+          minLength: 4
+          maxLength: 256
+          example: 'https://location.tracker.images.com/x139e9fc-8b46-11ec-a8a3-0242ac120337'
+        createdAt:
+          type: string
+          format: date-time
+          example: '2022-02-18T23:30:02.888028Z'
+      required:
+        - id
+        - name
+        - createdAt
