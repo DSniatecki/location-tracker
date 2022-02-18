@@ -19,7 +19,7 @@ class ObjectService(
         ExistingObject(
             id = generateId(),
             name = newObject.name,
-            imageUrl = newObject.name,
+            imageUrl = newObject.imageUrl,
             createdAt = timeSupplier.now().atOffset(timeSupplier.zoneOffset())
         )
 }

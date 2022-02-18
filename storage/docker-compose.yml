@@ -5,7 +5,6 @@ services:
   storage:
     build:
       context: .
-      dockerfile: Dockerfile
     container_name: storage
     environment:
       DB_NAME: storage
