@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "a14c4c4c-1d06-4321-af13-6792e9340269",
+		"name": "Storage",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Object",
+			"item": [
+				{
+					"name": "Get Object",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{storage-endpoint}}/api/objects/{{objectId}}",
+							"host": [
+								"{{storage-endpoint}}"
+							],
+							"path": [
+								"api",
+								"objects",
+								"{{objectId}}"
+							],
+							"query": [
+								{
+									"key": "tolerance",
+									"value": "3600",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Objects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{storage-endpoint}}/api/objects",
+							"host": [
+								"{{storage-endpoint}}"
+							],
+							"path": [
+								"api",
+								"objects"
+							],
+							"query": [
+								{
+									"key": "tolerance",
+									"value": "3600",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Super Track\",\r\n    \"imageUrl\": \"https://location.tracker.images.com/{{objectId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{storage-endpoint}}/api/objects",
+							"host": [
+								"{{storage-endpoint}}"
+							],
+							"path": [
+								"api",
+								"objects"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Actuator",
+			"item": [
+				{
+					"name": "Actuator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{receiver-endpoint}}/actuator",
+							"host": [
+								"{{receiver-endpoint}}"
+							],
+							"path": [
+								"actuator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{storage-endpoint}}/actuator/health",
+							"host": [
+								"{{storage-endpoint}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Prometheus",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{storage-endpoint}}/actuator/prometheus",
+							"host": [
+								"{{storage-endpoint}}"
+							],
+							"path": [
+								"actuator",
+								"prometheus"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"var moment = require('moment');",
+					"pm.environment.set('today', moment().format((\"YYYY-MM-DD\")));",
+					"",
+					"pm.environment.set('objectId', 'c039e9fc-8b46-11ec-a8a3-0242ac120002');",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

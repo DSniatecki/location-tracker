@@ -1,0 +1,34 @@
+version: '3.6'
+networks:
+  storage-net:
+services:
+  storage:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: storage
+    environment:
+      DB_NAME: storage
+      DB_USER: storage
+      DB_PASSWORD: storage
+      SPRING_R2DBC_URL: r2dbc:postgresql://storage-db:5432/storage
+      SPRING_FLYWAY_URL: jdbc:postgresql://storage-db:5432/storage
+    # DEVELOPMENT_MODE: "true"
+    # APP_LOGGING_LEVEL: DEBUG
+    ports:
+      - "10010:8080"
+    networks:
+      - storage-net
+    depends_on:
+      - storage-db
+  storage-db:
+    image: postgres:14-alpine
+    container_name: storage-db
+    environment:
+      POSTGRES_USER: storage
+      POSTGRES_PASSWORD: storage
+      POSTGRES_DB: storage
+    ports:
+      - "11010:5432"
+    networks:
+      - storage-net
