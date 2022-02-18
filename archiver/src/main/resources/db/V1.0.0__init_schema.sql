@@ -3,7 +3,7 @@ CREATE EXTENSION IF NOT EXISTS timescaledb CASCADE;
 CREATE TABLE object_location
 (
     id          BIGSERIAL      NOT NULL,
-    object_id   VARCHAR(36)    NOT NULL,
+    object_id   CHAR(36)    NOT NULL,
     received_at TIMESTAMP      NOT NULL,
     latitude    DECIMAL(11, 8) NOT NULL,
     longitude   DECIMAL(11, 8) NOT NULL
