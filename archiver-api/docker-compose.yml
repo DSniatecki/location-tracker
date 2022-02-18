@@ -6,6 +6,6 @@ services:
     environment:
       SWAGGER_FILE: /tmp/api/receiver-api.yaml
     volumes:
-      - ./src/main/receiver-api.yaml:/tmp/api/receiver-api.yaml
+      - ./src/main/receiver-api.yaml:/tmp/api/archiver-api.yaml
     ports:
       - '10000:8080'
