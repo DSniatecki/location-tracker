@@ -1,9 +1,22 @@
 version: '3.6'
 networks:
   location-tracker-net:
-volumes:
-  grafana-storage:
 services:
+  proxy:
+    build:
+      context: utils/proxy
+    container_name: proxy
+    ports:
+      - "8000:80"
+    networks:
+      - location-tracker-net
+    depends_on:
+      - storage
+      - receiver
+      - archiver
+      - archiver-msg-broker
+      - grafana
+      - prometheus
   receiver:
     build:
       context: receiver
@@ -104,8 +117,9 @@ services:
       context: utils/grafana
     environment:
       GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: "/var/lib/grafana/dashboards/archiver_dashboard.json"
+      GF_SERVER_ROOT_URL: "%(protocol)s://%(domain)s:/grafana"
     ports:
-      - "3000:3000"
+      - "11000:3000"
     networks:
       - location-tracker-net
     depends_on:
@@ -117,7 +131,7 @@ services:
     volumes:
       - ./utils/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
-      - "9090:9090"
+      - "11190:9090"
     networks:
       - location-tracker-net
 
