@@ -1,4 +1,4 @@
-package com.dsniatecki.locationtracker.archiver.utils
+package com.dsniatecki.locationtracker.commons.utils
 
 @FunctionalInterface
 interface Counter {

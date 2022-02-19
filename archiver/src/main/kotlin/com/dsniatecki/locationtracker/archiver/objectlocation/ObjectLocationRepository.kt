@@ -1,8 +1,8 @@
 package com.dsniatecki.locationtracker.archiver.objectlocation
 
-import com.dsniatecki.locationtracker.archiver.utils.Counter
-import com.dsniatecki.locationtracker.archiver.utils.TimeRecorder
-import com.dsniatecki.locationtracker.archiver.utils.recorded
+import com.dsniatecki.locationtracker.commons.utils.Counter
+import com.dsniatecki.locationtracker.commons.utils.TimeRecorder
+import com.dsniatecki.locationtracker.commons.utils.recorded
 import java.time.Duration
 import java.time.LocalDateTime
 import org.springframework.data.r2dbc.convert.MappingR2dbcConverter

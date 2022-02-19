@@ -2,9 +2,9 @@ package com.dsniatecki.locationtracker.archiver.config
 
 import com.dsniatecki.locationtracker.archiver.objectlocation.ObjectLocationRepository
 import com.dsniatecki.locationtracker.archiver.objectlocation.ObjectLocationService
-import com.dsniatecki.locationtracker.archiver.utils.TimeSupplier
-import com.dsniatecki.locationtracker.archiver.utils.createCounterMetric
-import com.dsniatecki.locationtracker.archiver.utils.createTimeRecorderMetric
+import com.dsniatecki.locationtracker.commons.utils.TimeSupplier
+import com.dsniatecki.locationtracker.commons.utils.createCounterMetric
+import com.dsniatecki.locationtracker.commons.utils.createTimeRecorderMetric
 import io.micrometer.core.instrument.MeterRegistry
 import java.time.Duration
 import org.springframework.context.annotation.Bean

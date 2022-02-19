@@ -1,11 +1,11 @@
 package com.dsniatecki.locationtracker.storage.config
 
+import com.dsniatecki.locationtracker.commons.utils.TimeSupplier
+import com.dsniatecki.locationtracker.commons.utils.createCounterMetric
+import com.dsniatecki.locationtracker.commons.utils.createTimeRecorderMetric
 import com.dsniatecki.locationtracker.storage.`object`.ObjectRepository
 import com.dsniatecki.locationtracker.storage.`object`.ObjectRowRepository
 import com.dsniatecki.locationtracker.storage.`object`.ObjectService
-import com.dsniatecki.locationtracker.storage.utils.TimeSupplier
-import com.dsniatecki.locationtracker.storage.utils.createCounterMetric
-import com.dsniatecki.locationtracker.storage.utils.createTimeRecorderMetric
 import io.micrometer.core.instrument.MeterRegistry
 import org.springframework.context.annotation.Bean
 

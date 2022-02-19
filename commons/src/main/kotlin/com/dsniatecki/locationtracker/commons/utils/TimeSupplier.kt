@@ -1,4 +1,4 @@
-package com.dsniatecki.locationtracker.storage.utils
+package com.dsniatecki.locationtracker.commons.utils
 
 import java.time.LocalDateTime
 import java.time.ZoneId

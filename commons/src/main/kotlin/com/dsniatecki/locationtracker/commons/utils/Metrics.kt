@@ -1,4 +1,4 @@
-package com.dsniatecki.locationtracker.storage.utils
+package com.dsniatecki.locationtracker.commons.utils
 
 import io.micrometer.core.instrument.Gauge
 import io.micrometer.core.instrument.MeterRegistry

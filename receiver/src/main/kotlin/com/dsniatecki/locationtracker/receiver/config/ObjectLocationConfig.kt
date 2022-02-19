@@ -1,9 +1,9 @@
 package com.dsniatecki.locationtracker.receiver.config
 
+import com.dsniatecki.locationtracker.commons.utils.TimeSupplier
+import com.dsniatecki.locationtracker.commons.utils.createCounterMetric
 import com.dsniatecki.locationtracker.receiver.objectlocation.ObjectLocationSender
 import com.dsniatecki.locationtracker.receiver.objectlocation.ObjectLocationService
-import com.dsniatecki.locationtracker.receiver.utils.TimeSupplier
-import com.dsniatecki.locationtracker.receiver.utils.createCounterMetric
 import io.micrometer.core.instrument.MeterRegistry
 import org.springframework.context.annotation.Bean
 

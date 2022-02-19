@@ -4,8 +4,8 @@ import com.dsniatecki.locationtracker.archiver.message.ObjectLocationProto
 import com.dsniatecki.locationtracker.archiver.objectlocation.ObjectLocationRequestListener
 import com.dsniatecki.locationtracker.archiver.objectlocation.ObjectLocationService
 import com.dsniatecki.locationtracker.archiver.objectlocation.ObjectLocationSourceListener
-import com.dsniatecki.locationtracker.archiver.utils.createCounterMetric
-import com.dsniatecki.locationtracker.archiver.utils.createTimeRecorderMetric
+import com.dsniatecki.locationtracker.commons.utils.createCounterMetric
+import com.dsniatecki.locationtracker.commons.utils.createTimeRecorderMetric
 import io.micrometer.core.instrument.MeterRegistry
 import mu.KotlinLogging
 import org.springframework.amqp.core.Message

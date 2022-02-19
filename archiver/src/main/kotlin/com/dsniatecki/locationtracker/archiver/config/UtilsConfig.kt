@@ -1,6 +1,6 @@
 package com.dsniatecki.locationtracker.archiver.config
 
-import com.dsniatecki.locationtracker.archiver.utils.TimeSupplier
+import com.dsniatecki.locationtracker.commons.utils.TimeSupplier
 import java.time.Duration
 import java.time.LocalDateTime
 import java.time.ZoneId

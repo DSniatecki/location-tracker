@@ -1,10 +1,10 @@
 package com.dsniatecki.locationtracker.storage.`object`
 
-import com.dsniatecki.locationtracker.storage.utils.Counter
-import com.dsniatecki.locationtracker.storage.utils.TimeRecorder
-import com.dsniatecki.locationtracker.storage.utils.TimeSupplier
-import com.dsniatecki.locationtracker.storage.utils.atZone
-import com.dsniatecki.locationtracker.storage.utils.recorded
+import com.dsniatecki.locationtracker.commons.utils.Counter
+import com.dsniatecki.locationtracker.commons.utils.TimeRecorder
+import com.dsniatecki.locationtracker.commons.utils.TimeSupplier
+import com.dsniatecki.locationtracker.commons.utils.atZone
+import com.dsniatecki.locationtracker.commons.utils.recorded
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 

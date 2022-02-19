@@ -1,7 +1,7 @@
 package com.dsniatecki.locationtracker.receiver.objectlocation
 
-import com.dsniatecki.locationtracker.receiver.utils.Counter
-import com.dsniatecki.locationtracker.receiver.utils.TimeSupplier
+import com.dsniatecki.locationtracker.commons.utils.Counter
+import com.dsniatecki.locationtracker.commons.utils.TimeSupplier
 import reactor.core.publisher.Mono
 
 class ObjectLocationService(

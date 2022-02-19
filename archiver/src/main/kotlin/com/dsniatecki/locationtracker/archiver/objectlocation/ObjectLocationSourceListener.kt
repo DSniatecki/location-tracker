@@ -1,9 +1,9 @@
 package com.dsniatecki.locationtracker.archiver.objectlocation
 
 import com.dsniatecki.locationtracker.archiver.message.ObjectLocationProto
-import com.dsniatecki.locationtracker.archiver.utils.Counter
-import com.dsniatecki.locationtracker.archiver.utils.TimeRecorder
-import com.dsniatecki.locationtracker.archiver.utils.recorded
+import com.dsniatecki.locationtracker.commons.utils.Counter
+import com.dsniatecki.locationtracker.commons.utils.TimeRecorder
+import com.dsniatecki.locationtracker.commons.utils.recorded
 import com.rabbitmq.client.Channel
 import mu.KotlinLogging
 import org.springframework.amqp.rabbit.annotation.RabbitListener

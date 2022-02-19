@@ -1,7 +1,7 @@
 package com.dsniatecki.locationtracker.archiver.objectlocation
 
-import com.dsniatecki.locationtracker.archiver.utils.TimeSupplier
-import com.dsniatecki.locationtracker.archiver.utils.atZone
+import com.dsniatecki.locationtracker.commons.utils.TimeSupplier
+import com.dsniatecki.locationtracker.commons.utils.atZone
 import java.time.Duration
 import java.time.LocalDateTime
 import java.time.OffsetDateTime

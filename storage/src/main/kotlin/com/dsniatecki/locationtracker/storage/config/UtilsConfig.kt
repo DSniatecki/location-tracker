@@ -1,6 +1,6 @@
 package com.dsniatecki.locationtracker.storage.config
 
-import com.dsniatecki.locationtracker.storage.utils.TimeSupplier
+import com.dsniatecki.locationtracker.commons.utils.TimeSupplier
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZoneOffset
