@@ -3,9 +3,10 @@ networks:
   location-tracker-net:
 services:
   proxy:
-    build:
-      context: utils/proxy
+    image: nginx:1.21.6-alpine
     container_name: proxy
+    volumes:
+      - ./utils/proxy/nginx.conf:/etc/nginx/nginx.conf
     ports:
       - "8000:80"
     networks:
@@ -111,13 +112,14 @@ services:
     networks:
       - location-tracker-net
   grafana:
-    image: grafana:latest
+    image: grafana/grafana:8.2.6
     container_name: grafana
-    build:
-      context: utils/grafana
     environment:
       GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: "/var/lib/grafana/dashboards/archiver_dashboard.json"
       GF_SERVER_ROOT_URL: "%(protocol)s://%(domain)s:/grafana"
+    volumes:
+      - ./utils/grafana/provisioning:/etc/grafana/provisioning
+      - ./utils/grafana/dashboards:/var/lib/grafana/dashboards
     ports:
       - "11000:3000"
     networks:

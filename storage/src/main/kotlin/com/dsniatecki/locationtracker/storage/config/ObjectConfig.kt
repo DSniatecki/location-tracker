@@ -12,6 +12,10 @@ import org.springframework.context.annotation.Bean
 class ObjectConfig {
 
     @Bean
+    fun objectService(objectRepository: ObjectRepository, timeSupplier: TimeSupplier): ObjectService =
+        ObjectService(objectRepository, timeSupplier)
+
+    @Bean
     fun objectRepository(
         objectRowRepository: ObjectRowRepository,
         timeSupplier: TimeSupplier, meterRegistry:
@@ -51,8 +55,4 @@ class ObjectConfig {
                 meterRegistry
             ),
         )
-
-    @Bean
-    fun objectService(objectRepository: ObjectRepository, timeSupplier: TimeSupplier): ObjectService =
-        ObjectService(objectRepository, timeSupplier)
 }

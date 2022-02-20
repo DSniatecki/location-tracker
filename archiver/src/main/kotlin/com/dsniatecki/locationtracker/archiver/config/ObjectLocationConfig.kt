@@ -14,6 +14,18 @@ import org.springframework.r2dbc.core.DatabaseClient
 class ObjectLocationConfig {
 
     @Bean
+    fun objectLocationService(
+        objectLocationRepository: ObjectLocationRepository,
+        timeSupplier: TimeSupplier,
+        defaultTolerance: Duration
+    ): ObjectLocationService =
+        ObjectLocationService(
+            objectLocationRepository = objectLocationRepository,
+            timeSupplier = timeSupplier,
+            defaultTolerance = defaultTolerance
+        )
+
+    @Bean
     fun objectLocationRepository(
         databaseClient: DatabaseClient,
         converter: MappingR2dbcConverter,
@@ -42,17 +54,5 @@ class ObjectLocationConfig {
                 "Time of query responsible for saving object locations",
                 meterRegistry
             )
-        )
-
-    @Bean
-    fun objectLocationService(
-        objectLocationRepository: ObjectLocationRepository,
-        timeSupplier: TimeSupplier,
-        defaultTolerance: Duration
-    ): ObjectLocationService =
-        ObjectLocationService(
-            objectLocationRepository = objectLocationRepository,
-            timeSupplier = timeSupplier,
-            defaultTolerance = defaultTolerance
         )
 }

@@ -54,6 +54,5 @@ data class ObjectLocationSourceListener(
     private fun mapToObjectLocations(objectLocationsProtos: Iterable<ObjectLocationProto.ObjectLocations>): Iterable<ObjectLocation> =
         objectLocationsProtos.map { it.objectLocationsList }
             .flatten()
-            .map { it.toObjectLocation() }
-            .map { it.validate() }
+            .map { it.toObjectLocation().validate()  }
 }
