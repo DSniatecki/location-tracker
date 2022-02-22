@@ -1,8 +1,8 @@
 package com.dsniatecki.locationtracker.storage.config
 
 import com.dsniatecki.locationtracker.commons.utils.TimeSupplier
-import com.dsniatecki.locationtracker.commons.utils.createCounterMetric
 import com.dsniatecki.locationtracker.commons.utils.createTimeRecorderMetric
+import com.dsniatecki.locationtracker.commons.utils.withCounter
 import com.dsniatecki.locationtracker.storage.`object`.ObjectRepository
 import com.dsniatecki.locationtracker.storage.`object`.ObjectRowRepository
 import com.dsniatecki.locationtracker.storage.`object`.ObjectService
@@ -24,45 +24,33 @@ class ObjectConfig {
         ObjectRepository(
             objectRowRepository = objectRowRepository,
             timeSupplier = timeSupplier,
-            findTimeRecorder = createTimeRecorderMetric(
+            findTimeRecorder = meterRegistry.createTimeRecorderMetric(
                 "object_query_find_time",
-                "Time of query responsible for finding object",
-                meterRegistry
-            ),
-            findCounter = createCounterMetric(
+                "Time of query responsible for finding object"
+            ).withCounter(
                 "object_query_find_count",
-                "Number of executed queries responsible for finding object",
-                meterRegistry
+                "Number of executed queries responsible for finding object"
             ),
-            findAllTimeRecorder = createTimeRecorderMetric(
+            findAllTimeRecorder = meterRegistry.createTimeRecorderMetric(
                 "object_query_find_all_time",
-                "Time of query responsible for finding all objects",
-                meterRegistry
-            ),
-            findAllCounter = createCounterMetric(
+                "Time of query responsible for finding all objects"
+            ).withCounter(
                 "object_query_find_all_count",
-                "Number of executed queries responsible for finding all objects",
-                meterRegistry
+                "Number of executed queries responsible for finding all objects"
             ),
-            saveTimeRecorder = createTimeRecorderMetric(
+            saveTimeRecorder = meterRegistry.createTimeRecorderMetric(
                 "object_query_save_time",
                 "Time of query responsible for saving object",
-                meterRegistry
-            ),
-            saveCounter = createCounterMetric(
+            ).withCounter(
                 "object_query_save_count",
-                "Number of executed queries responsible for saving object",
-                meterRegistry
+                "Number of executed queries responsible for saving object"
             ),
-            deleteTimeRecorder = createTimeRecorderMetric(
+            deleteTimeRecorder = meterRegistry.createTimeRecorderMetric(
                 "object_query_delete_time",
-                "Time of query responsible for deleting object",
-                meterRegistry
-            ),
-            deleteCounter = createCounterMetric(
+                "Time of query responsible for deleting object"
+            ).withCounter(
                 "object_query_delete_count",
-                "Number of executed queries responsible for deleting object",
-                meterRegistry
-            ),
+                "Number of executed queries responsible for deleting object"
+            )
         )
 }

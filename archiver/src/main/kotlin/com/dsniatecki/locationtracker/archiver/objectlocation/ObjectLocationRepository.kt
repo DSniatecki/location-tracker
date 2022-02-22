@@ -1,6 +1,5 @@
 package com.dsniatecki.locationtracker.archiver.objectlocation
 
-import com.dsniatecki.locationtracker.commons.utils.Counter
 import com.dsniatecki.locationtracker.commons.utils.TimeRecorder
 import com.dsniatecki.locationtracker.commons.utils.recorded
 import java.time.Duration
@@ -13,9 +12,7 @@ class ObjectLocationRepository(
     private val databaseClient: DatabaseClient,
     private val converter: MappingR2dbcConverter,
     private val findTimeRecorder: TimeRecorder,
-    private val findCounter: Counter,
     private val saveTimeRecorder: TimeRecorder,
-    private val saveCounter: Counter
 ) {
 
     fun findEffectiveAt(objectId: String, effectiveAt: LocalDateTime, tolerance: Duration): Mono<ObjectLocationRow> =
@@ -37,7 +34,6 @@ class ObjectLocationRepository(
             .bind("effectiveAt", effectiveAt)
             .map { row, metadata -> converter.read(ObjectLocationRow::class.java, row, metadata) }
             .one()
-            .doOnEach { findCounter.increment() }
             .recorded(findTimeRecorder)
 
     fun saveAll(objectLocationRows: Iterable<ObjectLocationRow>): Mono<Unit> =
@@ -51,7 +47,6 @@ class ObjectLocationRepository(
             .fetch()
             .one()
             .flatMap { Mono.empty<Unit>() }
-            .doOnEach { saveCounter.increment() }
             .recorded(saveTimeRecorder)
 
     private fun createInsertSqlQuery(objectLocationRows: Iterable<ObjectLocationRow>): String {

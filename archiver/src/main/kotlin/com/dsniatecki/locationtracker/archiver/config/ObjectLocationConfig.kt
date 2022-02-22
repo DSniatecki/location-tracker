@@ -5,6 +5,7 @@ import com.dsniatecki.locationtracker.archiver.objectlocation.ObjectLocationServ
 import com.dsniatecki.locationtracker.commons.utils.TimeSupplier
 import com.dsniatecki.locationtracker.commons.utils.createCounterMetric
 import com.dsniatecki.locationtracker.commons.utils.createTimeRecorderMetric
+import com.dsniatecki.locationtracker.commons.utils.withCounter
 import io.micrometer.core.instrument.MeterRegistry
 import java.time.Duration
 import org.springframework.context.annotation.Bean
@@ -34,25 +35,19 @@ class ObjectLocationConfig {
         ObjectLocationRepository(
             databaseClient = databaseClient,
             converter = converter,
-            findCounter = createCounterMetric(
-                "object_location_query_find_count",
-                "Number of executed queries responsible for finding object location",
-                meterRegistry
-            ),
-            findTimeRecorder = createTimeRecorderMetric(
+            findTimeRecorder = meterRegistry.createTimeRecorderMetric(
                 "object_location_query_find_time",
                 "Time of query responsible for finding object location",
-                meterRegistry
+            ).withCounter(
+                "object_location_query_find_count",
+                "Number of executed queries responsible for finding object location"
             ),
-            saveCounter = createCounterMetric(
-                "object_location_query_save_count",
-                "Number of executed queries responsible for saving object locations",
-                meterRegistry
-            ),
-            saveTimeRecorder = createTimeRecorderMetric(
+            saveTimeRecorder = meterRegistry.createTimeRecorderMetric(
                 "object_location_query_save_time",
                 "Time of query responsible for saving object locations",
-                meterRegistry
+            ).withCounter(
+                "object_location_query_save_count",
+                "Number of executed queries responsible for saving object locations",
             )
         )
 }

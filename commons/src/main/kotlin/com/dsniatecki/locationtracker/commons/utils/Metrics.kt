@@ -8,9 +8,19 @@ import java.util.concurrent.atomic.LongAdder
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
-private class TimeRecorderMetric(private val timer: Timer) : TimeRecorder {
+class TimeRecorderMetric(private val timer: Timer, val meterRegistry: MeterRegistry) : TimeRecorder {
     override fun record(amount: Long, timeUnit: TimeUnit) {
         timer.record(amount, timeUnit)
+    }
+}
+
+private class TimeRecorderWithCounterMetric(
+    private val timeRecorder: TimeRecorder,
+    private val counter: Counter
+) : TimeRecorder {
+    override fun record(amount: Long, timeUnit: TimeUnit) {
+        counter.increment()
+        timeRecorder.record(amount, timeUnit)
     }
 }
 
@@ -22,19 +32,23 @@ private class CounterMetric(private val counter: LongAdder = LongAdder()) : Coun
     }
 }
 
-fun createTimeRecorderMetric(name: String, description: String, meterRegistry: MeterRegistry): TimeRecorder =
+fun MeterRegistry.createTimeRecorderMetric(name: String, description: String): TimeRecorderMetric =
     TimeRecorderMetric(
         Timer.builder(name)
             .description(description)
             .publishPercentileHistogram()
-            .register(meterRegistry)
+            .register(this),
+        this
     )
 
-fun createCounterMetric(name: String, description: String, meterRegistry: MeterRegistry): Counter {
+fun MeterRegistry.createCounterMetric(name: String, description: String): Counter {
     val operationsCounter = CounterMetric()
-    Gauge.builder(name) { operationsCounter.count() }.description(description).register(meterRegistry)
+    Gauge.builder(name) { operationsCounter.count() }.description(description).register(this)
     return operationsCounter
 }
+
+fun TimeRecorderMetric.withCounter(name: String, description: String): TimeRecorder =
+    TimeRecorderWithCounterMetric(this, this.meterRegistry.createCounterMetric(name, description))
 
 fun <T> Mono<T>.recorded(timeRecorder: TimeRecorder): Mono<T> {
     val start = System.currentTimeMillis()

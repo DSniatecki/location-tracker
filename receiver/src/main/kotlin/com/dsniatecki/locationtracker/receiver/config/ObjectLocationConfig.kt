@@ -18,10 +18,9 @@ class ObjectLocationConfig {
         ObjectLocationService(
             objectLocationSender = objectLocationSender,
             timeSupplier = timeSupplier,
-            sentCounter = createCounterMetric(
+            sentCounter = meterRegistry.createCounterMetric(
                 "object_location_sent_count",
-                "Number of sent object locations to rabbitMq",
-                meterRegistry
+                "Number of sent object locations to rabbitMq"
             )
         )
 }
