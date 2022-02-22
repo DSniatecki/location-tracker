@@ -24,12 +24,12 @@ paths:
         - object-controller
       operationId: saveObject
       requestBody:
-        description: Object
+        description: Object Data
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewObject'
+              $ref: '#/components/schemas/ObjectData'
       responses:
         '201':
           description: Object was saved
@@ -52,18 +52,65 @@ paths:
             example: 'c039e9fc-8b46-11ec-a8a3-0242ac120002'
       responses:
         200:
-          description: Object
+          description: Created Object
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Object'
         404:
-          description: Object for given id not found
+          description: Object for given id was not found
+    put:
+      tags:
+        - object-controller
+      operationId: updateObject
+      parameters:
+        - name: objectId
+          in: path
+          required: true
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            example: 'c039e9fc-8b46-11ec-a8a3-0242ac120002'
+      requestBody:
+        description: Object Data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ObjectData'
+      responses:
+        200:
+          description: Updated Object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Object'
+        404:
+          description: Object for given id was not found
+    delete:
+      tags:
+        - object-controller
+      operationId: deleteObject
+      parameters:
+        - name: objectId
+          in: path
+          required: true
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            example: 'c039e9fc-8b46-11ec-a8a3-0242ac120002'
+      responses:
+        204:
+          description: Object was deleted
+        404:
+          description: Object for given id was not found
 
 components:
   schemas:
 
-    NewObject:
+    ObjectData:
       type: object
       properties:
         name:
