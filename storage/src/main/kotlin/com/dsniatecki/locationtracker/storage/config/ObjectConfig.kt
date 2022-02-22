@@ -54,5 +54,15 @@ class ObjectConfig {
                 "Number of executed queries responsible for saving object",
                 meterRegistry
             ),
+            deleteTimeRecorder = createTimeRecorderMetric(
+                "object_query_delete_time",
+                "Time of query responsible for deleting object",
+                meterRegistry
+            ),
+            deleteCounter = createCounterMetric(
+                "object_query_delete_count",
+                "Number of executed queries responsible for deleting object",
+                meterRegistry
+            ),
         )
 }

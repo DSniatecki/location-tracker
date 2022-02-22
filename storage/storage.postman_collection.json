@@ -85,6 +85,60 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Update Object",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Super Track - Updated\",\r\n    \"imageUrl\": \"https://location.tracker.images.com/{{objectId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{storage-endpoint}}/api/objects/{{objectId}}",
+							"host": [
+								"{{storage-endpoint}}"
+							],
+							"path": [
+								"api",
+								"objects",
+								"{{objectId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete object",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{storage-endpoint}}/api/objects/{{objectId}}",
+							"host": [
+								"{{storage-endpoint}}"
+							],
+							"path": [
+								"api",
+								"objects",
+								"{{objectId}}"
+							],
+							"query": [
+								{
+									"key": "tolerance",
+									"value": "3600",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

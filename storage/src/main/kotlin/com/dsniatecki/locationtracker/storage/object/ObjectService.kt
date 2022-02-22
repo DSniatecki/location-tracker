@@ -9,17 +9,33 @@ class ObjectService(
     private val timeSupplier: TimeSupplier,
 ) {
 
-    fun get(objectId: String): Mono<ExistingObject> = objectRepository.findById(objectId)
+    fun get(objectId: String): Mono<ObjectInstance> = objectRepository.findById(objectId)
 
-    fun save(newObject: NewObject): Mono<ExistingObject> = objectRepository.save(createNewObject(newObject))
+    fun getAll(): Flux<ObjectInstance> = objectRepository.findAll().sort(Comparator.comparing { it.createdAt })
 
-    fun getAll(): Flux<ExistingObject> = objectRepository.findAll().sort(Comparator.comparing { it.createdAt })
+    fun save(objectData: ObjectData): Mono<ObjectInstance> = objectRepository.save(createNewObject(objectData))
 
-    private fun createNewObject(newObject: NewObject): ExistingObject =
-        ExistingObject(
+    fun update(objectId: String, objectData: ObjectData): Mono<ObjectInstance> =
+        objectRepository.findById(objectId)
+            .flatMap { objectRepository.save(updateObject(it, objectData)) }
+
+    fun delete(objectId: String): Mono<Unit> =
+        objectRepository.findById(objectId)
+            .flatMap { objectRepository.delete(objectId, timeSupplier.now()).switchIfEmpty(Mono.just(Unit)) }
+
+    private fun createNewObject(objectData: ObjectData): ObjectInstance =
+        ObjectInstance(
             id = generateId(),
-            name = newObject.name,
-            imageUrl = newObject.imageUrl,
-            createdAt = timeSupplier.now().atOffset(timeSupplier.zoneOffset())
+            name = objectData.name,
+            imageUrl = objectData.imageUrl,
+            createdAt = timeSupplier.now().atOffset(timeSupplier.zoneOffset()),
+            updatedAt = null
+        )
+
+    private fun updateObject(objectInstance: ObjectInstance, objectData: ObjectData): ObjectInstance =
+        objectInstance.copy(
+            name = objectData.name,
+            imageUrl = objectData.imageUrl,
+            updatedAt = timeSupplier.now().atOffset(timeSupplier.zoneOffset())
         )
 }

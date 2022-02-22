@@ -2,9 +2,10 @@ package com.dsniatecki.locationtracker.storage.`object`
 
 import java.time.OffsetDateTime
 
-data class ExistingObject(
+data class ObjectInstance(
     val id: String,
     val name: String,
-    val imageUrl: String? = null,
-    val createdAt: OffsetDateTime
+    val imageUrl: String?,
+    val createdAt: OffsetDateTime,
+    val updatedAt: OffsetDateTime?
 )

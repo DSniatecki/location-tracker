@@ -10,7 +10,7 @@ const val maxImageUrlLength = 256
 
 fun generateId(): String = UUID.randomUUID().toString()
 
-fun NewObject.validate(): NewObject {
+fun ObjectData.validate(): ObjectData {
     if (this.name.length < minNameLength || this.name.length > maxNameLength) {
         throw IllegalStateException("Object name is not valid.")
     }

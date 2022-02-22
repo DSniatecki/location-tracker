@@ -9,20 +9,20 @@ internal class ExtensionsTest {
 
     @Test
     fun `Should pass validation`() {
-        val testNewObject = NewObject("SuperCar", "https://locationtracker.images.com/${generateId()}")
+        val testNewObject = ObjectData("SuperCar", "https://locationtracker.images.com/${generateId()}")
         assertThat(testNewObject.validate()).isEqualTo(testNewObject)
     }
 
     @Test
     fun `Should pass validation without image url`() {
-        val testNewObject = NewObject("SuperCar")
+        val testNewObject = ObjectData("SuperCar")
         assertThat(testNewObject.validate()).isEqualTo(testNewObject)
     }
 
     @Test
     fun `Should not pass validation due to invalid object name`() {
-        val testNewObject1 = NewObject("")
-        val testNewObject2 = NewObject("A".repeat(maxNameLength + 1))
+        val testNewObject1 = ObjectData("")
+        val testNewObject2 = ObjectData("A".repeat(maxNameLength + 1))
         assertAll(
             { assertThrows(IllegalStateException::class.java) { testNewObject1.validate() } },
             { assertThrows(IllegalStateException::class.java) { testNewObject2.validate() } }
@@ -31,8 +31,8 @@ internal class ExtensionsTest {
 
     @Test
     fun `Should not pass validation due to invalid object imageUrl`() {
-        val testNewObject1 = NewObject("SuperCar", "B".repeat(minImageUrlLength - 1))
-        val testNewObject2 = NewObject("SuperCar", "B".repeat(maxImageUrlLength + 1))
+        val testNewObject1 = ObjectData("SuperCar", "B".repeat(minImageUrlLength - 1))
+        val testNewObject2 = ObjectData("SuperCar", "B".repeat(maxImageUrlLength + 1))
         assertAll(
             { assertThrows(IllegalStateException::class.java) { testNewObject1.validate() } },
             { assertThrows(IllegalStateException::class.java) { testNewObject2.validate() } }

@@ -11,8 +11,10 @@ data class ObjectRow(
     @Id @Column("id") private val id: String,
     @Column("name") val name: String,
     @Column("image_url") val imageUrl: String?,
-    @Column("created_at") val createdAt: LocalDateTime
+    @Column("created_at") val createdAt: LocalDateTime,
+    @Column("updated_at") val updatedAt: LocalDateTime?,
+    @Column("is_deleted") val isDeleted: Boolean,
 ) : Persistable<String> {
-    override fun isNew() = true
+    override fun isNew() = updatedAt == null
     override fun getId(): String = id
 }
