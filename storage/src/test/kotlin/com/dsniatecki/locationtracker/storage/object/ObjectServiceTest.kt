@@ -82,9 +82,7 @@ internal class ObjectServiceTest(
         val updateData = ObjectData("UpdatedTruck1", "https://newimageurl.com")
         val updatedObject = objectService.update(savedNewObject.id, updateData).block()!!
         assertThat(updatedObject).isEqualTo(savedNewObject.copy(
-            name = updateData.name,
-            imageUrl = updateData.imageUrl,
-            updatedAt = updatedObject.updatedAt
+            name = updateData.name, imageUrl = updateData.imageUrl, updatedAt = updatedObject.updatedAt
         ))
         assertThat(updatedObject.updatedAt).isNotNull
     }
