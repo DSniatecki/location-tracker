@@ -1,6 +1,6 @@
 FROM openjdk:17
 
-ARG JVM_FLAGS="-Xmx1024m -XX:+UseZGC"
+ARG JVM_FLAGS="-XX:+UseZGC"
 
 ENV JVM_FLAGS ${JVM_FLAGS}
 ENV EXECUTABLE="run/application.jar"
