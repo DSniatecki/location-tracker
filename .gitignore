@@ -7,3 +7,4 @@ HELP.md
 *.iws
 *.iml
 *.ipr
+/sftp-store

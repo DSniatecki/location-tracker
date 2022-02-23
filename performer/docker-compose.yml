@@ -1,0 +1,28 @@
+version: '3.6'
+networks:
+  location-tracker-net:
+services:
+  performer:
+    build: .
+    container_name: performer
+    environment:
+      PERFORMER_STORAGE_BASE_PATH: "http://localhost:10010/api"
+      PERFORMER_ARCHIVER_BASE_PATH: "http://localhost:10030/api"
+      #DEVELOPMENT_MODE: "true"
+      #APP_LOGGING_LEVEL: DEBUG
+    ports:
+      - "10040:8080"
+    networks:
+      - location-tracker-net
+    depends_on:
+      - sftp-server
+  sftp-server:
+    image: atmoz/sftp
+    command: performer:performer:1001
+    container_name: sftp-server
+    volumes:
+      - ./sftp-store:/home/performer/upload
+    ports:
+      - "11022:22"
+    networks:
+      - location-tracker-net

@@ -13,19 +13,19 @@
     </parent>
 
     <groupId>com.dsniatecki.locationtraceker</groupId>
-    <artifactId>receiver</artifactId>
+    <artifactId>performer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Receiver</name>
-    <description>Service responsible for receiving object locations</description>
+    <name>Performer</name>
+    <description>Service responsible for executing scheduled jobs</description>
 
     <properties>
         <java.version>17</java.version>
         <kotlin.version>1.6.0</kotlin.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <archiver-msg.version>0.0.1-SNAPSHOT</archiver-msg.version>
         <commons.version>0.0.1-SNAPSHOT</commons.version>
-
+        <archiver-api.version>0.0.1-SNAPSHOT</archiver-api.version>
+        <storage-api.version>0.0.1-SNAPSHOT</storage-api.version>
         <test-containers.version>1.16.0</test-containers.version>
         <micrometer.version>1.8.0</micrometer.version>
     </properties>
@@ -33,13 +33,18 @@
     <dependencies>
         <dependency>
             <groupId>com.dsniatecki.locationtraceker</groupId>
-            <artifactId>archiver-msg</artifactId>
-            <version>${archiver-msg.version}</version>
+            <artifactId>commons</artifactId>
+            <version>${commons.version}</version>
         </dependency>
         <dependency>
             <groupId>com.dsniatecki.locationtraceker</groupId>
-            <artifactId>commons</artifactId>
-            <version>${commons.version}</version>
+            <artifactId>archiver-api</artifactId>
+            <version>${archiver-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dsniatecki.locationtraceker</groupId>
+            <artifactId>storage-api</artifactId>
+            <version>${storage-api.version}</version>
         </dependency>
         <!--    SPRING     -->
         <dependency>
@@ -50,16 +55,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -124,32 +119,9 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>org.springframework.amqp</groupId>
-            <artifactId>spring-rabbit-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>io.projectreactor</groupId>
             <artifactId>reactor-test</artifactId>
             <version>3.4.13</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>testcontainers</artifactId>
-            <version>${test-containers.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>${test-containers.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>rabbitmq</artifactId>
-            <version>${test-containers.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -214,7 +186,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.dsniatecki.locationtracker.receiver.ReceiverApplicationKt</mainClass>
+                            <mainClass>com.dsniatecki.locationtracker.performer.PerformerApplicationKt</mainClass>
                             <classpathPrefix>dependency-jars/</classpathPrefix>
                         </manifest>
                     </archive>

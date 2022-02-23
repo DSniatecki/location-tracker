@@ -1,0 +1,26 @@
+performer:
+  time-zone:
+    id: "UTC"
+    offset: 0
+  storage:
+    base-path: "http://localhost:10010/api"
+  archiver:
+    base-path: "http://localhost:10030/api"
+
+
+management:
+  endpoint:
+    info:
+      enabled: true
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "info, metrics, prometheus, health"

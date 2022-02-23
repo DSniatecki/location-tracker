@@ -2,40 +2,6 @@ version: '3.6'
 networks:
   location-tracker-net:
 services:
-  proxy:
-    image: nginx:1.21.6-alpine
-    container_name: proxy
-    volumes:
-      - ./utils/proxy/nginx.conf:/etc/nginx/nginx.conf
-    ports:
-      - "8000:80"
-    networks:
-      - location-tracker-net
-    depends_on:
-      - storage
-      - receiver
-      - archiver
-      - archiver-msg-broker
-      - grafana
-      - prometheus
-  receiver:
-    build:
-      context: receiver
-    container_name: receiver
-    environment:
-      SPRING_RABBITMQ_HOST: archiver-msg-broker
-      SPRING_RABBITMQ_USERNAME: archiver
-      SPRING_RABBITMQ_PASSWORD: archiver
-      SPRING_RABBITMQ_VIRTUAL_HOST: location-tracker
-      SPRING_RABBITMQ_OBJECT_LOCATION_EXCHANGE: archiver.exchange
-      SPRING_RABBITMQ_OBJECT_LOCATION_STORE_ROUTING_KEY: archiver-object-location-source
-      SPRING_RABBITMQ_SSL_ENABLED: "false"
-    ports:
-      - "10020:8080"
-    networks:
-      - location-tracker-net
-    depends_on:
-      - archiver
   archiver:
     build:
       context: archiver
@@ -84,6 +50,24 @@ services:
       - "15672:15672"
     networks:
       - location-tracker-net
+  receiver:
+    build:
+      context: receiver
+    container_name: receiver
+    environment:
+      SPRING_RABBITMQ_HOST: archiver-msg-broker
+      SPRING_RABBITMQ_USERNAME: archiver
+      SPRING_RABBITMQ_PASSWORD: archiver
+      SPRING_RABBITMQ_VIRTUAL_HOST: location-tracker
+      SPRING_RABBITMQ_OBJECT_LOCATION_EXCHANGE: archiver.exchange
+      SPRING_RABBITMQ_OBJECT_LOCATION_STORE_ROUTING_KEY: archiver-object-location-source
+      SPRING_RABBITMQ_SSL_ENABLED: "false"
+    ports:
+      - "10020:8080"
+    networks:
+      - location-tracker-net
+    depends_on:
+      - archiver
   storage:
     build:
       context: storage
@@ -111,6 +95,34 @@ services:
       - "11010:5432"
     networks:
       - location-tracker-net
+  performer:
+    build:
+      context: performer
+    container_name: performer
+    environment:
+      PERFORMER_STORAGE_BASE_PATH: "http://storage:8080/api"
+      PERFORMER_ARCHIVER_BASE_PATH: "http://archiver:8080/api"
+    ports:
+      - "10040:8080"
+    networks:
+      - location-tracker-net
+    depends_on:
+      - sftp-server
+  proxy:
+    image: nginx:1.21.6-alpine
+    container_name: proxy
+    volumes:
+      - ./utils/proxy/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "8000:80"
+    networks:
+      - location-tracker-net
+    depends_on:
+      - storage
+      - receiver
+      - archiver
+      - grafana
+      - prometheus
   grafana:
     image: grafana/grafana:8.2.6
     container_name: grafana
@@ -134,6 +146,16 @@ services:
       - ./utils/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "11190:9090"
+    networks:
+      - location-tracker-net
+  sftp-server:
+    image: atmoz/sftp
+    command: performer:performer:1001
+    container_name: sftp-server
+    volumes:
+      - ./sftp-store:/home/performer/upload
+    ports:
+      - "11022:22"
     networks:
       - location-tracker-net
 
