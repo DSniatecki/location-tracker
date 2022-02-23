@@ -15,18 +15,15 @@
         <kotlin.version>1.6.0</kotlin.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-z8</project.build.sourceEncoding>
-        <jackson.version>2.13.0</jackson.version>
-        <springframework.version>5.3.10</springframework.version>
-        <src.api.dir>src/main</src.api.dir>
-        <build.oapi-doc.dir>${project.build.outputDirectory}/api</build.oapi-doc.dir>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jackson.version>2.13.1</jackson.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx-coroutines-jdk8</artifactId>
-            <version>1.5.2</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webflux</artifactId>
+            <version>5.3.16</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -34,147 +31,63 @@
             <version>${jackson.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
             <version>${jackson.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jdk8</artifactId>
-            <version>${kotlin.version}</version>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>0.2.2</version>
         </dependency>
         <dependency>
-            <groupId>org.reactivestreams</groupId>
-            <artifactId>reactive-streams</artifactId>
-            <version>1.0.3</version>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.2</version>
         </dependency>
         <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>2.0.1.Final</version>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>3.0.2</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${springframework.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${springframework.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
-            <scope>provided</scope>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.6.5</version>
         </dependency>
     </dependencies>
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>2.8.2</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.openapitools</groupId>
-                    <artifactId>openapi-generator-maven-plugin</artifactId>
-                    <version>5.1.1</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.jetbrains.kotlin</groupId>
-                    <artifactId>kotlin-maven-plugin</artifactId>
-                    <version>${kotlin.version}</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-resource-plugin</artifactId>
-                    <version>3.2.0</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-            </plugin>
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>5.4.0</version>
                 <executions>
                     <execution>
-                        <id>generate-kotlin-api-server</id>
+                        <id>generate-java-api-client</id>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${src.api.dir}/archiver-api.yaml</inputSpec>
-                            <generatorName>kotlin-spring</generatorName>
+                            <inputSpec>src/main/archiver-api.yaml</inputSpec>
+                            <output>${project.build.directory}/generated-sources/java</output>
+                            <generatorName>java</generatorName>
                             <configOptions>
-                                <validateSpec>true</validateSpec>
-                                <strictSpec>true</strictSpec>
-                                <serializableModule>true</serializableModule>
-                                <interfaceOnly>true</interfaceOnly>
-                                <exceptionHandler>false</exceptionHandler>
-                                <swaggerAnnotations>false</swaggerAnnotations>
-                                <useBeanValidation>true</useBeanValidation>
-                                <reactive>true</reactive>
-                                <library>spring-boot</library>
-                                <packageName>com.dsniatecki.locationtraceker.archiver</packageName>
-                                <artifcatId>${project.artifactId}</artifcatId>
+                                <library>webclient</library>
+                                <artifactId>${project.artifactId}</artifactId>
                                 <groupId>${project.groupId}</groupId>
                                 <artifactVersion>${project.version}</artifactVersion>
-                                <gradleBuildFile>false</gradleBuildFile>
-                                <enumPropertyNaming>UPPERCASE</enumPropertyNaming>
+                                <dateLibrary>java8</dateLibrary>
+                                <apiPackage>com.dsniatecki.locationtracker.archiver.api</apiPackage>
+                                <modelPackage>com.dsniatecki.locationtracker.archiver.model</modelPackage>
+                                <invokerPackage>com.dsniatecki.locationtracker.archiver</invokerPackage>
+                                <skipValidateSpec>true</skipValidateSpec>
+                                <java8>true</java8>
                             </configOptions>
-                            <output>${project.build.directory}/generated-sources/kotlin</output>
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-maven-plugin</artifactId>
-                <configuration>
-                    <jvmTarget>${maven.compiler.target}</jvmTarget>
-                    <javaParameters>true</javaParameters>
-                    <args>
-                        <arg>-Xjsr305=strict</arg>
-                    </args>
-                    <compilerPlugins>
-                        <plugin>spring</plugin>
-                    </compilerPlugins>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>compile</id>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                        <configuration>
-                            <sourceDirs>
-                                <sourceDir>${project.build.directory}/generated-sources/kotlin/src/main/kotlin
-                                </sourceDir>
-                            </sourceDirs>
-                        </configuration>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.jetbrains.kotlin</groupId>
-                        <artifactId>kotlin-maven-allopen</artifactId>
-                        <version>${kotlin.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.jetbrains.kotlin</groupId>
-                        <artifactId>kotlin-maven-noarg</artifactId>
-                        <version>${kotlin.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>

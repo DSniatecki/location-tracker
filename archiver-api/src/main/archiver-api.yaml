@@ -8,7 +8,7 @@ paths:
   /object-locations/{objectId}:
     get:
       tags:
-        - object-locsation-controller
+        - object-location-controller
       operationId: getEffectiveObjectLocation
       parameters:
         - name: objectId
@@ -46,7 +46,7 @@ paths:
   /object-locations:
     post:
       tags:
-        - object-locsation-controller
+        - object-location-controller
       operationId: saveObjectLocations
       requestBody:
         description: Object locations
