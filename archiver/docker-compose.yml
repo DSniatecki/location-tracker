@@ -1,6 +1,6 @@
 version: '3.6'
 networks:
-  archiver-net:
+  location-tracker-net:
 services:
   archiver:
     build:
@@ -24,7 +24,7 @@ services:
     ports:
       - "10030:8080"
     networks:
-      - archiver-net
+      - location-tracker-net
     depends_on:
       - archiver-db
       - archiver-msg-broker
@@ -38,7 +38,7 @@ services:
     ports:
       - "11030:5432"
     networks:
-      - archiver-net
+      - location-tracker-net
   archiver-msg-broker:
     image: rabbitmq:3.9.8-management-alpine
     container_name: archiver-msg-broker
@@ -51,4 +51,4 @@ services:
       - "5672:5672"
       - "15672:15672"
     networks:
-      - archiver-net
+      - location-tracker-net

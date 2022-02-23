@@ -1,6 +1,6 @@
 version: '3.6'
 networks:
-  storage-net:
+  location-tracker-net:
 services:
   storage:
     build:
@@ -17,7 +17,7 @@ services:
     ports:
       - "10010:8080"
     networks:
-      - storage-net
+      - location-tracker-net
     depends_on:
       - storage-db
   storage-db:
@@ -30,4 +30,4 @@ services:
     ports:
       - "11010:5432"
     networks:
-      - storage-net
+      - location-tracker-net
