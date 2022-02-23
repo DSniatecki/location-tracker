@@ -2,7 +2,7 @@ import multiprocessing
 import uuid
 import requests
 
-receiver_endpoint = 'http://localhost:8080/api/object-locations'
+receiver_endpoint = 'http://localhost:10020/api/object-locations'
 number_of_objects = 20
 object1Id = 'c039e9fc-8b46-11ec-a8a3-0242ac120002'
 

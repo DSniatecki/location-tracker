@@ -3,9 +3,10 @@ Location Tracker is a system responsible for tracking object locations.
 Stage: early development
 
 Components:
-- Storage  - Service responsible for storing objects data
-- Receiver - service responsible for receiving object locations
-- Archiver - service responsible for archiving and querying object locations
+- Storage    - service responsible for storing objects data
+- Receiver   - service responsible for receiving object locations
+- Archiver   - service responsible for archiving and querying object locations
+- Performer  - service responsible for executing scheduled jobs
 
 All services are written in a reactive paradigm. It makes them ideal for low-latency, high-throughput workloads.
 
@@ -25,3 +26,9 @@ Technologies used:
 - Spring Data R2DBC ( + PostgreSQL R2DBC drivers )
 - Testcontainers 1.16.0
 - RabbitMQ 3.9.8
+
+
+Monitoring:
+
+![archiver-grafana-1](./utils/docs/images/archiver-grafana-1.png)
+![archiver-grafana-2](./utils/docs/images/archiver-grafana-2.png)
