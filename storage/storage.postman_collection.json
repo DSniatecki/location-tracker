@@ -66,7 +66,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Super Track\",\r\n    \"imageUrl\": \"https://location.tracker.images.com/{{objectId}}\"\r\n}",
+							"raw": "{\r\n    \"id\": \"{{objectId}}\",\r\n    \"name\": \"Super Track\",\r\n    \"imageUrl\": \"https://location.tracker.images.com/{{objectId}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

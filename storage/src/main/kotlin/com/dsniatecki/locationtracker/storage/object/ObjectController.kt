@@ -33,20 +33,20 @@ class ObjectController(
 
     @PostMapping(value = ["/objects"], consumes = [JSON], produces = [JSON])
     @ResponseStatus(HttpStatus.CREATED)
-    fun updateObject(@RequestBody objectData: ObjectData): Publisher<ObjectInstance> =
-        Mono.just(objectData)
+    fun updateObject(@RequestBody newObject: NewObject): Publisher<ObjectInstance> =
+        Mono.just(newObject)
             .map { it.validate() }
-            .flatMap { objectService.save(objectData) }
+            .flatMap { objectService.save(newObject) }
             .handleErrors()
 
     @PutMapping(value = ["/objects/{objectId}"], consumes = [JSON], produces = [JSON])
     fun updateObject(
         @PathVariable(name = "objectId") objectId: String,
-        @RequestBody objectData: ObjectData
+        @RequestBody objectUpdate: ObjectUpdate
     ): Publisher<ObjectInstance> =
-        Mono.just(objectData)
+        Mono.just(objectUpdate)
             .map { it.validate() }
-            .flatMap { objectService.update(objectId, objectData) }
+            .flatMap { objectService.update(objectId, objectUpdate) }
             .switchIfEmpty(Mono.error(NoSuchElementException("Object with id: '$objectId' does not exist.")))
             .handleErrors()
 

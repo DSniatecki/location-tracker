@@ -13,9 +13,9 @@ class ObjectService(
 
     fun getAll(): Flux<ObjectInstance> = objectRepository.findAll().sort(Comparator.comparing { it.createdAt })
 
-    fun save(objectData: ObjectData): Mono<ObjectInstance> = objectRepository.save(createNewObject(objectData))
+    fun save(newObject: NewObject): Mono<ObjectInstance> = objectRepository.save(createNewObject(newObject))
 
-    fun update(objectId: String, objectData: ObjectData): Mono<ObjectInstance> =
+    fun update(objectId: String, objectData: ObjectUpdate): Mono<ObjectInstance> =
         objectRepository.findById(objectId)
             .flatMap { objectRepository.save(updateObject(it, objectData)) }
 
@@ -23,16 +23,16 @@ class ObjectService(
         objectRepository.findById(objectId)
             .flatMap { objectRepository.delete(objectId, timeSupplier.now()).switchIfEmpty(Mono.just(Unit)) }
 
-    private fun createNewObject(objectData: ObjectData): ObjectInstance =
+    private fun createNewObject(newObject: NewObject): ObjectInstance =
         ObjectInstance(
-            id = generateId(),
-            name = objectData.name,
-            imageUrl = objectData.imageUrl,
+            id = newObject.id ?: generateId(),
+            name = newObject.name,
+            imageUrl = newObject.imageUrl,
             createdAt = timeSupplier.now().atOffset(timeSupplier.zoneOffset()),
             updatedAt = null
         )
 
-    private fun updateObject(objectInstance: ObjectInstance, objectData: ObjectData): ObjectInstance =
+    private fun updateObject(objectInstance: ObjectInstance, objectData: ObjectUpdate): ObjectInstance =
         objectInstance.copy(
             name = objectData.name,
             imageUrl = objectData.imageUrl,

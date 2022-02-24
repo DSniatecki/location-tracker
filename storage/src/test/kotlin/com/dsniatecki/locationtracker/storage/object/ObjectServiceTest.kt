@@ -46,28 +46,41 @@ internal class ObjectServiceTest(
 
     @Test
     fun `Should not get object when object with given id doesn't exist`() {
-        objectService.save(createTestObjectData("Truck1")).block()!!
-        objectService.save(createTestObjectData("Truck2")).block()!!
-        objectService.save(createTestObjectData("Truck3")).block()!!
+        objectService.save(createTestNewObject(name = "Truck1")).block()!!
+        objectService.save(createTestNewObject(name = "Truck2")).block()!!
+        objectService.save(createTestNewObject(name = "Truck3")).block()!!
         assertThat(objectService.get(generateId()).block()).isNull()
     }
 
     @Test
     fun `Should get saved object`() {
-        val savedNewObject = objectService.save(createTestObjectData()).block()!!
+        val savedNewObject = objectService.save(createTestNewObject()).block()!!
         assertThat(objectService.get(savedNewObject.id).block()).isEqualTo(savedNewObject)
     }
 
     @Test
     fun `Should get all saved objects`() {
-        val savedNewObject1 = objectService.save(createTestObjectData("Truck1")).block()!!
-        val savedNewObject2 = objectService.save(createTestObjectData("Truck2")).block()!!
+        val savedNewObject1 = objectService.save(createTestNewObject(name = "Truck1")).block()!!
+        val savedNewObject2 = objectService.save(createTestNewObject(name = "Truck2")).block()!!
         assertThat(objectService.getAll().toList()).isEqualTo(listOf(savedNewObject1, savedNewObject2))
     }
 
     @Test
-    fun `Should save object`() {
-        val newObjectData = createTestObjectData()
+    fun `Should save new object with specified id`() {
+        val objectId = generateId()
+        val newObjectData = createTestNewObject(objectId)
+        val savedNewObject = objectService.save(newObjectData).block()!!
+        assertAll(
+            { assertThat(savedNewObject.id).isEqualTo(objectId) },
+            { assertThat(savedNewObject.name).isEqualTo(newObjectData.name) },
+            { assertThat(savedNewObject.imageUrl).isEqualTo(newObjectData.imageUrl) },
+            { assertThat(savedNewObject.updatedAt).isNull() },
+        )
+    }
+
+    @Test
+    fun `Should save new object without id`() {
+        val newObjectData = createTestNewObject()
         val savedNewObject = objectService.save(newObjectData).block()!!
         assertAll(
             { assertThat(savedNewObject.name).isEqualTo(newObjectData.name) },
@@ -78,8 +91,8 @@ internal class ObjectServiceTest(
 
     @Test
     fun `Should update object`() {
-        val savedNewObject = objectService.save(createTestObjectData("Truck1")).block()!!
-        val updateData = ObjectData("UpdatedTruck1", "https://newimageurl.com")
+        val savedNewObject = objectService.save(createTestNewObject(name = "Truck1")).block()!!
+        val updateData = ObjectUpdate("UpdatedTruck1", "https://newimageurl.com")
         val updatedObject = objectService.update(savedNewObject.id, updateData).block()!!
         assertThat(updatedObject).isEqualTo(savedNewObject.copy(
             name = updateData.name, imageUrl = updateData.imageUrl, updatedAt = updatedObject.updatedAt
@@ -89,15 +102,16 @@ internal class ObjectServiceTest(
 
     @Test
     fun `Should delete object`() {
-        val savedNewObject = objectService.save(createTestObjectData("Truck1")).block()!!
+        val savedNewObject = objectService.save(createTestNewObject(name = "Truck1")).block()!!
         objectService.delete(savedNewObject.id).block()
         assertThat(objectService.get(savedNewObject.id).block()).isNull()
         assertThat(objectService.getAll().toList()).isEmpty()
     }
 
-    private fun createTestObjectData(
+    private fun createTestNewObject(
+        id: String? = null,
         name: String = "SuperCar",
         imageUrl: String? = "https://locationtracker.images.com/${generateId()}"
-    ): ObjectData =
-        ObjectData(name, imageUrl)
+    ): NewObject =
+        NewObject(id, name, imageUrl)
 }

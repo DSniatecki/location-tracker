@@ -1,6 +1,6 @@
 package com.dsniatecki.locationtracker.storage.`object`
 
-data class ObjectData(
+data class ObjectUpdate(
     val name: String,
     val imageUrl: String? = null
 )
