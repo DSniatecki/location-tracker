@@ -36,12 +36,10 @@ components:
           example: 'c039e9fc-8b46-11ec-a8a3-0242ac120002'
         latitude:
           type: number
-          format: double
-          example: 24.12124212
+          example: "24.12124212"
         longitude:
           type: number
-          format: double
-          example: 64.42127643
+          example: "64.42127643"
       required:
         - objectId
         - latitude
