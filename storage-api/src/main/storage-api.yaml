@@ -29,7 +29,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ObjectData'
+              $ref: '#/components/schemas/NewObject'
       responses:
         '201':
           description: Object was saved
@@ -78,7 +78,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ObjectData'
+              $ref: '#/components/schemas/ObjectUpdate'
       responses:
         200:
           description: Updated Object
@@ -110,7 +110,28 @@ paths:
 components:
   schemas:
 
-    ObjectData:
+    NewObject:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 1
+          maxLength: 128
+          example: 'x139e9fc-8b46-11ec-a8a3-0242ac120337'
+        name:
+          type: string
+          minLength: 1
+          maxLength: 128
+          example: 'Super Track'
+        imageUrl:
+          type: string
+          minLength: 4
+          maxLength: 256
+          example: 'https://location.tracker.images.com/x139e9fc-8b46-11ec-a8a3-0242ac120337'
+      required:
+        - name
+
+    ObjectUpdate:
       type: object
       properties:
         name:
