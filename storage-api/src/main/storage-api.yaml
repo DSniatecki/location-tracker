@@ -115,8 +115,8 @@ components:
       properties:
         id:
           type: string
-          minLength: 1
-          maxLength: 128
+          minLength: 36
+          maxLength: 36
           example: 'x139e9fc-8b46-11ec-a8a3-0242ac120337'
         name:
           type: string
@@ -152,8 +152,8 @@ components:
       properties:
         id:
           type: string
-          minLength: 1
-          maxLength: 128
+          minLength: 36
+          maxLength: 36
           example: 'x139e9fc-8b46-11ec-a8a3-0242ac120337'
         name:
           type: string
