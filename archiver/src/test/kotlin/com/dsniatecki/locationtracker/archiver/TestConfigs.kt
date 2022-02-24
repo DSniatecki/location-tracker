@@ -2,7 +2,7 @@ package com.dsniatecki.locationtracker.archiver
 
 const val TIMEOUT_VALUE_MILLIS = 5000L
 
-const val DB_CONTAINER = "timescale/timescaledb:2.5.1-pg14"
+const val DB_CONTAINER = "timescale/timescaledb:2.6.0-pg14"
 const val RABBITMQ_CONTAINER = "rabbitmq:3.9.8-management-alpine"
 
 const val OBJECT_LOCATION_TABLE = "object_location"
