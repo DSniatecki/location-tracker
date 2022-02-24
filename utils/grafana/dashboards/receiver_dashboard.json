@@ -22,7 +22,6 @@
   "fiscalYearStartMonth": 0,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -559,11 +558,11 @@
             },
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -642,7 +641,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "object_location_sent_count{ service = \"receiver\" }",
+          "expr": "rate(object_location_sent_count{ service = \"receiver\" }[1m])",
           "interval": "",
           "legendFormat": "object locations/s",
           "refId": "A"
