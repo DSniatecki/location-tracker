@@ -80,12 +80,10 @@ components:
           example: "2022-02-11T12:45:08.495000Z"
         latitude:
           type: number
-          format: double
-          example: 24.12124212
+          example: "24.12124212"
         longitude:
           type: number
-          format: double
-          example: 64.42127643
+          example: "64.42127643"
       required:
         - objectId
         - receivedAt
