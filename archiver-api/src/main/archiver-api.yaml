@@ -50,7 +50,7 @@ paths:
       operationId: getEffectiveObjectLocations
       parameters:
         - name: objectIds
-          in: path
+          in: query
           required: true
           schema:
             type: array
