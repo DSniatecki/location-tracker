@@ -115,6 +115,8 @@ services:
       - location-tracker-net
     depends_on:
       - sftp-server
+      - storage
+      - archiver
   proxy:
     image: nginx:1.21.6-alpine
     container_name: proxy

@@ -41,15 +41,12 @@ class ObjectLocationConfig(
         objectLocationController: ObjectLocationControllerApi,
         timeSupplier: TimeSupplier,
         locationSnapshotSender: LocationSnapshotSender
-    ): LocationSnapshotScheduledService {
-        val a = LocationSnapshotScheduledService(
+    ): LocationSnapshotScheduledService =
+        LocationSnapshotScheduledService(
             objectController = objectController,
             objectLocationController = objectLocationController,
             locationSnapshotSender = locationSnapshotSender,
             timeSupplier = timeSupplier,
             props = jobsProps.locationSnapshot
         )
-        a.execute()
-        return a
-    }
 }
