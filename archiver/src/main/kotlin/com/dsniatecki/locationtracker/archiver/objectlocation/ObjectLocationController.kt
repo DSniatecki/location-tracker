@@ -51,7 +51,7 @@ class ObjectLocationController(
     }
 
     @GetMapping(value = ["/object-locations"], produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun getObjectLocations(
+    fun getEffectiveObjectLocations(
         @RequestParam(name = "objectIds") objectIds: Set<String>,
         @RequestParam(name = "effectiveAt", required = false)
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) effectiveAt: OffsetDateTime?,
