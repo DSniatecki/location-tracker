@@ -9,7 +9,17 @@ paths:
     get:
       tags:
         - object-controller
-      operationId: getAllObjects
+      operationId: getObjects
+      parameters:
+        - name: ids
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: 'c039e9fc-8b46-11ec-a8a3-0242ac120002'
+            uniqueItems: true
       responses:
         200:
           description: All Objects
