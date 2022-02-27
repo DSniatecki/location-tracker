@@ -39,6 +39,39 @@
 					"response": []
 				},
 				{
+					"name": "Get Object Locations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{archiver-endpoint}}/api/object-locations?objectIds={{objectId}}&effectiveAt={{today}}T12:46:00.621000Z",
+							"host": [
+								"{{archiver-endpoint}}"
+							],
+							"path": [
+								"api",
+								"object-locations"
+							],
+							"query": [
+								{
+									"key": "objectIds",
+									"value": "{{objectId}}"
+								},
+								{
+									"key": "effectiveAt",
+									"value": "{{today}}T12:46:00.621000Z"
+								},
+								{
+									"key": "tolerance",
+									"value": "3600",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Save Object locations",
 					"request": {
 						"method": "POST",

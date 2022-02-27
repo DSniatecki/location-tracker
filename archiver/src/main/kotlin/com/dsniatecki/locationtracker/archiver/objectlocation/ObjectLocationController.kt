@@ -1,5 +1,7 @@
 package com.dsniatecki.locationtracker.archiver.objectlocation
 
+import com.dsniatecki.locationtracker.commons.utils.TimeSupplier
+import com.dsniatecki.locationtracker.commons.utils.atZone
 import java.time.Duration
 import java.time.OffsetDateTime
 import mu.KotlinLogging
@@ -18,11 +20,13 @@ import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.server.ResponseStatusException
 import reactor.core.publisher.Mono
+import reactor.kotlin.core.publisher.toFlux
 
 @RestController
 @RequestMapping(path = ["/api"])
 class ObjectLocationController(
     private val objectLocationService: ObjectLocationService,
+    private val timeSupplier: TimeSupplier,
 ) {
 
     companion object {
@@ -33,16 +37,33 @@ class ObjectLocationController(
     fun getEffectiveObjectLocation(
         @PathVariable(name = "objectId") objectId: String,
         @RequestParam(name = "effectiveAt", required = false)
-        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) effectiveAt: OffsetDateTime,
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) effectiveAt: OffsetDateTime?,
         @RequestParam(name = "tolerance", required = false) tolerance: Long?,
     ): Publisher<ObjectLocation> {
         val toleranceDuration = tolerance?.let { Duration.ofSeconds(it) }
-        logger.debug { "Returning effective object locations for object id: $objectId, effective at: '$effectiveAt' " +
-                "and tolerance: $tolerance seconds ." }
-        return objectLocationService.getEffectiveAt(objectId, effectiveAt, toleranceDuration)
+        val searchEffectiveAt  = effectiveAt?.atZone(timeSupplier.zoneId()) ?: timeSupplier.now()
+        logger.debug { "Returning effective object location for object id: $objectId, effective at: " +
+            "'$searchEffectiveAt' and tolerance: $tolerance seconds ." }
+        return objectLocationService.getEffectiveAt(objectId, searchEffectiveAt, toleranceDuration)
             .switchIfEmpty(Mono.error(NoSuchElementException("Effective object locations for object id: $objectId, " +
                 "effective at: '$effectiveAt' and tolerance: $tolerance seconds does not exist.")))
             .onErrorMap({ it is NoSuchElementException }) { ResponseStatusException(HttpStatus.NOT_FOUND, it.message) }
+    }
+
+    @GetMapping(value = ["/object-locations"], produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun getObjectLocations(
+        @RequestParam(name = "objectIds") objectIds: Set<String>,
+        @RequestParam(name = "effectiveAt", required = false)
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) effectiveAt: OffsetDateTime?,
+        @RequestParam(name = "tolerance", required = false) tolerance: Long?,
+    ): Publisher<ObjectLocation> {
+        val toleranceDuration = tolerance?.let { Duration.ofSeconds(it) }
+        val searchEffectiveAt  = effectiveAt?.atZone(timeSupplier.zoneId()) ?: timeSupplier.now()
+        logger.debug { "Returning effective object locations for object ids: $objectIds, effective at: " +
+            "'$searchEffectiveAt' and tolerance: $tolerance seconds ." }
+        return objectIds.toFlux()
+            .flatMap { objectLocationService.getEffectiveAt(it, searchEffectiveAt, toleranceDuration) }
+            .sort(Comparator.comparing { it.objectId })
     }
 
     @PostMapping(value = ["/object-locations"], consumes = [MediaType.APPLICATION_JSON_VALUE])
