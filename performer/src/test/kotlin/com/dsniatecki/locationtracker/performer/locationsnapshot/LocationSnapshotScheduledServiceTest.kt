@@ -2,6 +2,7 @@ package com.dsniatecki.locationtracker.performer.locationsnapshot
 
 import com.dsniatecki.locationtracker.archiver.api.ObjectLocationControllerApi
 import com.dsniatecki.locationtracker.archiver.model.ObjectLocation
+import com.dsniatecki.locationtracker.commons.utils.TimeRecorder
 import com.dsniatecki.locationtracker.commons.utils.TimeSupplier
 import com.dsniatecki.locationtracker.performer.config.props.LocationSnapshotJobProps
 import com.dsniatecki.locationtracker.performer.sftp.SftpDestination
@@ -17,6 +18,7 @@ import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZoneOffset
 import java.util.UUID
+import java.util.concurrent.TimeUnit
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import reactor.core.publisher.Flux
@@ -30,6 +32,11 @@ internal class LocationSnapshotScheduledServiceTest {
         override fun now() = testTime
         override fun zoneId(): ZoneId = ZoneId.of("UTC")
         override fun zoneOffset(): ZoneOffset = ZoneOffset.UTC
+    }
+
+    private val testTimeRecorder = object : TimeRecorder {
+        override fun record(amount: Long, timeUnit: TimeUnit) {
+        }
     }
 
     @MockK
@@ -67,6 +74,7 @@ internal class LocationSnapshotScheduledServiceTest {
             objectLocationController = objectLocationControllerApi,
             locationSnapshotSender = locationSnapshotSender,
             timeSupplier = testTimeSupplier,
+            timeRecorder = testTimeRecorder,
             props = LocationSnapshotJobProps(
                 schedulerCron = "1 * * * * *",
                 tolerance = Duration.ofSeconds(60),
@@ -89,6 +97,7 @@ internal class LocationSnapshotScheduledServiceTest {
             objectLocationController = objectLocationControllerApi,
             locationSnapshotSender = locationSnapshotSender,
             timeSupplier = testTimeSupplier,
+            timeRecorder = testTimeRecorder,
             props = LocationSnapshotJobProps(
                 schedulerCron = "1 * * * * *",
                 tolerance = Duration.ofSeconds(60),

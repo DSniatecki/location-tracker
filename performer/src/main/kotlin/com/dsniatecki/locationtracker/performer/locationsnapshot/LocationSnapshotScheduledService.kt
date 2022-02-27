@@ -2,8 +2,10 @@ package com.dsniatecki.locationtracker.performer.locationsnapshot
 
 import com.dsniatecki.locationtracker.archiver.api.ObjectLocationControllerApi
 import com.dsniatecki.locationtracker.archiver.model.ObjectLocation
+import com.dsniatecki.locationtracker.commons.utils.TimeRecorder
 import com.dsniatecki.locationtracker.commons.utils.TimeSupplier
 import com.dsniatecki.locationtracker.commons.utils.atZone
+import com.dsniatecki.locationtracker.commons.utils.recorded
 import com.dsniatecki.locationtracker.performer.config.props.LocationSnapshotJobProps
 import com.dsniatecki.locationtracker.storage.api.ObjectControllerApi
 import com.dsniatecki.locationtracker.storage.model.ModelObject
@@ -17,7 +19,8 @@ class LocationSnapshotScheduledService(
     private val objectLocationController: ObjectLocationControllerApi,
     private val locationSnapshotSender: LocationSnapshotSender,
     private val timeSupplier: TimeSupplier,
-    private val props: LocationSnapshotJobProps
+    private val timeRecorder: TimeRecorder,
+    private val props: LocationSnapshotJobProps,
 ) {
 
     companion object {
@@ -43,6 +46,7 @@ class LocationSnapshotScheduledService(
             .doOnSuccess {
                 logger.info { "Location snapshot job was was successfully executed." }
             }.onErrorResume { Mono.empty() }
+            .recorded(timeRecorder)
             .subscribe()
     }
 
