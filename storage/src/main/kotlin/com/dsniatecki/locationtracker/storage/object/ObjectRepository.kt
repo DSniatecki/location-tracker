@@ -12,7 +12,7 @@ class ObjectRepository(
     private val objectRowRepository: ObjectRowRepository,
     private val timeSupplier: TimeSupplier,
     private val findTimeRecorder: TimeRecorder,
-    private val findAllTimeRecorder: TimeRecorder,
+    private val findMultipleTimeRecorder: TimeRecorder,
     private val saveTimeRecorder: TimeRecorder,
     private val deleteTimeRecorder: TimeRecorder,
 ) {
@@ -22,10 +22,10 @@ class ObjectRepository(
             .recorded(findTimeRecorder)
             .map { mapFromRow(it) }
 
-    fun findAll(): Flux<ObjectInstance> =
+    fun findByIds(objectIds: Set<String>): Flux<ObjectInstance> =
         objectRowRepository
-            .findAll()
-            .recorded(findAllTimeRecorder)
+            .findByIds(objectIds)
+            .recorded(findMultipleTimeRecorder)
             .map { mapFromRow(it) }
 
     fun save(objectInstance: ObjectInstance): Mono<ObjectInstance> =

@@ -11,7 +11,8 @@ class ObjectService(
 
     fun get(objectId: String): Mono<ObjectInstance> = objectRepository.findById(objectId)
 
-    fun getAll(): Flux<ObjectInstance> = objectRepository.findAll().sort(Comparator.comparing { it.createdAt })
+    fun getMultiple(objectIds: Set<String>): Flux<ObjectInstance> =
+        objectRepository.findByIds(objectIds).sort(Comparator.comparing { it.createdAt })
 
     fun save(newObject: NewObject): Mono<ObjectInstance> = objectRepository.save(createNewObject(newObject))
 

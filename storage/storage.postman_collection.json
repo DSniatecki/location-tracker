@@ -35,12 +35,12 @@
 					"response": []
 				},
 				{
-					"name": "Get All Objects",
+					"name": "Get Objects",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{storage-endpoint}}/api/objects",
+							"raw": "{{storage-endpoint}}/api/objects?ids={{objectId}}",
 							"host": [
 								"{{storage-endpoint}}"
 							],
@@ -50,9 +50,8 @@
 							],
 							"query": [
 								{
-									"key": "tolerance",
-									"value": "3600",
-									"disabled": true
+									"key": "ids",
+									"value": "{{objectId}}"
 								}
 							]
 						}
@@ -151,9 +150,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{receiver-endpoint}}/actuator",
+							"raw": "{{storage-endpoint}}/actuator",
 							"host": [
-								"{{receiver-endpoint}}"
+								"{{storage-endpoint}}"
 							],
 							"path": [
 								"actuator"

@@ -26,17 +26,17 @@ class ObjectConfig {
             timeSupplier = timeSupplier,
             findTimeRecorder = meterRegistry.createTimeRecorderMetric(
                 "object_query_find_time",
-                "Time of query responsible for finding object"
+                "Time of query responsible for finding object by id"
             ).withCounter(
                 "object_query_find_count",
-                "Number of executed queries responsible for finding object"
+                "Number of executed queries responsible for finding object by id"
             ),
-            findAllTimeRecorder = meterRegistry.createTimeRecorderMetric(
-                "object_query_find_all_time",
-                "Time of query responsible for finding all objects"
+            findMultipleTimeRecorder = meterRegistry.createTimeRecorderMetric(
+                "object_query_find_multiple_time",
+                "Time of query responsible for finding multiple objects by ids"
             ).withCounter(
-                "object_query_find_all_count",
-                "Number of executed queries responsible for finding all objects"
+                "object_query_find_multiple_count",
+                "Number of executed queries responsible for finding multiple objects by ids"
             ),
             saveTimeRecorder = meterRegistry.createTimeRecorderMetric(
                 "object_query_save_time",

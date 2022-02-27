@@ -11,6 +11,9 @@ interface ObjectRowRepository : ReactiveCrudRepository<ObjectRow, String> {
     @Query("SELECT * FROM object WHERE id = :id AND is_deleted = FALSE")
     override fun findById(id: String): Mono<ObjectRow>
 
+    @Query("SELECT * FROM object WHERE id IN (:ids) AND is_deleted = FALSE")
+    fun findByIds(ids: Set<String>): Flux<ObjectRow>
+
     @Query("SELECT * FROM object WHERE is_deleted = FALSE")
     override fun findAll(): Flux<ObjectRow>
 

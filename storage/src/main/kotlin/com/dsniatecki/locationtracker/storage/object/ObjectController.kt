@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.server.ResponseStatusException
@@ -29,7 +30,8 @@ class ObjectController(
             .handleErrors()
 
     @GetMapping(value = ["/objects"], produces = [JSON])
-    fun getAllObjects(): Publisher<ObjectInstance> = objectService.getAll()
+    fun getObjects(@RequestParam(name = "ids") ids: Set<String>): Publisher<ObjectInstance> =
+        objectService.getMultiple(ids)
 
     @PostMapping(value = ["/objects"], consumes = [JSON], produces = [JSON])
     @ResponseStatus(HttpStatus.CREATED)

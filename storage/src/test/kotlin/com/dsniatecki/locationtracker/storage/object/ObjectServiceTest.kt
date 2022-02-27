@@ -59,10 +59,11 @@ internal class ObjectServiceTest(
     }
 
     @Test
-    fun `Should get all saved objects`() {
+    fun `Should get multiple saved object`() {
         val savedNewObject1 = objectService.save(createTestNewObject(name = "Truck1")).block()!!
         val savedNewObject2 = objectService.save(createTestNewObject(name = "Truck2")).block()!!
-        assertThat(objectService.getAll().toList()).isEqualTo(listOf(savedNewObject1, savedNewObject2))
+        assertThat(objectService.getMultiple(setOf(savedNewObject1.id, savedNewObject2.id)).toList())
+            .isEqualTo(listOf(savedNewObject1, savedNewObject2))
     }
 
     @Test
@@ -105,7 +106,7 @@ internal class ObjectServiceTest(
         val savedNewObject = objectService.save(createTestNewObject(name = "Truck1")).block()!!
         objectService.delete(savedNewObject.id).block()
         assertThat(objectService.get(savedNewObject.id).block()).isNull()
-        assertThat(objectService.getAll().toList()).isEmpty()
+        assertThat(objectService.getMultiple(setOf(savedNewObject.id)).toList()).isEmpty()
     }
 
     private fun createTestNewObject(
