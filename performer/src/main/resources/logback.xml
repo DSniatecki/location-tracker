@@ -8,16 +8,21 @@
     <appender name="JSON" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
     </appender>
-    <if condition='isDefined("DEVELOPMENT_MODE")'>
-        <then>
-            <root level="${APP_LOGGING_LEVEL:-INFO}">
-                <appender-ref ref="STDOUT"/>
-            </root>
-        </then>
-        <else>
-            <root level="${APP_LOGGING_LEVEL:-INFO}">
-                <appender-ref ref="JSON"/>
-            </root>
-        </else>
-    </if>
+
+    <root level="${APP_LOGGING_LEVEL:-INFO}">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+<!--    <if condition='isDefined("DEVELOPMENT_MODE")'>-->
+<!--        <then>-->
+<!--            <root level="${APP_LOGGING_LEVEL:-INFO}">-->
+<!--                <appender-ref ref="STDOUT"/>-->
+<!--            </root>-->
+<!--        </then>-->
+<!--        <else>-->
+<!--            <root level="${APP_LOGGING_LEVEL:-INFO}">-->
+<!--                <appender-ref ref="JSON"/>-->
+<!--            </root>-->
+<!--        </else>-->
+<!--    </if>-->
 </configuration>

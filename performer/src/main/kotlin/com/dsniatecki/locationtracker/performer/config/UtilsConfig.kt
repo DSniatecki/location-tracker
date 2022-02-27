@@ -1,16 +1,15 @@
 package com.dsniatecki.locationtracker.performer.config
 
-import com.dsniatecki.locationtracker.archiver.ApiClient
-import com.dsniatecki.locationtracker.archiver.api.ObjectLocationControllerApi
+import com.dsniatecki.locationtracker.archiver.ApiClient as ArchiverApiClient
+import com.dsniatecki.locationtracker.storage.ApiClient as StorageApiClient
 import com.dsniatecki.locationtracker.commons.utils.TimeSupplier
-import com.dsniatecki.locationtracker.commons.utils.atZone
+import com.dsniatecki.locationtracker.performer.sftp.SftpSender
 import com.fasterxml.jackson.databind.ObjectMapper
 import java.text.DateFormat
-import java.time.Duration
 import java.time.LocalDateTime
-import java.time.OffsetDateTime
 import java.time.ZoneId
 import java.time.ZoneOffset
+import net.schmizz.sshj.DefaultConfig
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 
@@ -32,44 +31,19 @@ class UtilsConfig(
     }
 
     @Bean
-    fun archiverApiClient(objectMapper: ObjectMapper): ApiClient {
-        val apiClient = ApiClient(objectMapper, DateFormat.getDateInstance())
-        apiClient.basePath = archiverBasePath
+    fun sftpSender(): SftpSender = SftpSender(DefaultConfig())
+
+    @Bean
+    fun storageApiClient(objectMapper: ObjectMapper): StorageApiClient {
+        val apiClient = StorageApiClient(objectMapper, DateFormat.getDateInstance())
+        apiClient.basePath = storageBasePath
         return apiClient
     }
 
     @Bean
-    fun storageApiClient(objectMapper: ObjectMapper): ApiClient {
-        val apiClient = ApiClient(objectMapper, DateFormat.getDateInstance())
+    fun archiverApiClient(objectMapper: ObjectMapper): ArchiverApiClient {
+        val apiClient = ArchiverApiClient(objectMapper, DateFormat.getDateInstance())
         apiClient.basePath = archiverBasePath
         return apiClient
     }
-
-//    @Bean
-//    fun objectLocationControllerApi(archiverApiClient: ApiClient): ObjectLocationControllerApi {
-//        val objectLocationControllerApi = ObjectLocationControllerApi(archiverApiClient)
-//        val a = objectLocationControllerApi.getEffectiveObjectLocation("c039e9fc-8b46-11ec-a8a3-0242ac120002", LocalDateTime.now().atOffset(ZoneOffset.UTC), Duration.ofDays(1).toSeconds())
-//
-//        val objectLocation = a.block()
-//        println(objectLocation)
-//        println(objectLocation)
-//        println(objectLocation)
-//
-//        return objectLocationControllerApi
-//    }
-
-
-//    @Bean
-//    fun objectLocationControllerApi2(storageApiClient: ApiClient): ObjectLocationControllerApi {
-//        val objectLocationControllerApi = ObjectLocationControllerApi(archiverApiClient)
-//        val a = objectLocationControllerApi.getEffectiveObjectLocation("c039e9fc-8b46-11ec-a8a3-0242ac120002", LocalDateTime.now().atOffset(ZoneOffset.UTC), Duration.ofDays(1).toSeconds())
-//
-//        val objectLocation = a.block()
-//        println(objectLocation)
-//        println(objectLocation)
-//        println(objectLocation)
-//
-//        return objectLocationControllerApi
-//    }
-
 }

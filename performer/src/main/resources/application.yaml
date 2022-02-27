@@ -6,7 +6,18 @@ performer:
     base-path: "http://localhost:10010/api"
   archiver:
     base-path: "http://localhost:10030/api"
-
+  jobs:
+    location-snapshot:
+      scheduler-cron: "10 * * * * *"
+      tolerance: "24h"
+      sftp:
+        host: "localhost"
+        port: 11022
+        user: "performer"
+        password: "performer"
+        path: "upload"
+      object-ids:
+        - "c039e9fc-8b46-11ec-a8a3-0242ac120002"
 
 management:
   endpoint:
