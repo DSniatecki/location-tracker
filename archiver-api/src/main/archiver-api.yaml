@@ -74,7 +74,7 @@ paths:
           example: 3600
       responses:
         200:
-          description: Object location
+          description: Object locations
           content:
             application/json:
               schema:
