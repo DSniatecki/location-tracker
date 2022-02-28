@@ -36,6 +36,7 @@ Technologies used:
 
 - Kotlin 1.6.0
 - JVM 17
+- Maven 3.8.4
 - Spring Boot 2.6.3 (Webflux)
 - Spring Data R2DBC (+ PostgreSQL R2DBC drivers)
 - Testcontainers 1.16.0 (+ JUnit, Mockk)
@@ -46,12 +47,13 @@ Technologies used:
 - Prometheus 2.33.3
 - Grafana 8.2.6
 - Nginx 1.21.6
+- Docker 20.10.12
 
 Monitoring:
 
 ![dashboards](./utils/docs/images/dashboards.png)
 
-- JVM metrics (For every component)
+- JVM metrics (For every service)
 
 ![jvm-metrics](./utils/docs/images/jvm-metrics.png)
 
