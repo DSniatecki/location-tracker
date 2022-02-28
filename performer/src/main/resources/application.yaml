@@ -3,19 +3,19 @@ performer:
     id: "UTC"
     offset: 0
   storage:
-    base-path: "http://localhost:10010/api"
+    base-path: ""
   archiver:
-    base-path: "http://localhost:10030/api"
+    base-path: ""
   jobs:
     location-snapshot:
       scheduler-cron: "10 * * * * *"
       tolerance: "24h"
       sftp:
-        host: "localhost"
-        port: 11022
-        user: "performer"
-        password: "performer"
-        path: "upload"
+        host: ""
+        port: 22
+        user: ""
+        password: ""
+        path: ""
       object-ids:
         - "c039e9fc-8b46-11ec-a8a3-0242ac120002"
 
