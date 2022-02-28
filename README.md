@@ -8,7 +8,7 @@ Architecture:
 
 ![architecture-diagram](./utils/docs/location-tracker-architecture.png)
 
-Components:
+Services:
 
 - Storage - service responsible for storing objects data
 - Receiver - service responsible for receiving object locations
@@ -21,6 +21,17 @@ Receiver sends messages to Archiver via RabbitMq in batches. Archiver receives t
 ArchiverDB using only one query per batch. It allows the system to be resilient and handle high load. Thanks to it, the
 system can be also easily scaled horizontally.
 
+Components:
+
+- Storage - service responsible for storing objects data
+- Storage Api - OpenAPI definitions for Storage service
+- Receiver - service responsible for receiving object locations
+- Receiver Api - OpenAPI definitions for Receiver service
+- Archiver - service responsible for archiving and querying object locations
+- Archiver Api - OpenAPI definitions for Archiver service
+- Archiver Msg - Protobuf message definitions for Archiver service
+- Performer - service responsible for executing scheduled jobs
+
 Technologies used:
 
 - Kotlin 1.6.0
@@ -32,6 +43,9 @@ Technologies used:
 - RabbitMQ 3.9.8
 - PostgreSQL 14
 - TimescaleDB 2.6.0 (Based on PostgreSQL 14)
+- Prometheus 2.33.3
+- Grafana 8.2.6
+- Nginx 1.21.6
 
 Monitoring:
 
@@ -65,6 +79,11 @@ https://hub.docker.com/u/dsniatecki
 - Receiver: https://hub.docker.com/r/dsniatecki/receiver
 - Archiver: https://hub.docker.com/r/dsniatecki/archiver
 - Performer: https://hub.docker.com/r/dsniatecki/performer
+
+How to start the system:
+
+1. Clone repo
+2. Execute: docker-compose -f docker-compose-0.0.1.yml up
 
 Plans:
 
