@@ -1,0 +1,35 @@
+version: '3.6'
+networks:
+  location-tracker-net:
+services:
+  performer:
+    build: .
+    container_name: performer
+    environment:
+      PERFORMER_STORAGE_BASE_PATH: "http://localhost:10010/api"
+      PERFORMER_ARCHIVER_BASE_PATH: "http://localhost:10030/api"
+      PERFORMER_JOBS_LOCATION_SNAPSHOT_SCHEDULER_CRON: "1 * * * * *"
+      PERFORMER_JOBS_LOCATION_SNAPSHOT_TOLERANCE: "24h"
+      PERFORMER_JOBS_LOCATION_SNAPSHOT_SFTP_HOST: "sftp-server"
+      PERFORMER_JOBS_LOCATION_SNAPSHOT_SFTP_PORT: 22
+      PERFORMER_JOBS_LOCATION_SNAPSHOT_SFTP_USER: "performer"
+      PERFORMER_JOBS_LOCATION_SNAPSHOT_SFTP_PASSWORD: "performer"
+      PERFORMER_JOBS_LOCATION_SNAPSHOT_SFTP_PATH: "upload"
+      #DEVELOPMENT_MODE: "true"
+      #APP_LOGGING_LEVEL: DEBUG
+    ports:
+      - "10040:8080"
+    networks:
+      - location-tracker-net
+    depends_on:
+      - sftp-server
+  sftp-server:
+    image: atmoz/sftp
+    command: performer:performer:1001
+    container_name: sftp-server
+    volumes:
+      - ./sftp-store:/home/performer/upload
+    ports:
+      - "11022:22"
+    networks:
+      - location-tracker-net

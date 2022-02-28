@@ -1,0 +1,54 @@
+version: '3.6'
+networks:
+  location-tracker-net:
+services:
+  archiver:
+    build:
+      context: .
+    container_name: archiver
+    environment:
+      DB_NAME: archiver
+      DB_USER: archiver
+      DB_PASSWORD: archiver
+      SPRING_R2DBC_URL: r2dbc:postgresql://archiver-db:5432/archiver
+      SPRING_FLYWAY_URL: jdbc:postgresql://archiver-db:5432/archiver
+      SPRING_RABBITMQ_HOST: archiver-msg-broker
+      SPRING_RABBITMQ_USERNAME: archiver
+      SPRING_RABBITMQ_PASSWORD: archiver
+      SPRING_RABBITMQ_VIRTUAL_HOST: location-tracker
+      SPRING_RABBITMQ_OBJECT_LOCATION_SOURCE_QUEUE: archiver.object.location.source.queue
+      SPRING_RABBITMQ_OBJECT_LOCATION_REQUEST_QUEUE: archiver.object.location.request.queue
+      SPRING_RABBITMQ_SSL_ENABLED: "false"
+    # DEVELOPMENT_MODE: "true"
+    # APP_LOGGING_LEVEL: DEBUG
+    ports:
+      - "10030:8080"
+    networks:
+      - location-tracker-net
+    depends_on:
+      - archiver-db
+      - archiver-msg-broker
+  archiver-db:
+    image: timescale/timescaledb:2.6.0-pg14
+    container_name: archiver-db
+    environment:
+      POSTGRES_USER: archiver
+      POSTGRES_PASSWORD: archiver
+      POSTGRES_DB: archiver
+    ports:
+      - "11030:5432"
+    networks:
+      - location-tracker-net
+  archiver-msg-broker:
+    image: rabbitmq:3.9.8-management-alpine
+    container_name: archiver-msg-broker
+    environment:
+      RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS: '-rabbitmq_management load_definitions "/tmp/definitions.json"'
+    volumes:
+      - ./src/test/resources/rabbitmq-test-definitions.json:/tmp/definitions.json
+    ports:
+      - "5671:5671"
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - location-tracker-net

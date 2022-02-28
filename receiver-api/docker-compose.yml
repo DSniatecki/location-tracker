@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  swagger-editor:
+    image: swaggerapi/swagger-editor:v4.1.2
+    container_name: swagger-editor
+    environment:
+      SWAGGER_FILE: /tmp/api/receiver-api.yaml
+    volumes:
+      - ./src/main/receiver-api.yaml:/tmp/api/receiver-api.yaml
+    ports:
+      - '10000:8080'

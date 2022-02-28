@@ -1,0 +1,37 @@
+performer:
+  time-zone:
+    id: "UTC"
+    offset: 0
+  storage:
+    base-path: ""
+  archiver:
+    base-path: ""
+  jobs:
+    location-snapshot:
+      scheduler-cron: "10 * * * * *"
+      tolerance: "24h"
+      sftp:
+        host: ""
+        port: 22
+        user: ""
+        password: ""
+        path: ""
+      object-ids:
+        - "c039e9fc-8b46-11ec-a8a3-0242ac120002"
+
+management:
+  endpoint:
+    info:
+      enabled: true
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "info, metrics, prometheus, health"

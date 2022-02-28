@@ -1,0 +1,46 @@
+openapi: "3.0.0"
+info:
+  title: Receiver API
+  version: 0.0.1
+
+paths:
+
+  /object-locations:
+    post:
+      tags:
+        - object-location-controller
+      operationId: saveObjectLocation
+      requestBody:
+        description: Object location
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ObjectLocation'
+      responses:
+        '201':
+          description: Object location was saved
+        '400':
+          description: Object location is invalid
+
+components:
+  schemas:
+
+    ObjectLocation:
+      type: object
+      properties:
+        objectId:
+          type: string
+          minLength: 36
+          maxLength: 36
+          example: 'c039e9fc-8b46-11ec-a8a3-0242ac120002'
+        latitude:
+          type: number
+          example: "24.12124212"
+        longitude:
+          type: number
+          example: "64.42127643"
+      required:
+        - objectId
+        - latitude
+        - longitude

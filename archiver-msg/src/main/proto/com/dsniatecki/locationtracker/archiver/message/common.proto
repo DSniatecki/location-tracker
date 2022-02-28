@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package archiver.common;
+
+option java_package = "com.dsniatecki.locationtracker.archiver.message";
+
+message DateTime {
+  Date date = 1;
+  Time time = 2;
+}
+
+message Date {
+  int32 day = 1;
+  int32 month = 2;
+  int32 year = 3;
+}
+
+message Time {
+  int32 hour = 1;
+  int32 minute = 2;
+  int32 second = 3;
+  int32 nano = 4;
+}
+
+message Decimal {
+  int64 unscaled = 1;
+  int32 scale = 2;
+}
+
+message ErrorResponse {
+  string errorMessage = 1;
+}

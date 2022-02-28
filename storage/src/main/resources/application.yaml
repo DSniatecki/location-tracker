@@ -1,0 +1,57 @@
+storage:
+  tolerance: "24h"
+  time-zone:
+    id: "UTC"
+    offset: 0
+
+
+db:
+  host: ""
+  port: 5432
+  name: ""
+  user: ""
+  password: ""
+
+spring:
+  r2dbc:
+    url: "r2dbc:postgresql://${db.host}:${db.port}/${db.name}?ssl=true&sslMode=require"
+    username: "${db.user}"
+    password: "${db.password}"
+  flyway:
+    url: "jdbc:postgresql://${db.host}:${db.port}/${db.name}?ssl=true&sslmode=require"
+    user: "${db.user}"
+    password: "${db.password}"
+    locations: classpath:db
+  rabbitmq:
+    address-shuffle-mode: random
+    host: ""
+    password: ""
+    username: ""
+    virtual-host: ""
+    object-location:
+      source:
+        queue: ""
+        batch-size: 250
+        concurrent-consumers: 4
+      request:
+        queue: ""
+    dynamic: false
+    ssl:
+      enabled: true
+
+management:
+  endpoint:
+    info:
+      enabled: true
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "info, metrics, prometheus, health"

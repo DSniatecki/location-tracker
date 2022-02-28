@@ -1,0 +1,40 @@
+global:
+  scrape_interval: 5s
+  scrape_timeout: 5s
+  evaluation_interval: 5s
+
+scrape_configs:
+  - job_name: prometheus
+    honor_labels: true
+    static_configs:
+      - targets: [ "localhost:9090" ]
+        labels:
+          service: "prometheus"
+  - job_name: storage-observability
+    honor_labels: true
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: [ "storage:8080" ]
+        labels:
+          service: "storage"
+  - job_name: receiver-observability
+    honor_labels: true
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: [ "receiver:8080" ]
+        labels:
+          service: "receiver"
+  - job_name: archiver-observability
+    honor_labels: true
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: [ "archiver:8080" ]
+        labels:
+          service: "archiver"
+  - job_name: performer-observability
+    honor_labels: true
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: [ "performer:8080" ]
+        labels:
+          service: "performer"

@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "07c3151f-b071-450b-af4f-65ca3daf9b08",
+		"name": "Archiver",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Object Locations",
+			"item": [
+				{
+					"name": "Get Object Location",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{archiver-endpoint}}/api/object-locations/{{objectId}}?effectiveAt={{today}}T12:46:00.621000Z",
+							"host": [
+								"{{archiver-endpoint}}"
+							],
+							"path": [
+								"api",
+								"object-locations",
+								"{{objectId}}"
+							],
+							"query": [
+								{
+									"key": "effectiveAt",
+									"value": "{{today}}T12:46:00.621000Z"
+								},
+								{
+									"key": "tolerance",
+									"value": "3600",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Object Locations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{archiver-endpoint}}/api/object-locations?objectIds={{objectId}}&effectiveAt={{today}}T12:46:00.621000Z",
+							"host": [
+								"{{archiver-endpoint}}"
+							],
+							"path": [
+								"api",
+								"object-locations"
+							],
+							"query": [
+								{
+									"key": "objectIds",
+									"value": "{{objectId}}"
+								},
+								{
+									"key": "effectiveAt",
+									"value": "{{today}}T12:46:00.621000Z"
+								},
+								{
+									"key": "tolerance",
+									"value": "3600",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object locations",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"objectId\": \"{{objectId}}\",\r\n        \"receivedAt\": \"{{today}}T12:45:08.495000Z\",\r\n        \"latitude\": \"24.12124212\",\r\n        \"longitude\": \"64.42127643\"\r\n    },\r\n    {\r\n        \"objectId\": \"{{objectId}}\",\r\n        \"receivedAt\": \"{{today}}T12:45:09.621000Z\",\r\n        \"latitude\": \"24.11439812\",\r\n        \"longitude\": \"64.42616785\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{archiver-endpoint}}/api/object-locations",
+							"host": [
+								"{{archiver-endpoint}}"
+							],
+							"path": [
+								"api",
+								"object-locations"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Actuator",
+			"item": [
+				{
+					"name": "Actuator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{archiver-endpoint}}/actuator",
+							"host": [
+								"{{archiver-endpoint}}"
+							],
+							"path": [
+								"actuator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{archiver-endpoint}}/actuator/health",
+							"host": [
+								"{{archiver-endpoint}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Prometheus",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{archiver-endpoint}}/actuator/prometheus",
+							"host": [
+								"{{archiver-endpoint}}"
+							],
+							"path": [
+								"actuator",
+								"prometheus"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"var moment = require('moment');",
+					"pm.environment.set('today', moment().format((\"YYYY-MM-DD\")));",
+					"",
+					"pm.environment.set('objectId', 'c039e9fc-8b46-11ec-a8a3-0242ac120002');",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
