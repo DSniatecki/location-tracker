@@ -14,7 +14,7 @@
 
     <groupId>com.dsniatecki.locationtraceker</groupId>
     <artifactId>storage</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>Storage</name>
     <description>Service responsible for storing objects data</description>
 
@@ -23,7 +23,7 @@
         <kotlin.version>1.6.0</kotlin.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <commons.version>0.0.1</commons.version>
+        <commons.version>0.0.2-SNAPSHOT</commons.version>
         <test-containers.version>1.16.3</test-containers.version>
         <micrometer.version>1.8.3</micrometer.version>
     </properties>
