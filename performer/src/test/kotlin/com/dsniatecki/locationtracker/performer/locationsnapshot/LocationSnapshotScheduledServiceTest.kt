@@ -7,7 +7,7 @@ import com.dsniatecki.locationtracker.commons.utils.TimeSupplier
 import com.dsniatecki.locationtracker.performer.config.props.LocationSnapshotJobProps
 import com.dsniatecki.locationtracker.performer.sftp.SftpDestination
 import com.dsniatecki.locationtracker.storage.api.ObjectControllerApi
-import com.dsniatecki.locationtracker.storage.model.ModelObject
+import com.dsniatecki.locationtracker.storage.model.ObjectInstance
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
@@ -50,20 +50,20 @@ internal class LocationSnapshotScheduledServiceTest {
 
     @Test
     fun `Should successfully execute location snapshot job`() {
-        val testModelObject = ModelObject()
+        val testObjectInstance = ObjectInstance()
             .id(generateId())
             .name("Test object")
             .createdAt(testTime.atOffset(ZoneOffset.UTC))
 
         val testObjectLocation = ObjectLocation()
-            .objectId(testModelObject.id)
+            .objectId(testObjectInstance.id)
             .receivedAt(testTime.atOffset(ZoneOffset.UTC))
             .latitude(BigDecimal.ONE)
             .longitude(BigDecimal.ONE)
 
         val expectedLocationSnapshot = LocationSnapshot(
-            objectId = testModelObject.id,
-            objectName = testModelObject.name,
+            objectId = testObjectInstance.id,
+            objectName = testObjectInstance.name,
             latitude = testObjectLocation.latitude,
             longitude = testObjectLocation.longitude,
             effectiveAt = testTime,
@@ -79,10 +79,10 @@ internal class LocationSnapshotScheduledServiceTest {
                 schedulerCron = "1 * * * * *",
                 tolerance = Duration.ofSeconds(60),
                 sftp = SftpDestination("test", 22, "test", "test", "test"),
-                objectIds = setOf(testModelObject.id)
+                objectIds = setOf(testObjectInstance.id)
             )
         )
-        every { objectControllerApi.getObjects(any()) } returns Flux.just(testModelObject)
+        every { objectControllerApi.getObjects(any()) } returns Flux.just(testObjectInstance)
         every { objectLocationControllerApi.getEffectiveObjectLocations(any(), any(), any()) } returns Flux.just(testObjectLocation)
 
         scheduledService.execute()

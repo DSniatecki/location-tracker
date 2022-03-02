@@ -8,7 +8,7 @@ import com.dsniatecki.locationtracker.commons.utils.atZone
 import com.dsniatecki.locationtracker.commons.utils.recorded
 import com.dsniatecki.locationtracker.performer.config.props.LocationSnapshotJobProps
 import com.dsniatecki.locationtracker.storage.api.ObjectControllerApi
-import com.dsniatecki.locationtracker.storage.model.ModelObject
+import com.dsniatecki.locationtracker.storage.model.ObjectInstance
 import java.time.LocalDateTime
 import mu.KotlinLogging
 import org.springframework.scheduling.annotation.Scheduled
@@ -51,27 +51,27 @@ class LocationSnapshotScheduledService(
     }
 
     private fun mapToObjectLocationSnapshots(
-        modelObjects: Iterable<ModelObject>,
+        objectInstances: Iterable<ObjectInstance>,
         objectLocations: Iterable<ObjectLocation>,
         effectiveAt: LocalDateTime
     ): Iterable<LocationSnapshot> {
-        val objectsMap = modelObjects.associateBy { it.id }
+        val objectsMap = objectInstances.associateBy { it.id }
         val objectLocationsMap = objectLocations.associateBy { it.objectId }
         return props.objectIds.mapNotNull { id ->
-            objectsMap[id]?.let { modelObject ->
-                objectLocationsMap[id]?.let { mapToLocationSnapshot(modelObject, it, effectiveAt) }
+            objectsMap[id]?.let { objectInstance ->
+                objectLocationsMap[id]?.let { mapToLocationSnapshot(objectInstance, it, effectiveAt) }
             }
         }
     }
 
     private fun mapToLocationSnapshot(
-        modelObject: ModelObject,
+        objectInstance: ObjectInstance,
         objectLocation: ObjectLocation,
         effectiveAt: LocalDateTime
     ): LocationSnapshot =
         LocationSnapshot(
-            objectId = modelObject.id,
-            objectName = modelObject.name,
+            objectId = objectInstance.id,
+            objectName = objectInstance.name,
             latitude = objectLocation.latitude,
             longitude = objectLocation.longitude,
             receivedAt = objectLocation.receivedAt.atZone(timeSupplier.zoneOffset()),
