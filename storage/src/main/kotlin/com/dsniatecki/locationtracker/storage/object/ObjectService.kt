@@ -14,6 +14,9 @@ class ObjectService(
     fun getMultiple(objectIds: Set<String>): Flux<ObjectInstance> =
         objectRepository.findByIds(objectIds).sort(Comparator.comparing { it.createdAt })
 
+    fun getAll(): Flux<ObjectInstance> =
+        objectRepository.findAll().sort(Comparator.comparing { it.createdAt })
+
     fun save(newObject: NewObject): Mono<ObjectInstance> = objectRepository.save(createNewObject(newObject))
 
     fun update(objectId: String, objectData: ObjectUpdate): Mono<ObjectInstance> =

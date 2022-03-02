@@ -30,8 +30,8 @@ class ObjectController(
             .handleErrors()
 
     @GetMapping(value = ["/objects"], produces = [JSON])
-    fun getObjects(@RequestParam(name = "ids") ids: Set<String>): Publisher<ObjectInstance> =
-        objectService.getMultiple(ids)
+    fun getObjects(@RequestParam(name = "ids", required = false) ids: Set<String>?): Publisher<ObjectInstance> =
+        if (ids.isNullOrEmpty()) objectService.getAll() else objectService.getMultiple(ids)
 
     @PostMapping(value = ["/objects"], consumes = [JSON], produces = [JSON])
     @ResponseStatus(HttpStatus.CREATED)
