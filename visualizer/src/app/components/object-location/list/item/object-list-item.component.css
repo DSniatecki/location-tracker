@@ -1,0 +1,4 @@
+section:hover {
+    transform: scale(1.006);
+    cursor: pointer;
+}

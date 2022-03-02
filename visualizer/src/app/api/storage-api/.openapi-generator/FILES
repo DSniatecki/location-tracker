@@ -1,0 +1,14 @@
+.gitignore
+README.md
+api.module.ts
+api/api.ts
+api/objectController.service.ts
+configuration.ts
+encoder.ts
+git_push.sh
+index.ts
+model/models.ts
+model/newObject.ts
+model/objectInstance.ts
+model/objectUpdate.ts
+variables.ts

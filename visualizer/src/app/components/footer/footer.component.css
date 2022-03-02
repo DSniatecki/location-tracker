@@ -1,0 +1,10 @@
+.label {
+    margin: auto;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+footer {
+    background: #00000089;
+    padding: 2px;
+}
