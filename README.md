@@ -2,7 +2,7 @@ Location Tracker is a system responsible for tracking object locations.
 
 - Creator: Damian Śniatecki (https://www.linkedin.com/in/damiansn/)
 - Stage: early development
-- Version: 0.0.1
+- Version: 0.0.2-SNAPSHOT
 
 Architecture:
 
@@ -83,6 +83,20 @@ Monitoring:
 - Performer metrics
 
 ![performer-metrics](./utils/docs/images/performer-metrics.png)
+
+Alerts:
+
+- Pending alert
+
+![performer-metrics](./utils/docs/images/alert-instance-down-pending.png)
+
+- Firing alert
+
+![performer-metrics](./utils/docs/images/alert-instance-down-firing.png)
+
+- Alert mail message
+
+![performer-metrics](./utils/docs/images/alert-instance-down-msg.png)
 
 Docker Hub:
 
