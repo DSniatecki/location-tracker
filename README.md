@@ -8,6 +8,10 @@ Architecture:
 
 ![architecture-diagram](./utils/docs/location-tracker-architecture.png)
 
+Apps:
+
+- Visualizer - web app responsible for visualizing the location of selected object
+
 Services:
 
 - Storage - service responsible for storing objects data
@@ -23,6 +27,7 @@ system can be also easily scaled horizontally.
 
 Components:
 
+- Visualizer - web app responsible for visualizing the location of selected object
 - Storage - service responsible for storing objects data
 - Storage Api - OpenAPI definitions for Storage service
 - Receiver - service responsible for receiving object locations
@@ -32,7 +37,12 @@ Components:
 - Archiver Msg - Protobuf message definitions for Archiver service
 - Performer - service responsible for executing scheduled jobs
 
-Technologies used:
+Frontend technologies used:
+
+- TypeScript 4.5.2
+- Angular 13.2.0
+
+Backend technologies used:
 
 - Kotlin 1.6.0
 - JVM 17
@@ -46,6 +56,7 @@ Technologies used:
 - TimescaleDB 2.6.0 (Based on PostgreSQL 14)
 - Prometheus 2.33.3
 - Grafana 8.2.6
+- Alertmanager 0.23.0
 - Nginx 1.21.6
 - Docker 20.10.12
 
