@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"objectId\": \"{{objectId}}\",\r\n    \"latitude\": \"24.12124212\",\r\n    \"longitude\": \"64.42127643\"\r\n}",
+							"raw": "{\r\n    \"objectId\": \"{{object1Id}}\",\r\n    \"latitude\": \"24.72124212\",\r\n    \"longitude\": \"65.82127643\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -104,8 +104,13 @@
 				"exec": [
 					"var moment = require('moment');",
 					"pm.environment.set('today', moment().format((\"YYYY-MM-DD\")));",
+					"pm.environment.set('now', moment().format((\"YYYY-MM-DDTHH:MM:ss.SSSSSS\")) + \"Z\");",
 					"",
-					"pm.environment.set('objectId', 'c039e9fc-8b46-11ec-a8a3-0242ac120002');",
+					"pm.environment.set('object1Id', 'c039e9fc-8b46-11ec-a8a3-0242ac120002');",
+					"pm.environment.set('object2Id', 'ae289617-8c98-4321-89a3-58b69cda81c0');",
+					"pm.environment.set('object3Id', 'b78e6dbd-9641-4c3a-bd91-aed3c1b776bc');",
+					"pm.environment.set('object4Id', 'c7862s12-2ga1-cgc3-6292-ghd6c1b12345');",
+					"",
 					""
 				]
 			}

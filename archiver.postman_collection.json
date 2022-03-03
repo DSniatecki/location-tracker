@@ -1,29 +1,66 @@
 {
 	"info": {
-		"_postman_id": "a14c4c4c-1d06-4321-af13-6792e9340269",
-		"name": "Storage",
+		"_postman_id": "07c3151f-b071-450b-af4f-65ca3daf9b08",
+		"name": "Archiver",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Object",
+			"name": "Object Locations",
 			"item": [
 				{
-					"name": "Get Object",
+					"name": "Get Object Location",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{storage-endpoint}}/api/objects/{{object1Id}}",
+							"raw": "{{archiver-endpoint}}/api/object-locations/{{objec1tId}}?effectiveAt={{now}}",
 							"host": [
-								"{{storage-endpoint}}"
+								"{{archiver-endpoint}}"
 							],
 							"path": [
 								"api",
-								"objects",
-								"{{object1Id}}"
+								"object-locations",
+								"{{objec1tId}}"
 							],
 							"query": [
+								{
+									"key": "tolerance",
+									"value": "3600",
+									"disabled": true
+								},
+								{
+									"key": "effectiveAt",
+									"value": "{{now}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Object Locations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{archiver-endpoint}}/api/object-locations?objectIds={{object1Id}},{{object2Id}},{{object3Id}},{{object4Id}}&effectiveAt={{today}}T12:46:00.621000Z",
+							"host": [
+								"{{archiver-endpoint}}"
+							],
+							"path": [
+								"api",
+								"object-locations"
+							],
+							"query": [
+								{
+									"key": "objectIds",
+									"value": "{{object1Id}},{{object2Id}},{{object3Id}},{{object4Id}}"
+								},
+								{
+									"key": "effectiveAt",
+									"value": "{{today}}T12:46:00.621000Z"
+								},
 								{
 									"key": "tolerance",
 									"value": "3600",
@@ -35,37 +72,13 @@
 					"response": []
 				},
 				{
-					"name": "Get Objects",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{storage-endpoint}}/api/objects?ids={{object1Id}},{{object2Id}},{{object3Id}},{{object4Id}}",
-							"host": [
-								"{{storage-endpoint}}"
-							],
-							"path": [
-								"api",
-								"objects"
-							],
-							"query": [
-								{
-									"key": "ids",
-									"value": "{{object1Id}},{{object2Id}},{{object3Id}},{{object4Id}}"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Save Object",
+					"name": "Save Object locations",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"{{object1Id}}\",\r\n    \"name\": \"Super Track\",\r\n    \"imageUrl\": \"https://location.tracker.images.com/{{object1Id}}\"\r\n}",
+							"raw": "[\r\n    {\r\n        \"objectId\": \"{{object1Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"24.12124212\",\r\n        \"longitude\": \"64.42127643\"\r\n    },\r\n    {\r\n        \"objectId\": \"{{object2Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"14.15422878\",\r\n        \"longitude\": \"15.42611711\"\r\n    },\r\n    {\r\n        \"objectId\": \"{{object3Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"-54.22229812\",\r\n        \"longitude\": \"75.42616785\"\r\n    },\r\n    {\r\n        \"objectId\": \"{{object4Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"84.22229812\",\r\n        \"longitude\": \"135.42616785\"\r\n    }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -73,67 +86,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{storage-endpoint}}/api/objects",
+							"raw": "{{archiver-endpoint}}/api/object-locations",
 							"host": [
-								"{{storage-endpoint}}"
+								"{{archiver-endpoint}}"
 							],
 							"path": [
 								"api",
-								"objects"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Object",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Super Track - Updated\",\r\n    \"imageUrl\": \"https://location.tracker.images.com/{{object1Id}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{storage-endpoint}}/api/objects/{{object1Id}}",
-							"host": [
-								"{{storage-endpoint}}"
-							],
-							"path": [
-								"api",
-								"objects",
-								"{{object1Id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete object",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{storage-endpoint}}/api/objects/{{object1Id}}",
-							"host": [
-								"{{storage-endpoint}}"
-							],
-							"path": [
-								"api",
-								"objects",
-								"{{object1Id}}"
-							],
-							"query": [
-								{
-									"key": "tolerance",
-									"value": "3600",
-									"disabled": true
-								}
+								"object-locations"
 							]
 						}
 					},
@@ -150,9 +109,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{storage-endpoint}}/actuator",
+							"raw": "{{archiver-endpoint}}/actuator",
 							"host": [
-								"{{storage-endpoint}}"
+								"{{archiver-endpoint}}"
 							],
 							"path": [
 								"actuator"
@@ -167,9 +126,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{storage-endpoint}}/actuator/health",
+							"raw": "{{archiver-endpoint}}/actuator/health",
 							"host": [
-								"{{storage-endpoint}}"
+								"{{archiver-endpoint}}"
 							],
 							"path": [
 								"actuator",
@@ -185,9 +144,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{storage-endpoint}}/actuator/prometheus",
+							"raw": "{{archiver-endpoint}}/actuator/prometheus",
 							"host": [
-								"{{storage-endpoint}}"
+								"{{archiver-endpoint}}"
 							],
 							"path": [
 								"actuator",
