@@ -14,24 +14,24 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{archiver-endpoint}}/api/object-locations/{{objectId}}?effectiveAt={{today}}T12:46:00.621000Z",
+							"raw": "{{archiver-endpoint}}/api/object-locations/{{object1Id}}?effectiveAt={{now}}",
 							"host": [
 								"{{archiver-endpoint}}"
 							],
 							"path": [
 								"api",
 								"object-locations",
-								"{{objectId}}"
+								"{{object1Id}}"
 							],
 							"query": [
-								{
-									"key": "effectiveAt",
-									"value": "{{today}}T12:46:00.621000Z"
-								},
 								{
 									"key": "tolerance",
 									"value": "3600",
 									"disabled": true
+								},
+								{
+									"key": "effectiveAt",
+									"value": "{{now}}"
 								}
 							]
 						}
@@ -44,7 +44,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{archiver-endpoint}}/api/object-locations?objectIds={{objectId}}&effectiveAt={{today}}T12:46:00.621000Z",
+							"raw": "{{archiver-endpoint}}/api/object-locations?objectIds={{object1Id}},{{object2Id}},{{object3Id}},{{object4Id}}&effectiveAt={{now}}",
 							"host": [
 								"{{archiver-endpoint}}"
 							],
@@ -55,11 +55,11 @@
 							"query": [
 								{
 									"key": "objectIds",
-									"value": "{{objectId}}"
+									"value": "{{object1Id}},{{object2Id}},{{object3Id}},{{object4Id}}"
 								},
 								{
 									"key": "effectiveAt",
-									"value": "{{today}}T12:46:00.621000Z"
+									"value": "{{now}}"
 								},
 								{
 									"key": "tolerance",
@@ -72,13 +72,13 @@
 					"response": []
 				},
 				{
-					"name": "Save Object locations",
+					"name": "Save Object Locations",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\r\n    {\r\n        \"objectId\": \"{{objectId}}\",\r\n        \"receivedAt\": \"{{today}}T12:45:08.495000Z\",\r\n        \"latitude\": \"24.12124212\",\r\n        \"longitude\": \"64.42127643\"\r\n    },\r\n    {\r\n        \"objectId\": \"{{objectId}}\",\r\n        \"receivedAt\": \"{{today}}T12:45:09.621000Z\",\r\n        \"latitude\": \"24.11439812\",\r\n        \"longitude\": \"64.42616785\"\r\n    }\r\n]",
+							"raw": "[\r\n    {\r\n        \"objectId\": \"{{object1Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"24.12124212\",\r\n        \"longitude\": \"64.42127643\"\r\n    },\r\n    {\r\n        \"objectId\": \"{{object2Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"14.15422878\",\r\n        \"longitude\": \"15.42611711\"\r\n    },\r\n    {\r\n        \"objectId\": \"{{object3Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"-54.22229812\",\r\n        \"longitude\": \"75.42616785\"\r\n    },\r\n    {\r\n        \"objectId\": \"{{object4Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"84.22229812\",\r\n        \"longitude\": \"135.42616785\"\r\n    }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -167,8 +167,13 @@
 				"exec": [
 					"var moment = require('moment');",
 					"pm.environment.set('today', moment().format((\"YYYY-MM-DD\")));",
+					"pm.environment.set('now', moment().format((\"YYYY-MM-DDTHH:MM:ss.SSSSSS\")) + \"Z\");",
 					"",
-					"pm.environment.set('objectId', 'c039e9fc-8b46-11ec-a8a3-0242ac120002');",
+					"pm.environment.set('object1Id', 'c039e9fc-8b46-11ec-a8a3-0242ac120002');",
+					"pm.environment.set('object2Id', 'ae289617-8c98-4321-89a3-58b69cda81c0');",
+					"pm.environment.set('object3Id', 'b78e6dbd-9641-4c3a-bd91-aed3c1b776bc');",
+					"pm.environment.set('object4Id', 'c7862s12-2ga1-cgc3-6292-ghd6c1b12345');",
+					"",
 					""
 				]
 			}
