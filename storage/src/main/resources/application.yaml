@@ -4,7 +4,6 @@ storage:
     id: "UTC"
     offset: 0
 
-
 db:
   host: ""
   port: 5432
@@ -22,22 +21,6 @@ spring:
     user: "${db.user}"
     password: "${db.password}"
     locations: classpath:db
-  rabbitmq:
-    address-shuffle-mode: random
-    host: ""
-    password: ""
-    username: ""
-    virtual-host: ""
-    object-location:
-      source:
-        queue: ""
-        batch-size: 250
-        concurrent-consumers: 4
-      request:
-        queue: ""
-    dynamic: false
-    ssl:
-      enabled: true
 
 management:
   endpoint:
