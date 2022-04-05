@@ -17,6 +17,6 @@ interface ObjectRowRepository : ReactiveCrudRepository<ObjectRow, String> {
     @Query("SELECT * FROM object WHERE is_deleted = FALSE")
     override fun findAll(): Flux<ObjectRow>
 
-    @Query("UPDATE object SET updated_at = :deleted_at, is_deleted = true WHERE id = :id")
+    @Query("UPDATE object SET updated_at = :deleted_at, is_deleted = TRUE WHERE id = :id AND is_deleted = FALSE")
     fun delete(id: String, deleted_at: LocalDateTime): Mono<Unit>
 }

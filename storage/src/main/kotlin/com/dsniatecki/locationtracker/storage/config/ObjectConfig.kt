@@ -18,8 +18,8 @@ class ObjectConfig {
     @Bean
     fun objectRepository(
         objectRowRepository: ObjectRowRepository,
-        timeSupplier: TimeSupplier, meterRegistry:
-        MeterRegistry
+        timeSupplier: TimeSupplier,
+        meterRegistry: MeterRegistry
     ): ObjectRepository =
         ObjectRepository(
             objectRowRepository = objectRowRepository,
