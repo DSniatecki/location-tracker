@@ -11,7 +11,7 @@ paths:
         - object-controller
       operationId: getObjects
       parameters:
-        - name: ids
+        - name: objectIds
           in: query
           required: false
           schema:
