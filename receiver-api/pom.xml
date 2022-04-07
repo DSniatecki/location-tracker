@@ -78,7 +78,7 @@
                                 <artifactId>${project.artifactId}</artifactId>
                                 <groupId>${project.groupId}</groupId>
                                 <artifactVersion>${project.version}</artifactVersion>
-                                <dateLibrary>java8</dateLibrary>
+                                <dateLibrary>java8-localdatetime</dateLibrary>
                                 <apiPackage>com.dsniatecki.locationtracker.receiver.api</apiPackage>
                                 <modelPackage>com.dsniatecki.locationtracker.receiver.model</modelPackage>
                                 <invokerPackage>com.dsniatecki.locationtracker.receiver</invokerPackage>

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "fc42c746-602d-4ed9-857b-489681b86cce",
+		"_postman_id": "2c3cfb0d-9d7f-4b11-be98-86191df2da96",
 		"name": "Receiver",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -103,8 +103,8 @@
 				"type": "text/javascript",
 				"exec": [
 					"var moment = require('moment');",
-					"pm.environment.set('today', moment().format((\"YYYY-MM-DD\")));",
-					"pm.environment.set('now', moment().format((\"YYYY-MM-DDTHH:MM:ss.SSSSSS\")) + \"Z\");",
+					"pm.environment.set('today', moment().utcOffset(0, false).format(\"YYYY-MM-DD\"));",
+					"pm.environment.set('now', moment().utcOffset(0, false).format(\"YYYY-MM-DDTHH:MM:ss.SSSSSS\"));",
 					"",
 					"pm.environment.set('object1Id', 'c039e9fc-8b46-11ec-a8a3-0242ac120002');",
 					"pm.environment.set('object2Id', 'ae289617-8c98-4321-89a3-58b69cda81c0');",

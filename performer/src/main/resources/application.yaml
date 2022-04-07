@@ -1,7 +1,5 @@
 performer:
-  time-zone:
-    id: "UTC"
-    offset: 0
+  time-zone-id:  "UTC"
   storage:
     base-path: ""
   archiver:
@@ -18,7 +16,9 @@ performer:
         path: ""
       object-ids:
         - "c039e9fc-8b46-11ec-a8a3-0242ac120002"
-
+        - "ae289617-8c98-4321-89a3-58b69cda81c0"
+        - "b78e6dbd-9641-4c3a-bd91-aed3c1b776bc"
+        - "c7862s12-2ga1-cgc3-6292-ghd6c1b12345"
 management:
   endpoint:
     info:

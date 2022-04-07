@@ -2,6 +2,7 @@ package com.dsniatecki.locationtracker.archiver.objectlocation
 
 import com.dsniatecki.locationtracker.archiver.message.Common
 import com.dsniatecki.locationtracker.archiver.message.ObjectLocationProto
+import com.dsniatecki.locationtracker.archiver.message.utils.toLocalDateTime
 import com.dsniatecki.locationtracker.archiver.message.utils.toUtcOffsetDateTime
 import com.dsniatecki.locationtracker.commons.utils.Counter
 import com.dsniatecki.locationtracker.commons.utils.TimeRecorder
@@ -78,7 +79,7 @@ data class ObjectLocationRequestListener(
 
     private fun getObjectLocationsForRequests(proto: ObjectLocationProto.ObjectLocationRequests): Mono<ObjectLocationProto.ObjectLocations> =
         proto.requestsList.toFlux()
-            .flatMap { objectLocationService.getEffectiveAt(it.objectId, it.effectiveAt.toUtcOffsetDateTime(), Duration.ofSeconds(it.tolerance.toBigDecimal().toLong())) }
+            .flatMap { objectLocationService.getEffectiveAt(it.objectId, it.effectiveAt.toLocalDateTime(), Duration.ofSeconds(it.tolerance.toBigDecimal().toLong())) }
             .sort(Comparator.comparing<ObjectLocation?, String?> { it.objectId }
                 .thenComparing(Comparator.comparing { it.receivedAt })
             ).map { it.toProto() }

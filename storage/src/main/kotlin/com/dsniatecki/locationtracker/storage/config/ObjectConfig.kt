@@ -16,14 +16,9 @@ class ObjectConfig {
         ObjectService(objectRepository, timeSupplier)
 
     @Bean
-    fun objectRepository(
-        objectRowRepository: ObjectRowRepository,
-        timeSupplier: TimeSupplier,
-        meterRegistry: MeterRegistry
-    ): ObjectRepository =
+    fun objectRepository(objectRowRepository: ObjectRowRepository, meterRegistry: MeterRegistry): ObjectRepository =
         ObjectRepository(
             objectRowRepository = objectRowRepository,
-            timeSupplier = timeSupplier,
             findTimeRecorder = meterRegistry.createTimeRecorderMetric(
                 "object_query_find_time",
                 "Time of query responsible for finding object by id"

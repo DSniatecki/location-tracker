@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a14c4c4c-1d06-4321-af13-6792e9340269",
+		"_postman_id": "250d2683-996b-4518-af78-70fa90b1fa63",
 		"name": "Storage",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -207,8 +207,8 @@
 				"type": "text/javascript",
 				"exec": [
 					"var moment = require('moment');",
-					"pm.environment.set('today', moment().format((\"YYYY-MM-DD\")));",
-					"pm.environment.set('now', moment().format((\"YYYY-MM-DDTHH:MM:ss.SSSSSS\")) + \"Z\");",
+					"pm.environment.set('today', moment().utcOffset(0, false).format(\"YYYY-MM-DD\"));",
+					"pm.environment.set('now', moment().utcOffset(0, false).format(\"YYYY-MM-DDTHH:MM:ss.SSSSSS\"));",
 					"",
 					"pm.environment.set('object1Id', 'c039e9fc-8b46-11ec-a8a3-0242ac120002');",
 					"pm.environment.set('object2Id', 'ae289617-8c98-4321-89a3-58b69cda81c0');",

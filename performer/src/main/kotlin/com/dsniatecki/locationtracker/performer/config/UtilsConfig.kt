@@ -8,26 +8,21 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import java.text.DateFormat
 import java.time.LocalDateTime
 import java.time.ZoneId
-import java.time.ZoneOffset
 import net.schmizz.sshj.DefaultConfig
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 
 class UtilsConfig(
-    @Value("\${performer.time-zone.id}") private val timeZoneId: String,
-    @Value("\${performer.time-zone.offset}") private val timeZoneOffset: Int,
+    @Value("\${performer.time-zone-id}") private val timeZoneId: String,
     @Value("\${performer.storage.base-path}") private val storageBasePath: String,
     @Value("\${performer.archiver.base-path}") private val archiverBasePath: String
 ) {
 
     private val zoneId = ZoneId.of(timeZoneId)
-    private val zoneOffset = ZoneOffset.ofHours(timeZoneOffset)
 
     @Bean
     fun timeSupplier(): TimeSupplier = object : TimeSupplier {
         override fun now(): LocalDateTime = LocalDateTime.now(zoneId)
-        override fun zoneId(): ZoneId = zoneId
-        override fun zoneOffset(): ZoneOffset = zoneOffset
     }
 
     @Bean

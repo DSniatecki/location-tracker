@@ -178,11 +178,11 @@ components:
         createdAt:
           type: string
           format: date-time
-          example: '2022-02-18T23:30:02.888028Z'
+          example: '2022-02-18T23:30:02.888028'
         updatedAt:
           type: string
           format: date-time
-          example: '2022-02-18T23:30:02.888028Z'
+          example: '2022-02-18T23:30:02.888028'
       required:
         - id
         - name

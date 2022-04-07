@@ -1,9 +1,6 @@
 archiver:
   tolerance: "24h"
-  time-zone:
-    id: "UTC"
-    offset: 0
-
+  time-zone-id: "UTC"
 
 db:
   host: ""

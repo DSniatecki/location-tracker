@@ -15,8 +15,6 @@ import io.mockk.verify
 import java.math.BigDecimal
 import java.time.Duration
 import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.ZoneOffset
 import java.util.UUID
 import java.util.concurrent.TimeUnit
 import org.junit.jupiter.api.Test
@@ -30,8 +28,6 @@ internal class LocationSnapshotScheduledServiceTest {
 
     private val testTimeSupplier = object : TimeSupplier {
         override fun now() = testTime
-        override fun zoneId(): ZoneId = ZoneId.of("UTC")
-        override fun zoneOffset(): ZoneOffset = ZoneOffset.UTC
     }
 
     private val testTimeRecorder = object : TimeRecorder {
@@ -53,11 +49,11 @@ internal class LocationSnapshotScheduledServiceTest {
         val testObjectInstance = ObjectInstance()
             .id(generateId())
             .name("Test object")
-            .createdAt(testTime.atOffset(ZoneOffset.UTC))
+            .createdAt(testTime)
 
         val testObjectLocation = ObjectLocation()
             .objectId(testObjectInstance.id)
-            .receivedAt(testTime.atOffset(ZoneOffset.UTC))
+            .receivedAt(testTime)
             .latitude(BigDecimal.ONE)
             .longitude(BigDecimal.ONE)
 

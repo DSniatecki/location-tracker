@@ -1,8 +1,6 @@
 storage:
+  time-zone-id: "UTC"
   tolerance: "24h"
-  time-zone:
-    id: "UTC"
-    offset: 0
 
 db:
   host: ""

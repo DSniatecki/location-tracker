@@ -1,9 +1,8 @@
 package com.dsniatecki.locationtracker.archiver.objectlocation
 
 import com.dsniatecki.locationtracker.commons.utils.TimeSupplier
-import com.dsniatecki.locationtracker.commons.utils.atZone
 import java.time.Duration
-import java.time.OffsetDateTime
+import java.time.LocalDateTime
 import mu.KotlinLogging
 import org.reactivestreams.Publisher
 import org.springframework.dao.DataIntegrityViolationException
@@ -37,11 +36,11 @@ class ObjectLocationController(
     fun getEffectiveObjectLocation(
         @PathVariable(name = "objectId") objectId: String,
         @RequestParam(name = "effectiveAt", required = false)
-        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) effectiveAt: OffsetDateTime?,
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) effectiveAt: LocalDateTime?,
         @RequestParam(name = "tolerance", required = false) tolerance: Long?,
     ): Publisher<ObjectLocation> {
         val toleranceDuration = tolerance?.let { Duration.ofSeconds(it) }
-        val searchEffectiveAt  = effectiveAt?.atZone(timeSupplier.zoneId()) ?: timeSupplier.now()
+        val searchEffectiveAt  = effectiveAt ?: timeSupplier.now()
         logger.debug { "Returning effective object location for object id: $objectId, effective at: " +
             "'$searchEffectiveAt' and tolerance: $tolerance seconds ." }
         return objectLocationService.getEffectiveAt(objectId, searchEffectiveAt, toleranceDuration)
@@ -54,11 +53,11 @@ class ObjectLocationController(
     fun getEffectiveObjectLocations(
         @RequestParam(name = "objectIds") objectIds: Set<String>,
         @RequestParam(name = "effectiveAt", required = false)
-        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) effectiveAt: OffsetDateTime?,
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) effectiveAt: LocalDateTime?,
         @RequestParam(name = "tolerance", required = false) tolerance: Long?,
     ): Publisher<ObjectLocation> {
         val toleranceDuration = tolerance?.let { Duration.ofSeconds(it) }
-        val searchEffectiveAt  = effectiveAt?.atZone(timeSupplier.zoneId()) ?: timeSupplier.now()
+        val searchEffectiveAt  = effectiveAt ?: timeSupplier.now()
         logger.debug { "Returning effective object locations for object ids: $objectIds, effective at: " +
             "'$searchEffectiveAt' and tolerance: $tolerance seconds ." }
         return objectIds.toFlux()

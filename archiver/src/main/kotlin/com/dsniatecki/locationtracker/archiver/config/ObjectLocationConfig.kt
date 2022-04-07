@@ -2,8 +2,6 @@ package com.dsniatecki.locationtracker.archiver.config
 
 import com.dsniatecki.locationtracker.archiver.objectlocation.ObjectLocationRepository
 import com.dsniatecki.locationtracker.archiver.objectlocation.ObjectLocationService
-import com.dsniatecki.locationtracker.commons.utils.TimeSupplier
-import com.dsniatecki.locationtracker.commons.utils.createCounterMetric
 import com.dsniatecki.locationtracker.commons.utils.createTimeRecorderMetric
 import com.dsniatecki.locationtracker.commons.utils.withCounter
 import io.micrometer.core.instrument.MeterRegistry
@@ -17,14 +15,9 @@ class ObjectLocationConfig {
     @Bean
     fun objectLocationService(
         objectLocationRepository: ObjectLocationRepository,
-        timeSupplier: TimeSupplier,
         defaultTolerance: Duration
     ): ObjectLocationService =
-        ObjectLocationService(
-            objectLocationRepository = objectLocationRepository,
-            timeSupplier = timeSupplier,
-            defaultTolerance = defaultTolerance
-        )
+        ObjectLocationService(objectLocationRepository, defaultTolerance)
 
     @Bean
     fun objectLocationRepository(

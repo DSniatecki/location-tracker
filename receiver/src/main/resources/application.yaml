@@ -1,7 +1,5 @@
 receiver:
-  time-zone:
-    id: "UTC"
-    offset: 0
+  time-zone-id: "UTC"
 
 spring:
   rabbitmq:
