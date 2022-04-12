@@ -2,7 +2,7 @@ Location Tracker is a system responsible for tracking object locations.
 
 - Creator: Damian Śniatecki (https://www.linkedin.com/in/damiansn/)
 - Stage: early development
-- Version: 0.0.2-SNAPSHOT
+- Version: 0.0.2
 
 Architecture:
 
@@ -60,6 +60,12 @@ Backend technologies used:
 - Nginx 1.21.6
 - Docker 20.10.12
 
+Visualizer ( web app ):
+
+![visualizer-1](./utils/docs/images/visualizer-1.png)
+
+![visualizer-2](./utils/docs/images/visualizer-2.png)
+
 Monitoring:
 
 ![dashboards](./utils/docs/images/dashboards.png)
@@ -106,15 +112,15 @@ https://hub.docker.com/u/dsniatecki
 - Receiver: https://hub.docker.com/r/dsniatecki/receiver
 - Archiver: https://hub.docker.com/r/dsniatecki/archiver
 - Performer: https://hub.docker.com/r/dsniatecki/performer
+- Proxy: https://hub.docker.com/r/dsniatecki/proxy
 
 How to start the system:
 
 1. Clone repo
-2. Execute: docker-compose -f docker-compose-0.0.1.yml up
+2. Execute: docker-compose -f docker-compose-0.0.2.yml up
 
 Plans:
 
-1. Create webapp with map that would visualise object locations
-2. Add Alert Manager
+1. Extend visualizer
 3. Create proper object locations simulator
 4. Secure system with keycloak
