@@ -1,17 +1,5 @@
-<section class="shadow p-2 m-2 bg-body rounded">
-
-    <div *ngFor="let objectLocation of objectLocations">
-        <section class="shadow p-2 m-2 bg-body rounded">
-            <p>{{getObjectInstance(objectLocation.objectId)}} - {{objectLocation.latitude}} - {{objectLocation.longitude}}</p>
-        </section>
+<section class="shadow p-1 m-2 bg-body rounded">
+    <div class="map-container">
+        <div id="map" class="rounded"></div>
     </div>
-
-<!--    <div class="map-container">-->
-<!--        <div id="map" class="rounded"></div>-->
-<!--    </div>-->
-<!--    <div class="map-container">-->
-<!--        <div class="map-frame">-->
-<!--            <div id="map"></div>-->
-<!--        </div>-->
-<!--    </div>-->
 </section>

@@ -1,14 +1,16 @@
 .map-container {
     min-height: 400px;
-    margin: 20px;
+    margin: 12px;
 }
 
 .map-placeholder {
     min-height: 400px;
     width: 56%;
-    margin: 20px;
+    margin: 12px;
 }
 
 #map {
-    height: 100%;
+    /*height: 100%;*/
+    width: 1108px;
+    height: 858px;
 }

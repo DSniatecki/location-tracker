@@ -1,7 +1,7 @@
-<section class="shadow p-2 m-2 bg-body rounded">
+<section>
     <div *ngFor="let objectInstance of objectInstances">
         <app-object-list-item [objectInstance]="objectInstance"
-                              [observed]="observedObjectIds.has(objectInstance.id)"
+                              [observed]="objectInstance.id === observedObjectId "
                               (observationChange)="updateObservedObjectIds($event)"
         ></app-object-list-item>
     </div>

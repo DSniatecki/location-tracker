@@ -135,14 +135,7 @@ export class ObjectControllerService {
         }
 
         return this.httpClient.delete<any>(`${this.configuration.basePath}/objects/${encodeURIComponent(String(objectId))}`,
-            {
-                context: localVarHttpContext,
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: localVarHeaders,
-                observe: observe,
-                reportProgress: reportProgress
-            }
+            {}
         );
     }
 
@@ -203,20 +196,20 @@ export class ObjectControllerService {
     }
 
     /**
-     * @param ids?
-     * @param observe? set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress? flag to report request and response progress.
+     * @param objectIds 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
      */
-    public getObjects(ids?: Set<string>, observe?: "body", reportProgress?: boolean, options?: { httpHeaderAccept?: "application/json"; context?: HttpContext }): Observable<Array<ObjectInstance>>;
-    public getObjects(ids?: Set<string>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<ObjectInstance>>>;
-    public getObjects(ids?: Set<string>, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<ObjectInstance>>>;
-    public getObjects(ids?: Set<string>, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public getObjects(objectIds?: Set<string>, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<ObjectInstance>>;
+    public getObjects(objectIds?: Set<string>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<ObjectInstance>>>;
+    public getObjects(objectIds?: Set<string>, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<ObjectInstance>>>;
+    public getObjects(objectIds?: Set<string>, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
-        if (ids) {
-            ids.forEach((element) => {
+        if (objectIds) {
+            objectIds.forEach((element) => {
                 localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-                  <any>element, 'ids');
+                  <any>element, 'objectIds');
             })
         }
 

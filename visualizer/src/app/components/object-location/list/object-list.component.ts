@@ -8,15 +8,12 @@ import {ObjectInstance} from "../../../api/storage-api";
 })
 export class ObjectListComponent {
     @Input() objectInstances!: ObjectInstance[]
-    @Input() observedObjectIds!: Set<string>
-    @Output() observedObjectIdsChange = new EventEmitter<Set<string>>();
+    @Input() observedObjectId?: string
+    @Output() observedObjectIdChange = new EventEmitter<string>();
 
     updateObservedObjectIds(objectId: string): void {
-        if (this.observedObjectIds.has(objectId)) {
-            this.observedObjectIds.delete(objectId)
-        } else {
-            this.observedObjectIds.add(objectId)
-        }
-        this.observedObjectIdsChange.emit(this.observedObjectIds)
+        this.observedObjectId = objectId
+        this.observedObjectIdChange.emit(objectId)
+
     }
 }

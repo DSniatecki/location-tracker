@@ -14,6 +14,10 @@ import {ObjectLocationService} from "./services/object-location.service";
 import {ObjectLocationComponent} from "./components/object-location/object-location.component";
 import {ObjectListComponent} from "./components/object-location/list/object-list.component";
 import {ObjectListItemComponent} from "./components/object-location/list/item/object-list-item.component";
+import {
+    ObjectLocationMapPopupComponent
+} from "./components/object-location/map/popup/object-location-map-popup.component";
+import {ARCHIVER_API_URL, STORAGE_API_URL} from "./config";
 
 @NgModule({
     declarations: [
@@ -22,6 +26,7 @@ import {ObjectListItemComponent} from "./components/object-location/list/item/ob
         FooterComponent,
         ObjectLocationComponent,
         ObjectLocationMapComponent,
+        ObjectLocationMapPopupComponent,
         ObjectListComponent,
         ObjectListItemComponent
     ],
@@ -33,14 +38,8 @@ import {ObjectListItemComponent} from "./components/object-location/list/item/ob
     providers: [
         ObjectService,
         ObjectLocationService,
-        {
-            provide: STORAGE_API_BASE_PATH,
-            useValue: "http://localhost:8000/storage/api"
-        },
-        {
-            provide: ARCHIVER_API_BASE_PATH,
-            useValue: "http://localhost:8000/archiver/api"
-        }
+        {provide: STORAGE_API_BASE_PATH, useValue: STORAGE_API_URL},
+        {provide: ARCHIVER_API_BASE_PATH, useValue: ARCHIVER_API_URL}
     ],
     bootstrap: [AppComponent]
 })

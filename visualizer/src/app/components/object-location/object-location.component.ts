@@ -5,7 +5,6 @@ import {ObjectService} from "../../services/object.service";
 import {ObjectLocationService} from "../../services/object-location.service";
 
 const TOLERANCE = 60 * 60 * 24 * 365
-const REFRESH_RATE_MILLIS = 2000
 
 @Component({
     selector: 'app-object-location',
@@ -15,8 +14,8 @@ const REFRESH_RATE_MILLIS = 2000
 export class ObjectLocationComponent {
 
     objectInstances: ObjectInstance[] = []
-    observedObjectIds: Set<string> = new Set<string>()
-    objectLocations: ObjectLocation[] = []
+    observedObjectId?: string
+    observedObjectLocation?: ObjectLocation
 
     constructor(
         protected readonly objectService: ObjectService,
@@ -25,26 +24,24 @@ export class ObjectLocationComponent {
     }
 
     ngOnInit(): void {
+        this.loadObjects()
+        this.loadLocation()
+    }
+
+    loadObjects(): void {
         this.objectService.getAll()
             .subscribe(objectInstances => this.objectInstances = objectInstances)
-        this.loadLocations()
     }
 
-    changeObservedObjectIds(newObservedObjectIds: Set<string>): void {
-        this.observedObjectIds = newObservedObjectIds
-        this.objectLocations = this.objectLocations.filter(location => newObservedObjectIds.has(location.objectId))
+    changeObservedObjectId(newObservedObjectId?: string): void {
+        this.observedObjectId = newObservedObjectId
+        this.loadLocation()
     }
 
-    private loadLocations(): void {
-        if (this.observedObjectIds.size > 0) {
-            this.objectLocationService.getMultipleEffective(this.observedObjectIds, TOLERANCE)
-                .subscribe(locations => {
-                    console.log(locations)
-                    this.objectLocations = locations
-                    setTimeout(() => this.loadLocations(), REFRESH_RATE_MILLIS)
-                })
-        } else {
-            setTimeout(() => this.loadLocations(), REFRESH_RATE_MILLIS)
+    private loadLocation(): void {
+        if (this.observedObjectId) {
+            this.objectLocationService.getEffective(this.observedObjectId, TOLERANCE)
+                .subscribe(location => this.observedObjectLocation = location)
         }
     }
 }

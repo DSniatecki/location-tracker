@@ -1,11 +1,10 @@
 import * as L from "leaflet";
 
-
-export const LOCATION_REFRESH_RATE_MILLIS = 2000
-
+export const STORAGE_API_URL = 'http://localhost:8000/storage/api'
+export const ARCHIVER_API_URL = 'http://localhost:8000/archiver/api'
 export const OPEN_STREET_MAP_API_URL_TEMPLATE = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 
-export const APARTMENT_ICON = L.icon({
+export const MARKER_ICON = L.icon({
     iconSize: [25, 41],
     iconAnchor: [10, 41],
     popupAnchor: [2, -40],

@@ -1,0 +1,9 @@
+.section-button {
+    border: 1.5px solid #eaeae2;
+    transform: scale(1.006);
+    cursor: pointer;
+}
+
+.section-button:hover {
+    border: 1.5px solid #656464
+}
