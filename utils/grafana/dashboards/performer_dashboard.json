@@ -622,7 +622,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "query time"
+              "options": "job execution time"
             },
             "properties": [
               {
@@ -658,7 +658,7 @@
           "exemplar": true,
           "expr": "sum(rate(location_snapshot_job_time_seconds_sum{ service = \"performer\" }[1m])) / sum(rate(location_snapshot_job_time_seconds_count{ service = \"performer\" }[1m]))",
           "interval": "",
-          "legendFormat": "query time",
+          "legendFormat": "job execution time",
           "refId": "A"
         }
       ],

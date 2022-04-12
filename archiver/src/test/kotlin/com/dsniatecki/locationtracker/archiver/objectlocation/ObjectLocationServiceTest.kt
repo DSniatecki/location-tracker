@@ -9,7 +9,6 @@ import com.dsniatecki.locationtracker.archiver.registerDbProperties
 import com.dsniatecki.locationtracker.archiver.testTime
 import java.math.BigDecimal
 import java.time.Duration
-import java.time.ZoneOffset
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
@@ -92,14 +91,6 @@ internal class ObjectLocationServiceTest(
         val time = testTime.plusSeconds(6)
         val returnedObjectLocation = objectLocationService.getEffectiveAt(object1Id, time).block()
         assertThat(returnedObjectLocation).isEqualTo(createTestObjectLocation(object1Id, testTime.plusSeconds(5)))
-    }
-
-    @Test
-    fun `Should get effective object location with OffsetDateTime +2 UTC`() {
-        objectLocationService.saveAll(createTestObjectLocations()).block()
-        val time = testTime.plusHours(2).atOffset(ZoneOffset.ofHours(2))
-        val returnedObjectLocation = objectLocationService.getEffectiveAt(object1Id, time).block()
-        assertThat(returnedObjectLocation).isEqualTo(createTestObjectLocation(object1Id, testTime))
     }
 
     @Test

@@ -3,7 +3,6 @@ package com.dsniatecki.locationtracker.archiver
 import com.dsniatecki.locationtracker.archiver.objectlocation.ObjectLocation
 import java.math.BigDecimal
 import java.time.LocalDateTime
-import java.time.ZoneOffset
 
 val testTime: LocalDateTime = LocalDateTime.parse("2021-01-02T14:00:00.833306")
 
@@ -14,7 +13,7 @@ fun createTestObjectLocation(
     longitude: BigDecimal = BigDecimal("64.42127643"),
 ): ObjectLocation = ObjectLocation(
     objectId = objectId,
-    receivedAt = receivedAt.atOffset(ZoneOffset.UTC),
+    receivedAt = receivedAt,
     latitude = latitude,
     longitude = longitude
 )

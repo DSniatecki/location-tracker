@@ -3,38 +3,49 @@ global:
   scrape_timeout: 5s
   evaluation_interval: 5s
 
+rule_files:
+  - alerts.yml
+
 scrape_configs:
   - job_name: prometheus
     honor_labels: true
     static_configs:
-      - targets: [ "localhost:9090" ]
+      - targets: [ 'localhost:9090' ]
         labels:
-          service: "prometheus"
+          service: 'prometheus'
   - job_name: storage-observability
     honor_labels: true
     metrics_path: /actuator/prometheus
     static_configs:
-      - targets: [ "storage:8080" ]
+      - targets: [ 'storage:8080' ]
         labels:
-          service: "storage"
+          service: 'storage'
   - job_name: receiver-observability
     honor_labels: true
     metrics_path: /actuator/prometheus
     static_configs:
-      - targets: [ "receiver:8080" ]
+      - targets: [ 'receiver:8080' ]
         labels:
-          service: "receiver"
+          service: 'receiver'
   - job_name: archiver-observability
     honor_labels: true
     metrics_path: /actuator/prometheus
     static_configs:
-      - targets: [ "archiver:8080" ]
+      - targets: [ 'archiver:8080' ]
         labels:
-          service: "archiver"
+          service: 'archiver'
   - job_name: performer-observability
     honor_labels: true
     metrics_path: /actuator/prometheus
     static_configs:
-      - targets: [ "performer:8080" ]
+      - targets: [ 'performer:8080' ]
         labels:
-          service: "performer"
+          service: 'performer'
+
+alerting:
+  alertmanagers:
+    - scheme: http
+      static_configs:
+        - targets: [ 'alert-manager:9093' ]
+
+

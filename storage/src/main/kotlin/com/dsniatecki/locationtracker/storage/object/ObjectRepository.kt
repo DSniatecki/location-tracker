@@ -1,8 +1,6 @@
 package com.dsniatecki.locationtracker.storage.`object`
 
 import com.dsniatecki.locationtracker.commons.utils.TimeRecorder
-import com.dsniatecki.locationtracker.commons.utils.TimeSupplier
-import com.dsniatecki.locationtracker.commons.utils.atZone
 import com.dsniatecki.locationtracker.commons.utils.recorded
 import java.time.LocalDateTime
 import reactor.core.publisher.Flux
@@ -10,9 +8,9 @@ import reactor.core.publisher.Mono
 
 class ObjectRepository(
     private val objectRowRepository: ObjectRowRepository,
-    private val timeSupplier: TimeSupplier,
     private val findTimeRecorder: TimeRecorder,
     private val findMultipleTimeRecorder: TimeRecorder,
+    private val findAllTimeRecorder: TimeRecorder,
     private val saveTimeRecorder: TimeRecorder,
     private val deleteTimeRecorder: TimeRecorder,
 ) {
@@ -28,6 +26,12 @@ class ObjectRepository(
             .recorded(findMultipleTimeRecorder)
             .map { mapFromRow(it) }
 
+    fun findAll(): Flux<ObjectInstance> =
+        objectRowRepository
+            .findAll()
+            .recorded(findAllTimeRecorder)
+            .map { mapFromRow(it) }
+
     fun save(objectInstance: ObjectInstance): Mono<ObjectInstance> =
         objectRowRepository.save(mapToRow(objectInstance))
             .recorded(saveTimeRecorder)
@@ -38,25 +42,21 @@ class ObjectRepository(
             .recorded(deleteTimeRecorder)
 
     private fun mapFromRow(row: ObjectRow): ObjectInstance =
-        timeSupplier.zoneOffset().let {
-            ObjectInstance(
-                id = row.id,
-                name = row.name,
-                imageUrl = row.imageUrl,
-                createdAt = row.createdAt.atOffset(it),
-                updatedAt = row.updatedAt?.atOffset(it)
-            )
-        }
+        ObjectInstance(
+            id = row.id,
+            name = row.name,
+            imageUrl = row.imageUrl,
+            createdAt = row.createdAt,
+            updatedAt = row.updatedAt
+        )
 
     private fun mapToRow(objectInstance: ObjectInstance): ObjectRow =
-        timeSupplier.zoneId().let {
-            ObjectRow(
-                id = objectInstance.id,
-                name = objectInstance.name,
-                imageUrl = objectInstance.imageUrl,
-                createdAt = objectInstance.createdAt.atZone(it),
-                updatedAt = objectInstance.updatedAt?.atZone(it),
-                isDeleted = false
-            )
-        }
+        ObjectRow(
+            id = objectInstance.id,
+            name = objectInstance.name,
+            imageUrl = objectInstance.imageUrl,
+            createdAt = objectInstance.createdAt,
+            updatedAt = objectInstance.updatedAt,
+            isDeleted = false
+        )
 }

@@ -10,7 +10,6 @@ import org.testcontainers.containers.PostgreSQLContainer
 import org.testcontainers.containers.RabbitMQContainer
 import org.testcontainers.utility.DockerImageName
 import org.testcontainers.utility.MountableFile
-import reactor.core.publisher.Flux
 
 val invalidMsg = Message("INVALID_MSG".toByteArray())
 
@@ -92,5 +91,3 @@ fun countDeadLettersRetrying(rabbitTemplate: RabbitTemplate): Int {
     } while (deadLetters == 0)
     return deadLetters
 }
-
-fun <T> Flux<T>.toList(): List<T> = this.toIterable().toList()

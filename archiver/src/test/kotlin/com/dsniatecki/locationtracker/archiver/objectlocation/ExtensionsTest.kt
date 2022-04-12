@@ -1,7 +1,7 @@
 package com.dsniatecki.locationtracker.archiver.objectlocation
 
 import java.math.BigDecimal
-import java.time.OffsetDateTime
+import java.time.LocalDateTime
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.assertAll
 
 internal class ExtensionsTest {
 
-    private val testTime = OffsetDateTime.now()
+    private val testTime = LocalDateTime.now()
 
     @Test
     fun `Should pass validation`() {

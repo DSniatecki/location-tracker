@@ -1,11 +1,11 @@
 package com.dsniatecki.locationtracker.storage.`object`
 
-import java.time.OffsetDateTime
+import java.time.LocalDateTime
 
 data class ObjectInstance(
     val id: String,
     val name: String,
     val imageUrl: String?,
-    val createdAt: OffsetDateTime,
-    val updatedAt: OffsetDateTime?
+    val createdAt: LocalDateTime,
+    val updatedAt: LocalDateTime?
 )

@@ -1,0 +1,21 @@
+section:hover {
+    transform: scale(1.006);
+    cursor: pointer;
+}
+
+img {
+    border-radius: 5px;
+}
+
+.object-name {
+    padding: 5px 20px 0;
+    font-size: 15px;
+}
+
+h5 {
+    margin-bottom: 4px;
+}
+
+p {
+    margin-bottom: 0;
+}

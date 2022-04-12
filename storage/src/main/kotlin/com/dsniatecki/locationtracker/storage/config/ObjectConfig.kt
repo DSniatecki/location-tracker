@@ -16,14 +16,9 @@ class ObjectConfig {
         ObjectService(objectRepository, timeSupplier)
 
     @Bean
-    fun objectRepository(
-        objectRowRepository: ObjectRowRepository,
-        timeSupplier: TimeSupplier, meterRegistry:
-        MeterRegistry
-    ): ObjectRepository =
+    fun objectRepository(objectRowRepository: ObjectRowRepository, meterRegistry: MeterRegistry): ObjectRepository =
         ObjectRepository(
             objectRowRepository = objectRowRepository,
-            timeSupplier = timeSupplier,
             findTimeRecorder = meterRegistry.createTimeRecorderMetric(
                 "object_query_find_time",
                 "Time of query responsible for finding object by id"
@@ -36,7 +31,14 @@ class ObjectConfig {
                 "Time of query responsible for finding multiple objects by ids"
             ).withCounter(
                 "object_query_find_multiple_count",
-                "Number of executed queries responsible for finding multiple objects by ids"
+                "Number of executed queries responsible for finding all objects"
+            ),
+            findAllTimeRecorder = meterRegistry.createTimeRecorderMetric(
+                "object_query_find_all_time",
+                "Time of query responsible for finding multiple objects by ids"
+            ).withCounter(
+                "object_query_find_all_count",
+                "Number of executed queries responsible for finding all objects"
             ),
             saveTimeRecorder = meterRegistry.createTimeRecorderMetric(
                 "object_query_save_time",

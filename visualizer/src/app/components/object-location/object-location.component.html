@@ -1,0 +1,15 @@
+<div class="row g-0">
+    <div class="col-md-4">
+        <app-object-list [objectInstances]="objectInstances"
+                         [observedObjectId]="observedObjectId"
+                         (observedObjectIdChange)="changeObservedObjectId($event)"
+        ></app-object-list>
+    </div>
+    <div class="col-md-8">
+        <app-object-location-map [objectLocation]="observedObjectLocation">
+        </app-object-location-map>
+    </div>
+</div>
+
+
+

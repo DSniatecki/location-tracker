@@ -6,7 +6,7 @@
 
     <groupId>com.dsniatecki.locationtraceker</groupId>
     <artifactId>storage-api</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <name>Storage Api</name>
     <description>Storage openAPI definitions</description>
 
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webflux</artifactId>
-            <version>5.3.16</version>
+            <version>5.3.18</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -78,7 +78,7 @@
                                 <artifactId>${project.artifactId}</artifactId>
                                 <groupId>${project.groupId}</groupId>
                                 <artifactVersion>${project.version}</artifactVersion>
-                                <dateLibrary>java8</dateLibrary>
+                                <dateLibrary>java8-localdatetime</dateLibrary>
                                 <apiPackage>com.dsniatecki.locationtracker.storage.api</apiPackage>
                                 <modelPackage>com.dsniatecki.locationtracker.storage.model</modelPackage>
                                 <invokerPackage>com.dsniatecki.locationtracker.storage</invokerPackage>

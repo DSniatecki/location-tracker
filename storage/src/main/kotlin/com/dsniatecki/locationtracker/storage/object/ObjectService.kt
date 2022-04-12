@@ -14,6 +14,9 @@ class ObjectService(
     fun getMultiple(objectIds: Set<String>): Flux<ObjectInstance> =
         objectRepository.findByIds(objectIds).sort(Comparator.comparing { it.createdAt })
 
+    fun getAll(): Flux<ObjectInstance> =
+        objectRepository.findAll().sort(Comparator.comparing { it.createdAt })
+
     fun save(newObject: NewObject): Mono<ObjectInstance> = objectRepository.save(createNewObject(newObject))
 
     fun update(objectId: String, objectData: ObjectUpdate): Mono<ObjectInstance> =
@@ -29,7 +32,7 @@ class ObjectService(
             id = newObject.id ?: generateId(),
             name = newObject.name,
             imageUrl = newObject.imageUrl,
-            createdAt = timeSupplier.now().atOffset(timeSupplier.zoneOffset()),
+            createdAt = timeSupplier.now(),
             updatedAt = null
         )
 
@@ -37,6 +40,6 @@ class ObjectService(
         objectInstance.copy(
             name = objectData.name,
             imageUrl = objectData.imageUrl,
-            updatedAt = timeSupplier.now().atOffset(timeSupplier.zoneOffset())
+            updatedAt = timeSupplier.now()
         )
 }

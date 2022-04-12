@@ -1,0 +1,12 @@
+.gitignore
+README.md
+api.module.ts
+api/api.ts
+api/objectLocationController.service.ts
+configuration.ts
+encoder.ts
+git_push.sh
+index.ts
+model/models.ts
+model/objectLocation.ts
+variables.ts
