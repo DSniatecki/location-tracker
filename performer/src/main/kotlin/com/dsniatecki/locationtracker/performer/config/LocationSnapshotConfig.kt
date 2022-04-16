@@ -7,6 +7,8 @@ import com.dsniatecki.locationtracker.commons.utils.TimeSupplier
 import com.dsniatecki.locationtracker.commons.utils.createTimeRecorderMetric
 import com.dsniatecki.locationtracker.commons.utils.withCounter
 import com.dsniatecki.locationtracker.performer.config.props.JobsProps
+import com.dsniatecki.locationtracker.performer.locationsnapshot.LocationSnapshotMailCreator
+import com.dsniatecki.locationtracker.performer.locationsnapshot.LocationSnapshotMailSender
 import com.dsniatecki.locationtracker.performer.locationsnapshot.LocationSnapshotScheduledService
 import com.dsniatecki.locationtracker.performer.locationsnapshot.LocationSnapshotSender
 import com.dsniatecki.locationtracker.performer.sftp.SftpSender
@@ -14,9 +16,13 @@ import com.dsniatecki.locationtracker.storage.api.ObjectControllerApi
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.micrometer.core.instrument.MeterRegistry
 import org.springframework.context.annotation.Bean
+import org.springframework.mail.javamail.JavaMailSender
+import org.springframework.mail.javamail.JavaMailSenderImpl
+import org.thymeleaf.TemplateEngine
 
-class ObjectLocationConfig(
-    private val jobsProps: JobsProps
+class LocationSnapshotConfig(
+    private val jobsProps: JobsProps,
+    private val timeSupplier: TimeSupplier
 ) {
 
     @Bean
@@ -39,17 +45,28 @@ class ObjectLocationConfig(
         )
 
     @Bean
+    fun locationSnapshotMailCreator(mailTemplateEngine: TemplateEngine): LocationSnapshotMailCreator =
+        LocationSnapshotMailCreator(mailTemplateEngine, jobsProps.locationSnapshot.mail.template)
+
+    @Bean
+    fun locationSnapshotMailSender(javaMailSender: JavaMailSender): LocationSnapshotMailSender =
+        LocationSnapshotMailSender(javaMailSender, timeSupplier, jobsProps.locationSnapshot.mail)
+
+    @Bean
     fun objectLocationScheduledService(
         objectController: ObjectControllerApi,
         objectLocationController: ObjectLocationControllerApi,
+        locationSnapshotMailCreator: LocationSnapshotMailCreator,
+        locationSnapshotMailSender: LocationSnapshotMailSender,
         locationSnapshotSender: LocationSnapshotSender,
-        timeSupplier: TimeSupplier,
         meterRegistry: MeterRegistry
     ): LocationSnapshotScheduledService =
         LocationSnapshotScheduledService(
             objectController = objectController,
             objectLocationController = objectLocationController,
             locationSnapshotSender = locationSnapshotSender,
+            locationSnapshotMailCreator = locationSnapshotMailCreator,
+            locationSnapshotMailSender = locationSnapshotMailSender,
             timeSupplier = timeSupplier,
             timeRecorder = meterRegistry.createTimeRecorderMetric(
                 "location_snapshot_job_time",

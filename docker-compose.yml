@@ -100,6 +100,8 @@ services:
       context: performer
     container_name: performer
     environment:
+      SPRING_MAIL_HOST: "smtp-server"
+      SPRING_MAIL_PORT: 1025
       PERFORMER_STORAGE_BASE_PATH: 'http://storage:8080/api'
       PERFORMER_ARCHIVER_BASE_PATH: 'http://archiver:8080/api'
       PERFORMER_JOBS_LOCATION_SNAPSHOT_SCHEDULER_CRON: '1 * * * * *'

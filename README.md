@@ -66,6 +66,12 @@ Visualizer ( web app ):
 
 ![visualizer-2](./utils/docs/images/visualizer-2.png)
 
+Notifications:
+
+- Performer location snapshot job mail message:
+
+![pefromer-location-snapshot-job-message](./utils/docs/images/location-snapshot-job-mail.png)
+
 Monitoring:
 
 ![dashboards](./utils/docs/images/dashboards.png)

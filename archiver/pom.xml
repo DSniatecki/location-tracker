@@ -14,7 +14,7 @@
 
     <groupId>com.dsniatecki.locationtraceker</groupId>
     <artifactId>archiver</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3-SNAPSHOT</version>
     <name>Archiver</name>
     <description>Service responsible for archiving and querying object locations</description>
 

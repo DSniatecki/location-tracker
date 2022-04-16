@@ -4,6 +4,7 @@ import com.dsniatecki.locationtracker.archiver.api.ObjectLocationControllerApi
 import com.dsniatecki.locationtracker.archiver.model.ObjectLocation
 import com.dsniatecki.locationtracker.commons.utils.TimeRecorder
 import com.dsniatecki.locationtracker.commons.utils.TimeSupplier
+import com.dsniatecki.locationtracker.performer.config.props.LocationSnapshotJobMailProps
 import com.dsniatecki.locationtracker.performer.config.props.LocationSnapshotJobProps
 import com.dsniatecki.locationtracker.performer.sftp.SftpDestination
 import com.dsniatecki.locationtracker.storage.api.ObjectControllerApi
@@ -11,6 +12,8 @@ import com.dsniatecki.locationtracker.storage.model.ObjectInstance
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
+import io.mockk.mockk
+import io.mockk.mockkClass
 import io.mockk.verify
 import java.math.BigDecimal
 import java.time.Duration
@@ -19,6 +22,8 @@ import java.util.UUID
 import java.util.concurrent.TimeUnit
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import org.springframework.mail.javamail.JavaMailSender
+import org.thymeleaf.TemplateEngine
 import reactor.core.publisher.Flux
 
 @ExtendWith(MockKExtension::class)
@@ -65,16 +70,25 @@ internal class LocationSnapshotScheduledServiceTest {
             effectiveAt = testTime,
             receivedAt = testTime
         )
+        val mailProps = LocationSnapshotJobMailProps(
+            template = "mail-template.html",
+            subjectTemplate = "Location Snapshot Job - {{time}}",
+            sender = "performer@location-tracker.com",
+            recipients = setOf("location-snapshot@location-tracker.com")
+        )
         val scheduledService = LocationSnapshotScheduledService(
             objectController = objectControllerApi,
             objectLocationController = objectLocationControllerApi,
             locationSnapshotSender = locationSnapshotSender,
+            locationSnapshotMailCreator = LocationSnapshotMailCreator(mockkClass(TemplateEngine::class), ""),
+            locationSnapshotMailSender = LocationSnapshotMailSender(mockkClass(JavaMailSender::class), testTimeSupplier, mailProps),
             timeSupplier = testTimeSupplier,
             timeRecorder = testTimeRecorder,
             props = LocationSnapshotJobProps(
                 schedulerCron = "1 * * * * *",
                 tolerance = Duration.ofSeconds(60),
                 sftp = SftpDestination("test", 22, "test", "test", "test"),
+                mail = mailProps,
                 objectIds = setOf(testObjectInstance.id)
             )
         )
@@ -88,16 +102,25 @@ internal class LocationSnapshotScheduledServiceTest {
 
     @Test
     fun `Should successfully execute location snapshot job but sent empty file due to non existing object`() {
+        val mailProps = LocationSnapshotJobMailProps(
+            template = "mail-template.html",
+            subjectTemplate = "Location Snapshot Job - {{time}}",
+            sender = "performer@location-tracker.com",
+            recipients = setOf("location-snapshot@location-tracker.com")
+        )
         val scheduledService = LocationSnapshotScheduledService(
             objectController = objectControllerApi,
             objectLocationController = objectLocationControllerApi,
             locationSnapshotSender = locationSnapshotSender,
+            locationSnapshotMailCreator = LocationSnapshotMailCreator(mockkClass(TemplateEngine::class), ""),
+            locationSnapshotMailSender = LocationSnapshotMailSender(mockkClass(JavaMailSender::class), testTimeSupplier, mailProps),
             timeSupplier = testTimeSupplier,
             timeRecorder = testTimeRecorder,
             props = LocationSnapshotJobProps(
                 schedulerCron = "1 * * * * *",
                 tolerance = Duration.ofSeconds(60),
                 sftp = SftpDestination("test", 22, "test", "test", "test"),
+                mail = mailProps,
                 objectIds = setOf(generateId())
             )
         )

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Location Snapshot Mail</title>
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            font-family: Roboto, "Helvetica Neue", sans-serif;
+        }
+
+        header {
+            border-bottom: 1.5px solid #eaeae2;
+            text-align: center;
+            padding: 5px;
+        }
+
+        h1 {
+            margin: 2px;
+        }
+
+        footer {
+            border-top: 1.5px solid #eaeae2;
+            text-align: center;
+            font-weight: bold;
+            font-size: 12px;
+            padding: 5px;
+        }
+
+        table, th, td {
+            border: 1px solid #eaeae2;
+        }
+
+        table {
+            margin: auto;
+        }
+
+        th, td {
+            padding: 5px 15px;
+        }
+
+        section {
+            padding: 15px;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <h1>Location Tracker - Location Snapshot Job</h1>
+</header>
+<section>
+    <table>
+        <thead>
+        <tr>
+            <th colspan="2">Details</th>
+        </tr>
+        <tr>
+            <th style="text-align: left">Effective at</th>
+            <td th:text="${effectiveAt}"></td>
+        </tr>
+        <tr>
+            <th style="text-align: left">Sent at</th>
+            <td th:text="${sentAt}"></td>
+        </tr>
+        <tr>
+            <th colspan="2">Objects</th>
+        </tr>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="locationSnapshot : ${locationSnapshots}">
+            <td th:text="${locationSnapshot.objectId}"></td>
+            <td th:text="${locationSnapshot.objectName}"></td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+<footer>Location Tracker @ 2022</footer>
+</body>

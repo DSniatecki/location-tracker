@@ -7,5 +7,6 @@ data class LocationSnapshotJobProps(
     val schedulerCron: String,
     val tolerance: Duration,
     val sftp: SftpDestination,
+    val mail: LocationSnapshotJobMailProps,
     val objectIds: Set<String>,
 )

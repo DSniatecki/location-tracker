@@ -6,6 +6,8 @@ services:
     build: .
     container_name: performer
     environment:
+      SPRING_MAIL_HOST: "smtp-server"
+      SPRING_MAIL_PORT: 1025
       PERFORMER_STORAGE_BASE_PATH: "http://localhost:10010/api"
       PERFORMER_ARCHIVER_BASE_PATH: "http://localhost:10030/api"
       PERFORMER_JOBS_LOCATION_SNAPSHOT_SCHEDULER_CRON: "1 * * * * *"
@@ -23,6 +25,7 @@ services:
       - location-tracker-net
     depends_on:
       - sftp-server
+      - smtp-server
   sftp-server:
     image: atmoz/sftp
     command: performer:performer:1001
@@ -31,5 +34,13 @@ services:
       - ./sftp-store:/home/performer/upload
     ports:
       - "11022:22"
+    networks:
+      - location-tracker-net
+  smtp-server:
+    image: mailhog/mailhog:v1.0.1
+    container_name: smtp-server
+    ports:
+      - '11025:1025'
+      - '11005:8025'
     networks:
       - location-tracker-net
