@@ -14,7 +14,7 @@
 
     <groupId>com.dsniatecki.locationtraceker</groupId>
     <artifactId>archiver</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <name>Archiver</name>
     <description>Service responsible for archiving and querying object locations</description>
 
@@ -23,8 +23,8 @@
         <kotlin.version>1.6.0</kotlin.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <archiver-msg.version>0.0.2</archiver-msg.version>
-        <commons.version>0.0.2</commons.version>
+        <archiver-msg.version>0.0.3</archiver-msg.version>
+        <commons.version>0.0.3</commons.version>
         <test-containers.version>1.16.3</test-containers.version>
         <micrometer.version>1.8.4</micrometer.version>
     </properties>

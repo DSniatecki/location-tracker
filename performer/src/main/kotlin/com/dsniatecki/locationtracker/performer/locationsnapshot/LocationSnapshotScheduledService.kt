@@ -17,6 +17,8 @@ class LocationSnapshotScheduledService(
     private val objectController: ObjectControllerApi,
     private val objectLocationController: ObjectLocationControllerApi,
     private val locationSnapshotSender: LocationSnapshotSender,
+    private val locationSnapshotMailCreator: LocationSnapshotMailCreator,
+    private val locationSnapshotMailSender: LocationSnapshotMailSender,
     private val timeSupplier: TimeSupplier,
     private val timeRecorder: TimeRecorder,
     private val props: LocationSnapshotJobProps,
@@ -39,7 +41,10 @@ class LocationSnapshotScheduledService(
                     .collectList()
                     .map { mapToObjectLocationSnapshots(objects, it, effectiveAt) }
             }
-            .map { locationSnapshotSender.send(it, effectiveAt) }
+            .map {
+                locationSnapshotSender.send(it, effectiveAt)
+                locationSnapshotMailSender.send(locationSnapshotMailCreator.create(effectiveAt, timeSupplier.now(), it))
+            }
             .doOnError { logger.error(it) { "There was an error while executing location snapshot job: " } }
             .doOnSuccess {
                 logger.info { "Location snapshot job was was successfully executed." }

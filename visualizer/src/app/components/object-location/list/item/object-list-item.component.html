@@ -1,13 +1,7 @@
-<section class="shadow p-2 m-2 bg-body rounded"
+<section class="p-2 m-2"
          [style]="observed ? 'border: 1.5px solid #656464;' : 'border: 1.5px solid #eaeae2;'"
          (click)="toggleSelected()">
-    <div class="row">
-        <div class="col-2">
-            <img src="{{objectInstance.imageUrl}}" width="80" height="60" alt="{{objectInstance.name}} avatar">
-        </div>
-        <div class="col-10 object-name">
-            <h5>{{objectInstance.name}}</h5>
-            <p>{{objectInstance.createdAt | date: 'longDate'}} {{objectInstance.createdAt | date: 'shortTime'}}</p>
-        </div>
-    </div>
+    <img src="{{objectInstance.imageUrl}}" width="80" height="60" alt="{{objectInstance.name}} avatar">
+    <h5>{{objectInstance.name}}</h5>
+    <p>{{objectInstance.createdAt | date: 'longDate'}} {{objectInstance.createdAt | date: 'shortTime'}}</p>
 </section>

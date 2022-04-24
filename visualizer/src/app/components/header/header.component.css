@@ -1,7 +1,9 @@
 header {
     padding: 0;
+    background-color: #161b22;
 }
 
 .navbar-brand {
     margin-right: 50px;
+    color: #f0f6fc !important;
 }

@@ -8,9 +8,19 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import java.text.DateFormat
 import java.time.LocalDateTime
 import java.time.ZoneId
+import java.util.Collections
+import java.util.Properties
 import net.schmizz.sshj.DefaultConfig
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.Bean
+import org.springframework.mail.javamail.JavaMailSenderImpl
+import org.thymeleaf.TemplateEngine
+import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect
+import org.thymeleaf.spring5.SpringTemplateEngine
+import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver
+import org.thymeleaf.templatemode.TemplateMode
+import org.thymeleaf.templateresolver.ITemplateResolver
 
 class UtilsConfig(
     @Value("\${performer.time-zone-id}") private val timeZoneId: String,
@@ -40,5 +50,22 @@ class UtilsConfig(
         val apiClient = ArchiverApiClient(objectMapper, DateFormat.getDateInstance())
         apiClient.basePath = archiverBasePath
         return apiClient
+    }
+
+    @Bean
+    fun mailTemplateEngine(applicationContext: ApplicationContext): TemplateEngine {
+        val templateEngine = SpringTemplateEngine()
+        templateEngine.addTemplateResolver(createTemplateResolver(applicationContext))
+        templateEngine.addDialect(Java8TimeDialect())
+        return templateEngine
+    }
+
+    private fun createTemplateResolver(applicationContext: ApplicationContext): ITemplateResolver {
+        val templateResolver = SpringResourceTemplateResolver()
+        templateResolver.setApplicationContext(applicationContext)
+        templateResolver.templateMode = TemplateMode.HTML
+        templateResolver.prefix = "classpath:templates/"
+        templateResolver.resolvablePatterns = Collections.singleton("*");
+        return templateResolver
     }
 }

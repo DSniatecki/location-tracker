@@ -2,8 +2,10 @@
     margin: auto;
     font-weight: bold;
     font-size: 12px;
+    color: #f0f6fc !important;
 }
 
 footer {
+    background-color: #161b22;
     padding: 2px;
 }
