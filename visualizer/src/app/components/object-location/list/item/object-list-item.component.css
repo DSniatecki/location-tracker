@@ -1,3 +1,9 @@
+section {
+    background-color: #0d1117 !important;
+    border: 1px solid #30363d !important;
+    border-radius: 5px;
+}
+
 section:hover {
     transform: scale(1.006);
     cursor: pointer;
@@ -5,6 +11,8 @@ section:hover {
 
 img {
     border-radius: 5px;
+    float: left;
+    margin-right: 12px;
 }
 
 .object-name {
@@ -12,10 +20,7 @@ img {
     font-size: 15px;
 }
 
-h5 {
-    margin-bottom: 4px;
-}
-
 p {
     margin-bottom: 0;
+    color: #8b949e;
 }
