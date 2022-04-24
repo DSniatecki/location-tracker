@@ -4,10 +4,9 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-
     <groupId>com.dsniatecki.locationtraceker</groupId>
     <artifactId>archiver-msg</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.3</version>
     <name>Archiver Msg</name>
     <description>Archiver Protobuf messages</description>
 

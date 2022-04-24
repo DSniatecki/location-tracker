@@ -3,7 +3,7 @@ networks:
   location-tracker-net:
 services:
   archiver:
-    image: dsniatecki/archiver:0.0.2
+    image: dsniatecki/archiver:0.0.3
     container_name: archiver
     environment:
       DB_NAME: archiver
@@ -50,7 +50,7 @@ services:
     networks:
       - location-tracker-net
   receiver:
-    image: dsniatecki/receiver:0.0.2
+    image: dsniatecki/receiver:0.0.3
     container_name: receiver
     environment:
       SPRING_RABBITMQ_HOST: archiver-msg-broker
@@ -67,7 +67,7 @@ services:
     depends_on:
       - archiver
   storage:
-    image: dsniatecki/storage:0.0.2
+    image: dsniatecki/storage:0.0.3
     container_name: storage
     environment:
       DB_NAME: storage
@@ -93,7 +93,7 @@ services:
     networks:
       - location-tracker-net
   performer:
-    image: dsniatecki/performer:0.0.2
+    image: dsniatecki/performer:0.0.3
     container_name: performer
     environment:
       PERFORMER_STORAGE_BASE_PATH: 'http://storage:8080/api'
@@ -114,11 +114,10 @@ services:
       - storage
       - archiver
   proxy:
-    image: dsniatecki/proxy:0.0.2
+    image: dsniatecki/proxy:0.0.3
     container_name: proxy
     volumes:
       - ./utils/proxy/nginx.conf:/etc/nginx/nginx.conf
-      - ./visualizer/dist/visualizer:/usr/share/nginx/html
     ports:
       - '8000:80'
     networks:
