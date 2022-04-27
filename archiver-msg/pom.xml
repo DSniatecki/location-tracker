@@ -6,7 +6,7 @@
 
     <groupId>com.dsniatecki.locationtraceker</groupId>
     <artifactId>archiver-msg</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4-SNAPSHOT</version>
     <name>Archiver Msg</name>
     <description>Archiver Protobuf messages</description>
 

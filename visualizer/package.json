@@ -1,6 +1,6 @@
 {
   "name": "visualizer",
-  "version": "0.0.3",
+  "version": "0.0.4-SNAPSHOT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -21,6 +21,8 @@
     "@angular/platform-browser-dynamic": "~13.2.0",
     "@angular/router": "~13.2.0",
     "@openapitools/openapi-generator-cli": "^2.4.26",
+    "keycloak-angular": "^9.1.0",
+    "keycloak-js": "^18.0.0",
     "leaflet": "^1.7.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

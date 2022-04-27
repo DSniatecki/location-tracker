@@ -18,7 +18,7 @@ import org.springframework.web.server.ResponseStatusException
 import reactor.core.publisher.Mono
 
 @RestController
-@RequestMapping(path = ["/api"])
+@RequestMapping(path = ["/api/public", "/api/internal"])
 class ObjectController(
     private val objectService: ObjectService,
 ) {

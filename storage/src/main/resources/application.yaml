@@ -2,6 +2,10 @@ storage:
   time-zone-id: "UTC"
   tolerance: "24h"
 
+guard:
+  cert-uri: "#{null}"
+  public-key-location: "#{null}"
+
 db:
   host: ""
   port: 5432
@@ -10,12 +14,18 @@ db:
   password: ""
 
 spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          public-key-location: "${guard.public-key-location}"
+          jwk-set-uri: "${guard.cert-uri}"
   r2dbc:
-    url: "r2dbc:postgresql://${db.host}:${db.port}/${db.name}?ssl=true&sslMode=require"
+    url: "r2dbc:postgresql://${db.host}:${db.port}/${db.name}"#?ssl=true&sslMode=require"
     username: "${db.user}"
     password: "${db.password}"
   flyway:
-    url: "jdbc:postgresql://${db.host}:${db.port}/${db.name}?ssl=true&sslmode=require"
+    url: "jdbc:postgresql://${db.host}:${db.port}/${db.name}"#?ssl=true&sslmode=require"
     user: "${db.user}"
     password: "${db.password}"
     locations: classpath:db

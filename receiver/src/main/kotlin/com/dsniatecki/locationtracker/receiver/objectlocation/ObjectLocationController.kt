@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono
 import validate
 
 @RestController
-@RequestMapping(path = ["/api"])
+@RequestMapping(path = ["/api/public", "/api/internal"])
 class ObjectLocationController(
     private val objectLocationService: ObjectLocationService,
 ) {

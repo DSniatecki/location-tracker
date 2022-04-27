@@ -1,4 +1,5 @@
 import * as L from "leaflet";
+import {KeycloakService} from "keycloak-angular";
 
 export const STORAGE_API_URL = 'http://localhost:8000/storage/api'
 export const ARCHIVER_API_URL = 'http://localhost:8000/archiver/api'
@@ -11,3 +12,18 @@ export const MARKER_ICON = L.icon({
     iconUrl: "https://unpkg.com/leaflet@1.5.1/dist/images/marker-icon.png",
     shadowUrl: "https://unpkg.com/leaflet@1.5.1/dist/images/marker-shadow.png"
 });
+
+export function initializeKeycloak(keycloak: KeycloakService) {
+    return () =>
+        keycloak.init({
+            config: {
+                url: 'http://localhost:8000/',
+                realm: 'location-tracker',
+                clientId: 'visualizer',
+            },
+            initOptions: {
+                onLoad: 'login-required',
+                checkLoginIframe: true
+            }
+        });
+}

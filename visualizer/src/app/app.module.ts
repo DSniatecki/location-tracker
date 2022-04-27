@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -17,7 +17,8 @@ import {ObjectListItemComponent} from "./components/object-location/list/item/ob
 import {
     ObjectLocationMapPopupComponent
 } from "./components/object-location/map/popup/object-location-map-popup.component";
-import {ARCHIVER_API_URL, STORAGE_API_URL} from "./config";
+import {ARCHIVER_API_URL, initializeKeycloak, STORAGE_API_URL} from "./config";
+import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
 
 @NgModule({
     declarations: [
@@ -28,18 +29,25 @@ import {ARCHIVER_API_URL, STORAGE_API_URL} from "./config";
         ObjectLocationMapComponent,
         ObjectLocationMapPopupComponent,
         ObjectListComponent,
-        ObjectListItemComponent
+        ObjectListItemComponent,
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
+        KeycloakAngularModule
     ],
     providers: [
         ObjectService,
         ObjectLocationService,
         {provide: STORAGE_API_BASE_PATH, useValue: STORAGE_API_URL},
-        {provide: ARCHIVER_API_BASE_PATH, useValue: ARCHIVER_API_URL}
+        {provide: ARCHIVER_API_BASE_PATH, useValue: ARCHIVER_API_URL},
+        {
+            provide: APP_INITIALIZER,
+            useFactory: initializeKeycloak,
+            multi: true,
+            deps: [KeycloakService],
+        }
     ],
     bootstrap: [AppComponent]
 })
