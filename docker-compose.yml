@@ -49,6 +49,7 @@ services:
       - '5671:5671'
       - '5672:5672'
       - '15672:15672'
+      - '15692:15692'
     networks:
       - location-tracker-net
   receiver:
@@ -145,7 +146,7 @@ services:
     command:
       - start-dev
     environment:
-      JAVA_OPTS: "-Dkeycloak.import=/tmp/location-tracker-realm.json"
+      JAVA_OPTS: '-Dkeycloak.import=/tmp/location-tracker-realm.json -Dmetrics.enabled=true -Dhealth.enabled=true'
       DB_VENDOR: POSTGRES
       DB_ADDR: guard-db
       DB_DATABASE: guard
@@ -154,6 +155,7 @@ services:
       DB_PASSWORD: guard
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
+      KEYCLOAK_STATISTICS: 'all'
       PROXY_ADDRESS_FORWARDING: 'true'
     volumes:
       - ./utils/guard/location-tracker-realm.json:/tmp/location-tracker-realm.json
