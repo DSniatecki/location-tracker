@@ -1,0 +1,751 @@
+{
+	"info": {
+		"_postman_id": "0040b381-7503-40d7-aa7b-348559799c23",
+		"name": "Location Tracker - Test Data",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Objects",
+			"item": [
+				{
+					"name": "Save Object 1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{object1Id}}\",\r\n    \"name\": \"Man Truck - FZA 50598\",\r\n    \"imageUrl\": \"https://d-art.ppstatic.pl/kadry/k/r/38/77/61a7857462e24_o_original.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{storage-endpoint}}/api/internal/objects",
+							"host": [
+								"{{storage-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"objects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{object2Id}}\",\r\n    \"name\": \"Scania Truck - FZA 51998\",\r\n    \"imageUrl\": \"https://truck-van.pl/wp-content/uploads/2020/04/Drutex-wybiera-pojazdy-Scania_1.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{storage-endpoint}}/api/internal/objects",
+							"host": [
+								"{{storage-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"objects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object 3",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{object3Id}}\",\r\n    \"name\": \"Boeing 747 Plane - 532712\",\r\n    \"imageUrl\": \"https://images.tv9hindi.com/wp-content/uploads/2022/04/Why-are-passenger-planes-white-in-colour-know-the-reason-behind-it-5.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{storage-endpoint}}/api/internal/objects",
+							"host": [
+								"{{storage-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"objects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object 4",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{object4Id}}\",\r\n    \"name\": \"VW Arteon - EL 44444\",\r\n    \"imageUrl\": \"https://www.tuningblog.eu/wp-content/uploads/2018/02/VW-Arteon-R-Line-Voomeran-Bodykit-Tuning-2018-1.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{storage-endpoint}}/api/internal/objects",
+							"host": [
+								"{{storage-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"objects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object 5",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{object5Id}}\",\r\n    \"name\": \"Porshe Cayenne - DW 21112\",\r\n    \"imageUrl\": \"https://www.autocentrum.pl/ac-file/car-version/5cd54eadc74b3574bc7dc71d.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{storage-endpoint}}/api/internal/objects",
+							"host": [
+								"{{storage-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"objects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object 6",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{object6Id}}\",\r\n    \"name\": \"Audi A7 - WPR 11332\",\r\n    \"imageUrl\": \"https://www.wynajemautpremium.pl/f/links/786a0364.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{storage-endpoint}}/api/internal/objects",
+							"host": [
+								"{{storage-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"objects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object 7",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{object7Id}}\",\r\n    \"name\": \"Yamaha R1 - DW 78123\",\r\n    \"imageUrl\": \"https://www.lux-review.com/wp-content/uploads/2021/09/Motorbike.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{storage-endpoint}}/api/internal/objects",
+							"host": [
+								"{{storage-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"objects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object 8",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{object8Id}}\",\r\n    \"name\": \"Yacht ferretti 1000 - White Angel\",\r\n    \"imageUrl\": \"https://cdn.boatinternational.com/files/2022/01/6348f530-8290-11ec-a1d3-cbde464ddfb0-Epic-FERRETTI-exterior-photography-by-Alberto-Cocchi.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{storage-endpoint}}/api/internal/objects",
+							"host": [
+								"{{storage-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"objects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object 9",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{object9Id}}\",\r\n    \"name\": \"Yacht Atlantis Sport - Dark Power\",\r\n    \"imageUrl\": \"https://robbreport.com/wp-content/uploads/2013/07/untitled-5.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{storage-endpoint}}/api/internal/objects",
+							"host": [
+								"{{storage-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"objects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object 10",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{object10Id}}\",\r\n    \"name\": \"Yacht Carbon Fiber Grande 27 - Black Night\",\r\n    \"imageUrl\": \"https://s1.cdn.autoevolution.com/images/news/carbon-fiber-grande-27-yacht-stands-as-testament-that-big-things-come-in-small-packages-171379-7.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{storage-endpoint}}/api/internal/objects",
+							"host": [
+								"{{storage-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"objects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object 11",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{object11Id}}\",\r\n    \"name\": \"Cargo Ship - Yantian\",\r\n    \"imageUrl\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Cargo_Ship_Yantian_Sea.jpg/1280px-Cargo_Ship_Yantian_Sea.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{storage-endpoint}}/api/internal/objects",
+							"host": [
+								"{{storage-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"objects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object 12",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{object12Id}}\",\r\n    \"name\": \"Tanker Ship - Oilcrown\",\r\n    \"imageUrl\": \"https://t4.ftcdn.net/jpg/04/94/30/81/360_F_494308106_6fOOYr7OGQBIF8WZUxfMI0YFRvXoU78Q.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{storage-endpoint}}/api/internal/objects",
+							"host": [
+								"{{storage-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"objects"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Object Locations",
+			"item": [
+				{
+					"name": "Save Object 1 Locations",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"objectId\": \"{{object1Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"51.53939100\",\r\n        \"longitude\": \"15.13265100\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{archiver-endpoint}}/api/internal/object-locations",
+							"host": [
+								"{{archiver-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"object-locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object 2 Locations",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"objectId\": \"{{object2Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"50.52980600\",\r\n        \"longitude\": \"3.42472500\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{archiver-endpoint}}/api/internal/object-locations",
+							"host": [
+								"{{archiver-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"object-locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object 3 Locations",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"objectId\": \"{{object3Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"43.76614800\",\r\n        \"longitude\": \"4.91114300\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{archiver-endpoint}}/api/internal/object-locations",
+							"host": [
+								"{{archiver-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"object-locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object 4 Locations",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"objectId\": \"{{object4Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"47.37551400\",\r\n        \"longitude\": \"8.56342900\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{archiver-endpoint}}/api/internal/object-locations",
+							"host": [
+								"{{archiver-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"object-locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object 5 Locations",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"objectId\": \"{{object5Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"55.80504500\",\r\n        \"longitude\": \"37.30435700\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{archiver-endpoint}}/api/internal/object-locations",
+							"host": [
+								"{{archiver-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"object-locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object 6 Locations",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"objectId\": \"{{object6Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"52.23465500\",\r\n        \"longitude\": \"21.07801100\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{archiver-endpoint}}/api/internal/object-locations",
+							"host": [
+								"{{archiver-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"object-locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object 7 Locations",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"objectId\": \"{{object7Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"51.53144500\",\r\n        \"longitude\": \"-0.10104600\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{archiver-endpoint}}/api/internal/object-locations",
+							"host": [
+								"{{archiver-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"object-locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object 8 Locations",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"objectId\": \"{{object8Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"43.51478100\",\r\n        \"longitude\": \"6.99568000\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{archiver-endpoint}}/api/internal/object-locations",
+							"host": [
+								"{{archiver-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"object-locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object 9 Locations",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"objectId\": \"{{object9Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"43.33349100\",\r\n        \"longitude\": \"-1.98205000\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{archiver-endpoint}}/api/internal/object-locations",
+							"host": [
+								"{{archiver-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"object-locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object 10 Locations",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"objectId\": \"{{object10Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"38.95513300\",\r\n        \"longitude\": \"23.06857700\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{archiver-endpoint}}/api/internal/object-locations",
+							"host": [
+								"{{archiver-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"object-locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object 11 Locations",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"objectId\": \"{{object11Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"27.86498900\",\r\n        \"longitude\": \"-114.43906400\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{archiver-endpoint}}/api/internal/object-locations",
+							"host": [
+								"{{archiver-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"object-locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Object 12 Locations",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"objectId\": \"{{object12Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"-6.09201300\",\r\n        \"longitude\": \"106.84249100\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{archiver-endpoint}}/api/internal/object-locations",
+							"host": [
+								"{{archiver-endpoint}}"
+							],
+							"path": [
+								"api",
+								"internal",
+								"object-locations"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"var moment = require('moment');",
+					"pm.environment.set('today', moment().utcOffset(0, false).format(\"YYYY-MM-DD\"));",
+					"pm.environment.set('now', moment().utcOffset(0, false).format(\"YYYY-MM-DDTHH:MM:ss.SSSSSS\"));",
+					"",
+					"pm.environment.set('object1Id', 'c039e9fc-8b46-11ec-a8a3-0242ac120002');",
+					"pm.environment.set('object2Id', 'ae289617-8c98-4321-89a3-58b69cda81c0');",
+					"pm.environment.set('object3Id', 'b78e6dbd-9641-4c3a-bd91-aed3c1b776bc');",
+					"pm.environment.set('object4Id', 'c7862s12-2ga1-cgc3-6292-ghd6c1b12345');",
+					"pm.environment.set('object5Id', '279e93fa-dd66-4ae7-9845-02846411fa88');",
+					"pm.environment.set('object6Id', 'dd592d99-21c3-4b0b-b1dd-7e9fac07aa19');",
+					"pm.environment.set('object7Id', '7f16c25c-1bb0-42d0-b677-d87648918a2e');",
+					"pm.environment.set('object8Id', '894f1c5e-5569-42d2-bbd7-705bc799339f');",
+					"pm.environment.set('object9Id', 'b77f0c4b-fd3a-4956-bee5-69f13865e52b');",
+					"pm.environment.set('object10Id', '93630d10-8085-44f3-b695-60a0c4352cd2');",
+					"pm.environment.set('object11Id', 'fd590741-1d5d-4186-b94a-b22268c1fea3');",
+					"pm.environment.set('object12Id', '2a0ff132-44c0-4cbf-b17e-d284f04ae813');",
+					"",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
