@@ -6,7 +6,7 @@
 
     <groupId>com.dsniatecki.locationtraceker</groupId>
     <artifactId>storage-api</artifactId>
-    <version>0.0.4-SNAPSHOT</version>
+    <version>0.0.4</version>
     <name>Storage Api</name>
     <description>Storage openAPI definitions</description>
 

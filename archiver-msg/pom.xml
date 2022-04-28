@@ -6,7 +6,7 @@
 
     <groupId>com.dsniatecki.locationtraceker</groupId>
     <artifactId>archiver-msg</artifactId>
-    <version>0.0.4-SNAPSHOT</version>
+    <version>0.0.4</version>
     <name>Archiver Msg</name>
     <description>Archiver Protobuf messages</description>
 
@@ -73,29 +73,6 @@
                 <configuration>
                     <protocArtifact>com.google.protobuf:protoc:${protobuf.version}:exe:${os.detected.classifier}
                     </protocArtifact>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>com.amashchenko.maven.plugin</groupId>
-                <artifactId>gitflow-maven-plugin</artifactId>
-                <version>1.16.0</version>
-                <configuration>
-                    <!-- optional configuration -->
-                    <pushRemote>true</pushRemote>
-                    <commitDevelopmentVersionAtStart>true</commitDevelopmentVersionAtStart>
-                    <useSnapshotInRelease>true</useSnapshotInRelease>
-                    <keepBranch>false</keepBranch>
-                    <featureSquash>true</featureSquash>
-                    <gitFlowConfig>
-                        <productionBranch>master</productionBranch>
-                        <developmentBranch>develop</developmentBranch>
-                        <featureBranchPrefix>feature/</featureBranchPrefix>
-                        <releaseBranchPrefix>release/</releaseBranchPrefix>
-                        <hotfixBranchPrefix>hotfix/</hotfixBranchPrefix>
-                        <supportBranchPrefix>support/</supportBranchPrefix>
-                        <versionTagPrefix/>
-                        <origin>origin</origin>
-                    </gitFlowConfig>
                 </configuration>
             </plugin>
             <plugin>

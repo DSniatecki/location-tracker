@@ -2,7 +2,7 @@ Location Tracker is a system responsible for tracking object locations.
 
 - Creator: Damian Śniatecki (https://www.linkedin.com/in/damiansn/)
 - Stage: early development
-- Version: 0.0.4-SNAPSHOT
+- Version: 0.0.4
 
 Architecture:
 
@@ -130,7 +130,7 @@ https://hub.docker.com/u/dsniatecki
 How to start the system:
 
 1. Clone repo
-2. Execute: docker-compose -f docker-compose-0.0.3 up
+2. Execute: docker-compose -f docker-compose-0.0.4.yml up
 
 Plans:
 

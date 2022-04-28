@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "0ae0280d-074f-4a2e-bd95-edad4dc03f69",
+		"_postman_id": "60f76396-c835-4e27-8e8b-03e3ca63f240",
 		"name": "Location Tracker",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -47,7 +47,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{storage-endpoint}}/api/public/objects?ids={{object1Id}},{{object2Id}},{{object3Id}},{{object4Id}}",
+											"raw": "{{storage-endpoint}}/api/public/objects?objectIds={{object1Id}},{{object2Id}},{{object3Id}},{{object4Id}}",
 											"host": [
 												"{{storage-endpoint}}"
 											],
@@ -58,7 +58,7 @@
 											],
 											"query": [
 												{
-													"key": "ids",
+													"key": "objectIds",
 													"value": "{{object1Id}},{{object2Id}},{{object3Id}},{{object4Id}}"
 												}
 											]
@@ -223,7 +223,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{storage-endpoint}}/api/internal/objects?ids={{object1Id}},{{object2Id}},{{object3Id}},{{object4Id}}",
+											"raw": "{{storage-endpoint}}/api/internal/objects?objectIds={{object1Id}},{{object2Id}},{{object3Id}},{{object4Id}}",
 											"host": [
 												"{{storage-endpoint}}"
 											],
@@ -234,7 +234,7 @@
 											],
 											"query": [
 												{
-													"key": "ids",
+													"key": "objectIds",
 													"value": "{{object1Id}},{{object2Id}},{{object3Id}},{{object4Id}}"
 												}
 											]

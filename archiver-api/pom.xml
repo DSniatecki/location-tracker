@@ -6,7 +6,7 @@
 
     <groupId>com.dsniatecki.locationtraceker</groupId>
     <artifactId>archiver-api</artifactId>
-    <version>0.0.4-SNAPSHOT</version>
+    <version>0.0.4</version>
     <name>Archiver Api</name>
     <description>Archiver openAPI definitions</description>
 
