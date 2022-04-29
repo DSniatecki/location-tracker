@@ -7,11 +7,11 @@ services:
       context: archiver
     container_name: archiver
     environment:
+      GUARD_CERT_URI: "http://guard:8080/realms/location-tracker/protocol/openid-connect/certs"
+      DB_HOST: archiver-db
       DB_NAME: archiver
       DB_USER: archiver
       DB_PASSWORD: archiver
-      SPRING_R2DBC_URL: r2dbc:postgresql://archiver-db:5432/archiver
-      SPRING_FLYWAY_URL: jdbc:postgresql://archiver-db:5432/archiver
       SPRING_RABBITMQ_HOST: archiver-msg-broker
       SPRING_RABBITMQ_USERNAME: archiver
       SPRING_RABBITMQ_PASSWORD: archiver
@@ -26,6 +26,7 @@ services:
     depends_on:
       - archiver-db
       - archiver-msg-broker
+      - guard
   archiver-db:
     image: timescale/timescaledb:2.6.0-pg14
     container_name: archiver-db
@@ -48,6 +49,7 @@ services:
       - '5671:5671'
       - '5672:5672'
       - '15672:15672'
+      - '15692:15692'
     networks:
       - location-tracker-net
   receiver:
@@ -55,6 +57,7 @@ services:
       context: receiver
     container_name: receiver
     environment:
+      GUARD_CERT_URI: "http://guard:8080/realms/location-tracker/protocol/openid-connect/certs"
       SPRING_RABBITMQ_HOST: archiver-msg-broker
       SPRING_RABBITMQ_USERNAME: archiver
       SPRING_RABBITMQ_PASSWORD: archiver
@@ -68,22 +71,24 @@ services:
       - location-tracker-net
     depends_on:
       - archiver
+      - guard
   storage:
     build:
       context: storage
     container_name: storage
     environment:
+      GUARD_CERT_URI: "http://guard:8080/realms/location-tracker/protocol/openid-connect/certs"
+      DB_HOST: storage-db
       DB_NAME: storage
       DB_USER: storage
       DB_PASSWORD: storage
-      SPRING_R2DBC_URL: r2dbc:postgresql://storage-db:5432/storage
-      SPRING_FLYWAY_URL: jdbc:postgresql://storage-db:5432/storage
     ports:
       - '10010:8080'
     networks:
       - location-tracker-net
     depends_on:
       - storage-db
+      - guard
   storage-db:
     image: postgres:14-alpine
     container_name: storage-db
@@ -102,15 +107,15 @@ services:
     environment:
       SPRING_MAIL_HOST: "smtp-server"
       SPRING_MAIL_PORT: 1025
-      PERFORMER_STORAGE_BASE_PATH: 'http://storage:8080/api'
-      PERFORMER_ARCHIVER_BASE_PATH: 'http://archiver:8080/api'
+      PERFORMER_STORAGE_BASE_PATH: 'http://storage:8080/api/internal'
+      PERFORMER_ARCHIVER_BASE_PATH: 'http://archiver:8080/api/internal'
       PERFORMER_JOBS_LOCATION_SNAPSHOT_SCHEDULER_CRON: '1 * * * * *'
-      PERFORMER_JOBS_LOCATION_SNAPSHOT_TOLERANCE: '24h'
-      PERFORMER_JOBS_LOCATION_SNAPSHOT_SFTP_HOST: 'sftp-server'
+      PERFORMER_JOBS_LOCATION_SNAPSHOT_TOLERANCE: 24h
+      PERFORMER_JOBS_LOCATION_SNAPSHOT_SFTP_HOST: sftp-server
       PERFORMER_JOBS_LOCATION_SNAPSHOT_SFTP_PORT: 22
-      PERFORMER_JOBS_LOCATION_SNAPSHOT_SFTP_USER: 'performer'
-      PERFORMER_JOBS_LOCATION_SNAPSHOT_SFTP_PASSWORD: 'performer'
-      PERFORMER_JOBS_LOCATION_SNAPSHOT_SFTP_PATH: 'upload'
+      PERFORMER_JOBS_LOCATION_SNAPSHOT_SFTP_USER: performer
+      PERFORMER_JOBS_LOCATION_SNAPSHOT_SFTP_PASSWORD: performer
+      PERFORMER_JOBS_LOCATION_SNAPSHOT_SFTP_PATH: upload
     ports:
       - '10040:8080'
     networks:
@@ -133,7 +138,45 @@ services:
       - storage
       - receiver
       - archiver
+      - guard
       - grafana
+  guard:
+    image: quay.io/keycloak/keycloak:18.0.0
+    container_name: guard
+    command:
+      - start-dev
+    environment:
+      JAVA_OPTS: '-Dkeycloak.import=/tmp/location-tracker-realm.json -Dmetrics.enabled=true -Dhealth.enabled=true'
+      DB_VENDOR: POSTGRES
+      DB_ADDR: guard-db
+      DB_DATABASE: guard
+      DB_SCHEMA: public
+      DB_USER: guard
+      DB_PASSWORD: guard
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KEYCLOAK_STATISTICS: 'all'
+      PROXY_ADDRESS_FORWARDING: 'true'
+    volumes:
+      - ./utils/guard/location-tracker-realm.json:/tmp/location-tracker-realm.json
+    ports:
+      - '11050:8080'
+    networks:
+      - location-tracker-net
+    depends_on:
+      - guard-db
+      - smtp-server
+  guard-db:
+    image: postgres:14-alpine
+    container_name: guard-db
+    environment:
+      POSTGRES_USER: guard
+      POSTGRES_PASSWORD: guard
+      POSTGRES_DB: guard
+    ports:
+      - '11040:5432'
+    networks:
+      - location-tracker-net
   alert-manager:
     image: prom/alertmanager:v0.23.0
     container_name: alert-manager

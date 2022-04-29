@@ -1,7 +1,17 @@
 receiver:
   time-zone-id: "UTC"
 
+guard:
+  cert-uri: "#{null}"
+  public-key-location: "#{null}"
+
 spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          public-key-location: "${guard.public-key-location}"
+          jwk-set-uri: "${guard.cert-uri}"
   rabbitmq:
     address-shuffle-mode: random
     host: ""

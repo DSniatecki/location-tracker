@@ -1,0 +1,1060 @@
+{
+	"info": {
+		"_postman_id": "60f76396-c835-4e27-8e8b-03e3ca63f240",
+		"name": "Location Tracker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Storage",
+			"item": [
+				{
+					"name": "Public API",
+					"item": [
+						{
+							"name": "Object",
+							"item": [
+								{
+									"name": "Get Object",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{storage-endpoint}}/api/public/objects/{{object1Id}}",
+											"host": [
+												"{{storage-endpoint}}"
+											],
+											"path": [
+												"api",
+												"public",
+												"objects",
+												"{{object1Id}}"
+											],
+											"query": [
+												{
+													"key": "tolerance",
+													"value": "3600",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Objects",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{storage-endpoint}}/api/public/objects?objectIds={{object1Id}},{{object2Id}},{{object3Id}},{{object4Id}}",
+											"host": [
+												"{{storage-endpoint}}"
+											],
+											"path": [
+												"api",
+												"public",
+												"objects"
+											],
+											"query": [
+												{
+													"key": "objectIds",
+													"value": "{{object1Id}},{{object2Id}},{{object3Id}},{{object4Id}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Save Object",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\": \"{{object1Id}}\",\r\n    \"name\": \"Super Track\",\r\n    \"imageUrl\": \"https://location.tracker.images.com/{{object1Id}}\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{storage-endpoint}}/api/public/objects",
+											"host": [
+												"{{storage-endpoint}}"
+											],
+											"path": [
+												"api",
+												"public",
+												"objects"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Object",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"Super Track - Updated\",\r\n    \"imageUrl\": \"https://location.tracker.images.com/{{object1Id}}\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{storage-endpoint}}/api/public/objects/{{object1Id}}",
+											"host": [
+												"{{storage-endpoint}}"
+											],
+											"path": [
+												"api",
+												"public",
+												"objects",
+												"{{object1Id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete object",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{storage-endpoint}}/api/public/objects/{{object1Id}}",
+											"host": [
+												"{{storage-endpoint}}"
+											],
+											"path": [
+												"api",
+												"public",
+												"objects",
+												"{{object1Id}}"
+											],
+											"query": [
+												{
+													"key": "tolerance",
+													"value": "3600",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{guard-jwt-token}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Internal API",
+					"item": [
+						{
+							"name": "Object",
+							"item": [
+								{
+									"name": "Get Object",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{storage-endpoint}}/api/internal/objects/{{object1Id}}",
+											"host": [
+												"{{storage-endpoint}}"
+											],
+											"path": [
+												"api",
+												"internal",
+												"objects",
+												"{{object1Id}}"
+											],
+											"query": [
+												{
+													"key": "tolerance",
+													"value": "3600",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Objects",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{storage-endpoint}}/api/internal/objects?objectIds={{object1Id}},{{object2Id}},{{object3Id}},{{object4Id}}",
+											"host": [
+												"{{storage-endpoint}}"
+											],
+											"path": [
+												"api",
+												"internal",
+												"objects"
+											],
+											"query": [
+												{
+													"key": "objectIds",
+													"value": "{{object1Id}},{{object2Id}},{{object3Id}},{{object4Id}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Save Object",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\": \"{{object1Id}}\",\r\n    \"name\": \"Super Track\",\r\n    \"imageUrl\": \"https://location.tracker.images.com/{{object1Id}}\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{storage-endpoint}}/api/internal/objects",
+											"host": [
+												"{{storage-endpoint}}"
+											],
+											"path": [
+												"api",
+												"internal",
+												"objects"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Object",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"Super Track - Updated\",\r\n    \"imageUrl\": \"https://location.tracker.images.com/{{object1Id}}\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{storage-endpoint}}/api/internal/objects/{{object1Id}}",
+											"host": [
+												"{{storage-endpoint}}"
+											],
+											"path": [
+												"api",
+												"internal",
+												"objects",
+												"{{object1Id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete object",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{storage-endpoint}}/api/internal/objects/{{object1Id}}",
+											"host": [
+												"{{storage-endpoint}}"
+											],
+											"path": [
+												"api",
+												"internal",
+												"objects",
+												"{{object1Id}}"
+											],
+											"query": [
+												{
+													"key": "tolerance",
+													"value": "3600",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Actuator",
+					"item": [
+						{
+							"name": "Actuator",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{storage-endpoint}}/actuator",
+									"host": [
+										"{{storage-endpoint}}"
+									],
+									"path": [
+										"actuator"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Health Check",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{storage-endpoint}}/actuator/health",
+									"host": [
+										"{{storage-endpoint}}"
+									],
+									"path": [
+										"actuator",
+										"health"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Prometheus",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{storage-endpoint}}/actuator/prometheus",
+									"host": [
+										"{{storage-endpoint}}"
+									],
+									"path": [
+										"actuator",
+										"prometheus"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Archiver",
+			"item": [
+				{
+					"name": "Public API",
+					"item": [
+						{
+							"name": "Object Locations",
+							"item": [
+								{
+									"name": "Get Object Location",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{guard-jwt-token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{archiver-endpoint}}/api/public/object-locations/{{object1Id}}?effectiveAt={{now}}",
+											"host": [
+												"{{archiver-endpoint}}"
+											],
+											"path": [
+												"api",
+												"public",
+												"object-locations",
+												"{{object1Id}}"
+											],
+											"query": [
+												{
+													"key": "tolerance",
+													"value": "3600",
+													"disabled": true
+												},
+												{
+													"key": "effectiveAt",
+													"value": "{{now}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Object Locations",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{archiver-endpoint}}/api/public/object-locations?objectIds={{object1Id}},{{object2Id}},{{object3Id}},{{object4Id}}&effectiveAt={{now}}",
+											"host": [
+												"{{archiver-endpoint}}"
+											],
+											"path": [
+												"api",
+												"public",
+												"object-locations"
+											],
+											"query": [
+												{
+													"key": "objectIds",
+													"value": "{{object1Id}},{{object2Id}},{{object3Id}},{{object4Id}}"
+												},
+												{
+													"key": "effectiveAt",
+													"value": "{{now}}"
+												},
+												{
+													"key": "tolerance",
+													"value": "3600",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Save Object Locations",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "[\r\n    {\r\n        \"objectId\": \"{{object1Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"24.12124212\",\r\n        \"longitude\": \"64.42127643\"\r\n    },\r\n    {\r\n        \"objectId\": \"{{object2Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"14.15422878\",\r\n        \"longitude\": \"15.42611711\"\r\n    },\r\n    {\r\n        \"objectId\": \"{{object3Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"-54.22229812\",\r\n        \"longitude\": \"75.42616785\"\r\n    },\r\n    {\r\n        \"objectId\": \"{{object4Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"84.22229812\",\r\n        \"longitude\": \"135.42616785\"\r\n    }\r\n]",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{archiver-endpoint}}/api/public/object-locations",
+											"host": [
+												"{{archiver-endpoint}}"
+											],
+											"path": [
+												"api",
+												"public",
+												"object-locations"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{guard-jwt-token}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Internal API",
+					"item": [
+						{
+							"name": "Object Locations",
+							"item": [
+								{
+									"name": "Get Object Location",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{guard-jwt-token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{archiver-endpoint}}/api/internal/object-locations/{{object1Id}}?effectiveAt={{now}}",
+											"host": [
+												"{{archiver-endpoint}}"
+											],
+											"path": [
+												"api",
+												"internal",
+												"object-locations",
+												"{{object1Id}}"
+											],
+											"query": [
+												{
+													"key": "tolerance",
+													"value": "3600",
+													"disabled": true
+												},
+												{
+													"key": "effectiveAt",
+													"value": "{{now}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Object Locations",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{archiver-endpoint}}/api/internal/object-locations?objectIds={{object1Id}},{{object2Id}},{{object3Id}},{{object4Id}}&effectiveAt={{now}}",
+											"host": [
+												"{{archiver-endpoint}}"
+											],
+											"path": [
+												"api",
+												"internal",
+												"object-locations"
+											],
+											"query": [
+												{
+													"key": "objectIds",
+													"value": "{{object1Id}},{{object2Id}},{{object3Id}},{{object4Id}}"
+												},
+												{
+													"key": "effectiveAt",
+													"value": "{{now}}"
+												},
+												{
+													"key": "tolerance",
+													"value": "3600",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Save Object Locations",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "[\r\n    {\r\n        \"objectId\": \"{{object1Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"24.12124212\",\r\n        \"longitude\": \"64.42127643\"\r\n    },\r\n    {\r\n        \"objectId\": \"{{object2Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"14.15422878\",\r\n        \"longitude\": \"15.42611711\"\r\n    },\r\n    {\r\n        \"objectId\": \"{{object3Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"-54.22229812\",\r\n        \"longitude\": \"75.42616785\"\r\n    },\r\n    {\r\n        \"objectId\": \"{{object4Id}}\",\r\n        \"receivedAt\": \"{{now}}\",\r\n        \"latitude\": \"84.22229812\",\r\n        \"longitude\": \"135.42616785\"\r\n    }\r\n]",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{archiver-endpoint}}/api/internal/object-locations",
+											"host": [
+												"{{archiver-endpoint}}"
+											],
+											"path": [
+												"api",
+												"internal",
+												"object-locations"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Actuator",
+					"item": [
+						{
+							"name": "Actuator",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{archiver-endpoint}}/actuator",
+									"host": [
+										"{{archiver-endpoint}}"
+									],
+									"path": [
+										"actuator"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Health Check",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{archiver-endpoint}}/actuator/health",
+									"host": [
+										"{{archiver-endpoint}}"
+									],
+									"path": [
+										"actuator",
+										"health"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Prometheus",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{archiver-endpoint}}/actuator/prometheus",
+									"host": [
+										"{{archiver-endpoint}}"
+									],
+									"path": [
+										"actuator",
+										"prometheus"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Receiver",
+			"item": [
+				{
+					"name": "Public API",
+					"item": [
+						{
+							"name": "Object Locations",
+							"item": [
+								{
+									"name": "Save Object Locations",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"objectId\": \"{{object1Id}}\",\r\n    \"latitude\": \"24.12124212\",\r\n    \"longitude\": \"64.42127643\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{receiver-endpoint}}/api/public/object-locations",
+											"host": [
+												"{{receiver-endpoint}}"
+											],
+											"path": [
+												"api",
+												"public",
+												"object-locations"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"auth": {
+								"type": "bearer",
+								"bearer": [
+									{
+										"key": "token",
+										"value": "{{guard-jwt-token}}",
+										"type": "string"
+									}
+								]
+							},
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							]
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{guard-jwt-token}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Internal API",
+					"item": [
+						{
+							"name": "Object Locations",
+							"item": [
+								{
+									"name": "Save Object Location",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"objectId\": \"{{object1Id}}\",\r\n    \"latitude\": \"24.12124212\",\r\n    \"longitude\": \"64.42127643\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{receiver-endpoint}}/api/internal/object-locations",
+											"host": [
+												"{{receiver-endpoint}}"
+											],
+											"path": [
+												"api",
+												"internal",
+												"object-locations"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Actuator",
+					"item": [
+						{
+							"name": "Actuator",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{receiver-endpoint}}/actuator",
+									"host": [
+										"{{receiver-endpoint}}"
+									],
+									"path": [
+										"actuator"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Health Check",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{receiver-endpoint}}/actuator/health",
+									"host": [
+										"{{receiver-endpoint}}"
+									],
+									"path": [
+										"actuator",
+										"health"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Prometheus",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{receiver-endpoint}}/actuator/prometheus",
+									"host": [
+										"{{receiver-endpoint}}"
+									],
+									"path": [
+										"actuator",
+										"prometheus"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Performer",
+			"item": [
+				{
+					"name": "Actuator",
+					"item": [
+						{
+							"name": "Actuator",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{performer-endpoint}}/actuator",
+									"host": [
+										"{{performer-endpoint}}"
+									],
+									"path": [
+										"actuator"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Health Check",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{performer-endpoint}}/actuator/health",
+									"host": [
+										"{{performer-endpoint}}"
+									],
+									"path": [
+										"actuator",
+										"health"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Prometheus",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{performer-endpoint}}/actuator/prometheus",
+									"host": [
+										"{{performer-endpoint}}"
+									],
+									"path": [
+										"actuator",
+										"prometheus"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Guard",
+			"item": [
+				{
+					"name": "Generate token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "user",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "user",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "visualizer",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{guard-endpoint}}/realms/location-tracker/protocol/openid-connect/token",
+							"host": [
+								"{{guard-endpoint}}"
+							],
+							"path": [
+								"realms",
+								"location-tracker",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"var moment = require('moment');",
+					"pm.environment.set('today', moment().utcOffset(0, false).format(\"YYYY-MM-DD\"));",
+					"pm.environment.set('now', moment().utcOffset(0, false).format(\"YYYY-MM-DDTHH:MM:ss.SSSSSS\"));",
+					"",
+					"pm.environment.set('object1Id', 'c039e9fc-8b46-11ec-a8a3-0242ac120002');",
+					"pm.environment.set('object2Id', 'ae289617-8c98-4321-89a3-58b69cda81c0');",
+					"pm.environment.set('object3Id', 'b78e6dbd-9641-4c3a-bd91-aed3c1b776bc');",
+					"pm.environment.set('object4Id', 'c7862s12-2ga1-cgc3-6292-ghd6c1b12345');",
+					"",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

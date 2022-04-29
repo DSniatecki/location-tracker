@@ -41,6 +41,13 @@ scrape_configs:
       - targets: [ 'performer:8080' ]
         labels:
           service: 'performer'
+  - job_name: archiver-msg-broker-observability
+    honor_labels: true
+    metrics_path: /metrics
+    static_configs:
+      - targets: [ 'archiver-msg-broker:15692' ]
+        labels:
+          service: 'archiver-msg-broker'
 
 alerting:
   alertmanagers:

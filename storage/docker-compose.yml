@@ -7,11 +7,11 @@ services:
       context: .
     container_name: storage
     environment:
+      GUARD_CERT_URI: "http:// <<HOST-IP>> :11050/realms/location-tracker/protocol/openid-connect/certs"
+      DB_HOST: storage-db
       DB_NAME: storage
       DB_USER: storage
       DB_PASSWORD: storage
-      SPRING_R2DBC_URL: r2dbc:postgresql://storage-db:5432/storage
-      SPRING_FLYWAY_URL: jdbc:postgresql://storage-db:5432/storage
     # DEVELOPMENT_MODE: "true"
     # APP_LOGGING_LEVEL: DEBUG
     ports:

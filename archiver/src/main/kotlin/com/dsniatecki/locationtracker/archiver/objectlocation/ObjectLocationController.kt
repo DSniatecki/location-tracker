@@ -22,7 +22,7 @@ import reactor.core.publisher.Mono
 import reactor.kotlin.core.publisher.toFlux
 
 @RestController
-@RequestMapping(path = ["/api"])
+@RequestMapping(path = ["/api/public", "/api/internal"])
 class ObjectLocationController(
     private val objectLocationService: ObjectLocationService,
     private val timeSupplier: TimeSupplier,
@@ -57,9 +57,9 @@ class ObjectLocationController(
         @RequestParam(name = "tolerance", required = false) tolerance: Long?,
     ): Publisher<ObjectLocation> {
         val toleranceDuration = tolerance?.let { Duration.ofSeconds(it) }
-        val searchEffectiveAt  = effectiveAt ?: timeSupplier.now()
+        val searchEffectiveAt = effectiveAt ?: timeSupplier.now()
         logger.debug { "Returning effective object locations for object ids: $objectIds, effective at: " +
-            "'$searchEffectiveAt' and tolerance: $tolerance seconds ." }
+                "'$searchEffectiveAt' and tolerance: $tolerance seconds ." }
         return objectIds.toFlux()
             .flatMap { objectLocationService.getEffectiveAt(it, searchEffectiveAt, toleranceDuration) }
             .sort(Comparator.comparing { it.objectId })

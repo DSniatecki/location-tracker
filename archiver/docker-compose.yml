@@ -7,11 +7,11 @@ services:
       context: .
     container_name: archiver
     environment:
+      GUARD_CERT_URI: "http:// <<HOST-IP>> :11050/realms/location-tracker/protocol/openid-connect/certs"
+      DB_HOST: archiver-db
       DB_NAME: archiver
       DB_USER: archiver
       DB_PASSWORD: archiver
-      SPRING_R2DBC_URL: r2dbc:postgresql://archiver-db:5432/archiver
-      SPRING_FLYWAY_URL: jdbc:postgresql://archiver-db:5432/archiver
       SPRING_RABBITMQ_HOST: archiver-msg-broker
       SPRING_RABBITMQ_USERNAME: archiver
       SPRING_RABBITMQ_PASSWORD: archiver
