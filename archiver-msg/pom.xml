@@ -6,17 +6,17 @@
 
     <groupId>com.dsniatecki.locationtraceker</groupId>
     <artifactId>archiver-msg</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5-SNAPSHOT</version>
     <name>Archiver Msg</name>
     <description>Archiver Protobuf messages</description>
 
     <properties>
         <java.version>17</java.version>
-        <kotlin.version>1.6.0</kotlin.version>
+        <kotlin.version>1.6.21</kotlin.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <protobuf.version>3.19.4</protobuf.version>
+        <protobuf.version>3.20.1</protobuf.version>
     </properties>
 
     <dependencies>
@@ -103,7 +103,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <jvmTarget>1.8</jvmTarget>
+                    <jvmTarget>${java.version}</jvmTarget>
                 </configuration>
             </plugin>
             <plugin>

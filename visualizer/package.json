@@ -1,6 +1,6 @@
 {
   "name": "visualizer",
-  "version": "0.0.4",
+  "version": "0.0.5-SNAPSHOT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

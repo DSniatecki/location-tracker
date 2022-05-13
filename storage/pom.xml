@@ -8,24 +8,24 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.6</version>
+        <version>2.6.7</version>
         <relativePath/>
     </parent>
 
     <groupId>com.dsniatecki.locationtraceker</groupId>
     <artifactId>storage</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5-SNAPSHOT</version>
     <name>Storage</name>
     <description>Service responsible for storing objects data</description>
 
     <properties>
         <java.version>17</java.version>
-        <kotlin.version>1.6.0</kotlin.version>
+        <kotlin.version>1.6.21</kotlin.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <commons.version>0.0.4</commons.version>
-        <test-containers.version>1.16.3</test-containers.version>
-        <micrometer.version>1.8.4</micrometer.version>
+        <commons.version>0.0.5-SNAPSHOT</commons.version>
+        <test-containers.version>1.17.1</test-containers.version>
+        <micrometer.version>1.9.0</micrometer.version>
     </properties>
 
     <dependencies>
@@ -59,7 +59,7 @@
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-            <version>8.5.5</version>
+            <version>8.5.10</version>
         </dependency>
         <dependency>
             <groupId>io.micrometer</groupId>
@@ -74,12 +74,12 @@
         <dependency>
             <groupId>net.logstash.logback</groupId>
             <artifactId>logstash-logback-encoder</artifactId>
-            <version>7.0.1</version>
+            <version>7.1.1</version>
         </dependency>
         <dependency>
             <groupId>org.codehaus.janino</groupId>
             <artifactId>janino</artifactId>
-            <version>3.1.6</version>
+            <version>3.1.7</version>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
@@ -94,27 +94,27 @@
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-reactor</artifactId>
-            <version>1.6.0</version>
+            <version>1.6.1</version>
         </dependency>
         <dependency>
             <groupId>io.projectreactor.kotlin</groupId>
             <artifactId>reactor-kotlin-extensions</artifactId>
-            <version>1.1.5</version>
+            <version>1.1.6</version>
         </dependency>
         <dependency>
             <groupId>io.r2dbc</groupId>
             <artifactId>r2dbc-postgresql</artifactId>
-            <version>0.8.10.RELEASE</version>
+            <version>0.8.12.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>io.r2dbc</groupId>
             <artifactId>r2dbc-pool</artifactId>
-            <version>0.8.7.RELEASE</version>
+            <version>0.8.8.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.3.3</version>
+            <version>42.3.5</version>
         </dependency>
         <dependency>
             <groupId>io.github.microutils</groupId>
@@ -136,7 +136,7 @@
         <dependency>
             <groupId>io.projectreactor</groupId>
             <artifactId>reactor-test</artifactId>
-            <version>3.4.14</version>
+            <version>3.4.18</version>
             <scope>test</scope>
         </dependency>
         <dependency>
