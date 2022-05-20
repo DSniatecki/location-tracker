@@ -46,12 +46,12 @@ Frontend technologies used:
 
 Backend technologies used:
 
-- Kotlin 1.6.0
+- Kotlin 1.6.21
 - JVM 17
 - Maven 3.8.4
-- Spring Boot 2.6.3 (Webflux)
+- Spring Boot 2.6.7 (Webflux)
 - Spring Data R2DBC (+ PostgreSQL R2DBC drivers)
-- Testcontainers 1.16.0 (+ JUnit, Mockk)
+- Testcontainers 1.17.1 (+ JUnit, Mockk)
 - OpenApi
 - RabbitMQ 3.9.8
 - PostgreSQL 14
