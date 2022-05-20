@@ -37,7 +37,7 @@ class ObjectController(
 
     @PostMapping(value = ["/objects"], consumes = [JSON], produces = [JSON])
     @ResponseStatus(HttpStatus.CREATED)
-    fun updateObject(@RequestBody newObject: NewObject): Publisher<ObjectInstance> =
+    fun createObject(@RequestBody newObject: NewObject): Publisher<ObjectInstance> =
         Mono.just(newObject)
             .map { it.validate() }
             .flatMap { objectService.save(newObject) }
