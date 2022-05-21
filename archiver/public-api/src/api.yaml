@@ -1,0 +1,128 @@
+openapi: '3.0.0'
+info:
+  title: Archiver Public API
+  version: 0.1.0-SNAPSHOT
+
+paths:
+
+  /object-locations/{objectId}:
+    get:
+      tags:
+        - object-location-controller
+      operationId: getEffectiveObjectLocation
+      parameters:
+        - name: objectId
+          in: path
+          required: true
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            example: 'c039e9fc-8b46-11ec-a8a3-0242ac120002'
+        - name: effectiveAt
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+          example: '2022-02-11T12:45:08.495000'
+        - name: tolerance
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+          example: 3600
+      responses:
+        200:
+          description: Object location
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectLocation'
+        404:
+          description: Object location for given parameters not found
+
+  /object-locations:
+    get:
+      tags:
+        - object-location-controller
+      operationId: getEffectiveObjectLocations
+      parameters:
+        - name: objectIds
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: 'c039e9fc-8b46-11ec-a8a3-0242ac120002'
+            uniqueItems: true
+        - name: effectiveAt
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+          example: '2022-02-11T12:45:08.495000'
+        - name: tolerance
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+          example: 3600
+      responses:
+        200:
+          description: Object locations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ObjectLocation'
+    post:
+      tags:
+        - object-location-controller
+      operationId: saveObjectLocations
+      requestBody:
+        description: Object locations
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ObjectLocation'
+      responses:
+        '201':
+          description: Object locations were saved
+        '400':
+          description: Object locations are invalid
+
+components:
+  schemas:
+
+    ObjectLocation:
+      type: object
+      properties:
+        objectId:
+          type: string
+          minLength: 36
+          maxLength: 36
+          example: 'c039e9fc-8b46-11ec-a8a3-0242ac120002'
+        receivedAt:
+          type: string
+          format: date-time
+          example: '2022-02-11T12:45:08.495000'
+        latitude:
+          type: number
+          example: '24.12124212'
+        longitude:
+          type: number
+          example: '64.42127643'
+      required:
+        - objectId
+        - receivedAt
+        - latitude
+        - longitude

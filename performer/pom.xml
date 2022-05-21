@@ -14,7 +14,7 @@
 
     <groupId>com.dsniatecki.locationtraceker</groupId>
     <artifactId>performer</artifactId>
-    <version>0.0.5-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
     <name>Performer</name>
     <description>Service responsible for executing scheduled jobs</description>
 
@@ -23,9 +23,9 @@
         <kotlin.version>1.6.21</kotlin.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <commons.version>0.0.5-SNAPSHOT</commons.version>
-        <archiver-api.version>0.0.5-SNAPSHOT</archiver-api.version>
-        <storage-api.version>0.0.5-SNAPSHOT</storage-api.version>
+        <commons.version>0.1.0-SNAPSHOT</commons.version>
+        <archiver-internal-api.version>0.1.0-SNAPSHOT</archiver-internal-api.version>
+        <storage-internal-api.version>0.1.0-SNAPSHOT</storage-internal-api.version>
         <micrometer.version>1.9.0</micrometer.version>
     </properties>
 
@@ -37,13 +37,13 @@
         </dependency>
         <dependency>
             <groupId>com.dsniatecki.locationtraceker</groupId>
-            <artifactId>archiver-api</artifactId>
-            <version>${archiver-api.version}</version>
+            <artifactId>archiver-internal-api</artifactId>
+            <version>${archiver-internal-api.version}</version>
         </dependency>
         <dependency>
             <groupId>com.dsniatecki.locationtraceker</groupId>
-            <artifactId>storage-api</artifactId>
-            <version>${storage-api.version}</version>
+            <artifactId>storage-internal-api</artifactId>
+            <version>${storage-internal-api.version}</version>
         </dependency>
         <!--    SPRING     -->
         <dependency>

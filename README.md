@@ -2,7 +2,7 @@ Location Tracker is a system responsible for tracking object locations.
 
 - Creator: Damian Śniatecki (https://www.linkedin.com/in/damiansn/)
 - Stage: early development
-- Version: 0.0.5-SNAPSHOT
+- Version: 0.1.0-SNAPSHOT
 
 Architecture:
 

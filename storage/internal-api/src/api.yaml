@@ -1,0 +1,189 @@
+openapi: "3.0.0"
+info:
+  title: Storage Internal API
+  version: 0.1.0-SNAPSHOT
+
+paths:
+
+  /objects:
+    get:
+      tags:
+        - object-controller
+      operationId: getObjects
+      parameters:
+        - name: objectIds
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              example: 'c039e9fc-8b46-11ec-a8a3-0242ac120002'
+            uniqueItems: true
+      responses:
+        200:
+          description: Objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ObjectInstance'
+    post:
+      tags:
+        - object-controller
+      operationId: saveObject
+      requestBody:
+        description: Object Data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewObject'
+      responses:
+        '201':
+          description: Object was saved
+        '400':
+          description: Object is invalid
+
+  /objects/{objectId}:
+    get:
+      tags:
+        - object-controller
+      operationId: getObject
+      parameters:
+        - name: objectId
+          in: path
+          required: true
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            example: 'c039e9fc-8b46-11ec-a8a3-0242ac120002'
+      responses:
+        200:
+          description: Created Object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectInstance'
+        404:
+          description: Object for given id was not found
+    put:
+      tags:
+        - object-controller
+      operationId: updateObject
+      parameters:
+        - name: objectId
+          in: path
+          required: true
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            example: 'c039e9fc-8b46-11ec-a8a3-0242ac120002'
+      requestBody:
+        description: Object Data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ObjectUpdate'
+      responses:
+        200:
+          description: Updated Object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectInstance'
+        404:
+          description: Object for given id was not found
+    delete:
+      tags:
+        - object-controller
+      operationId: deleteObject
+      parameters:
+        - name: objectId
+          in: path
+          required: true
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            example: 'c039e9fc-8b46-11ec-a8a3-0242ac120002'
+      responses:
+        204:
+          description: Object was deleted
+        404:
+          description: Object for given id was not found
+
+components:
+  schemas:
+
+    NewObject:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 36
+          maxLength: 36
+          example: 'x139e9fc-8b46-11ec-a8a3-0242ac120337'
+        name:
+          type: string
+          minLength: 1
+          maxLength: 128
+          example: 'Super Track'
+        imageUrl:
+          type: string
+          minLength: 4
+          maxLength: 256
+          example: 'https://location.tracker.images.com/x139e9fc-8b46-11ec-a8a3-0242ac120337'
+      required:
+        - name
+
+    ObjectUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 128
+          example: 'Super Track'
+        imageUrl:
+          type: string
+          minLength: 4
+          maxLength: 256
+          example: 'https://location.tracker.images.com/x139e9fc-8b46-11ec-a8a3-0242ac120337'
+      required:
+        - name
+
+    ObjectInstance:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 36
+          maxLength: 36
+          example: 'x139e9fc-8b46-11ec-a8a3-0242ac120337'
+        name:
+          type: string
+          minLength: 1
+          maxLength: 128
+          example: 'Super Track'
+        imageUrl:
+          type: string
+          minLength: 4
+          maxLength: 256
+          example: 'https://location.tracker.images.com/x139e9fc-8b46-11ec-a8a3-0242ac120337'
+        createdAt:
+          type: string
+          format: date-time
+          example: '2022-02-18T23:30:02.888028'
+        updatedAt:
+          type: string
+          format: date-time
+          example: '2022-02-18T23:30:02.888028'
+      required:
+        - id
+        - name
+        - createdAt

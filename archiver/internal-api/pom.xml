@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.dsniatecki.locationtraceker</groupId>
-    <artifactId>storage-api</artifactId>
-    <version>0.0.5-SNAPSHOT</version>
-    <name>Storage Api</name>
-    <description>Storage openAPI definitions</description>
+    <artifactId>archiver-internal-api</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <name>Archiver Internal API</name>
+    <description>Archiver Internal OpenAPI definitions</description>
 
     <properties>
         <java.version>17</java.version>
@@ -69,7 +69,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>src/main/storage-api.yaml</inputSpec>
+                            <inputSpec>src/api.yaml</inputSpec>
                             <output>${project.build.directory}/generated-sources/java</output>
                             <generatorName>java</generatorName>
                             <configOptions>
@@ -78,9 +78,9 @@
                                 <groupId>${project.groupId}</groupId>
                                 <artifactVersion>${project.version}</artifactVersion>
                                 <dateLibrary>java8-localdatetime</dateLibrary>
-                                <apiPackage>com.dsniatecki.locationtracker.storage.api</apiPackage>
-                                <modelPackage>com.dsniatecki.locationtracker.storage.model</modelPackage>
-                                <invokerPackage>com.dsniatecki.locationtracker.storage</invokerPackage>
+                                <apiPackage>com.dsniatecki.locationtracker.archiver.api</apiPackage>
+                                <modelPackage>com.dsniatecki.locationtracker.archiver.model</modelPackage>
+                                <invokerPackage>com.dsniatecki.locationtracker.archiver</invokerPackage>
                                 <skipValidateSpec>true</skipValidateSpec>
                                 <java8>true</java8>
                             </configOptions>
