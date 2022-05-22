@@ -1,14 +1,14 @@
 {
   "name": "visualizer",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "generate:storage-api": "openapi-generator-cli generate -i ../storage-api/src/main/storage-api.yaml -g typescript-angular -o src/app/api/storage-api",
-    "generate:archiver-api": "openapi-generator-cli generate -i ../archiver-api/src/main/archiver-api.yaml -g typescript-angular -o src/app/api/archiver-api"
+    "generate:storage-api": "openapi-generator-cli generate -i ../storage/public-api/src/api.yaml -g typescript-angular -o src/app/api/storage-api",
+    "generate:archiver-api": "openapi-generator-cli generate -i ../archiver/public-api/src/api.yaml -g typescript-angular -o src/app/api/archiver-api"
   },
   "private": true,
   "dependencies": {

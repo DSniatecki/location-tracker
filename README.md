@@ -1,8 +1,10 @@
+# Location Tracker
+
 Location Tracker is a system responsible for tracking object locations.
 
 - Creator: Damian Śniatecki (https://www.linkedin.com/in/damiansn/)
 - Stage: early development
-- Version: 0.0.4
+- Version: 0.1.0
 
 Architecture:
 
@@ -46,12 +48,12 @@ Frontend technologies used:
 
 Backend technologies used:
 
-- Kotlin 1.6.0
+- Kotlin 1.6.21
 - JVM 17
 - Maven 3.8.4
-- Spring Boot 2.6.3 (Webflux)
+- Spring Boot 2.6.7 (Webflux)
 - Spring Data R2DBC (+ PostgreSQL R2DBC drivers)
-- Testcontainers 1.16.0 (+ JUnit, Mockk)
+- Testcontainers 1.17.1 (+ JUnit, Mockk)
 - OpenApi
 - RabbitMQ 3.9.8
 - PostgreSQL 14
@@ -132,7 +134,7 @@ https://hub.docker.com/u/dsniatecki
 How to start the system:
 
 1. Clone repo
-2. Execute: docker-compose -f docker-compose-0.0.4.yml up
+2. Execute: docker-compose -f docker-compose-0.1.0.yml up
 
 Plans:
 

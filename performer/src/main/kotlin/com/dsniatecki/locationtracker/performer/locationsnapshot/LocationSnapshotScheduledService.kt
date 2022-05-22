@@ -1,13 +1,13 @@
 package com.dsniatecki.locationtracker.performer.locationsnapshot
 
-import com.dsniatecki.locationtracker.archiver.api.ObjectLocationControllerApi
-import com.dsniatecki.locationtracker.archiver.model.ObjectLocation
+import com.dsniatecki.locationtracker.archiver.api.internal.ObjectLocationControllerApi
+import com.dsniatecki.locationtracker.archiver.model.internal.ObjectLocation
 import com.dsniatecki.locationtracker.commons.utils.TimeRecorder
 import com.dsniatecki.locationtracker.commons.utils.TimeSupplier
 import com.dsniatecki.locationtracker.commons.utils.recorded
 import com.dsniatecki.locationtracker.performer.config.props.LocationSnapshotJobProps
-import com.dsniatecki.locationtracker.storage.api.ObjectControllerApi
-import com.dsniatecki.locationtracker.storage.model.ObjectInstance
+import com.dsniatecki.locationtracker.storage.api.internal.ObjectControllerApi
+import com.dsniatecki.locationtracker.storage.model.internal.ObjectInstance
 import java.time.LocalDateTime
 import mu.KotlinLogging
 import org.springframework.scheduling.annotation.Scheduled

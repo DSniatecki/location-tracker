@@ -5,6 +5,7 @@ import com.dsniatecki.locationtracker.storage.cleanDb
 import com.dsniatecki.locationtracker.storage.createDbTestContainer
 import com.dsniatecki.locationtracker.storage.registerDbProperties
 import com.dsniatecki.locationtracker.storage.toList
+import com.dsniatecki.locationtracker.storage.utils.generateId
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test

@@ -7,9 +7,7 @@ import java.time.ZoneOffset
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 
-class UtilsConfig(
-    @Value("\${storage.time-zone-id}") private val timeZoneId: String
-) {
+class UtilsConfig(@Value("\${storage.time-zone-id}") private val timeZoneId: String) {
 
     private val zoneId = ZoneId.of(timeZoneId)
 

@@ -18,7 +18,10 @@ class ObjectLocationSender(
         rabbitTemplate.send(exchange, routingKey, Message(objectLocationsProto.toByteArray()))
     }
 
-    private fun createProto(objectLocation: ObjectLocation, receivedAt: LocalDateTime): ObjectLocationProto.ObjectLocations =
+    private fun createProto(
+        objectLocation: ObjectLocation,
+        receivedAt: LocalDateTime
+    ): ObjectLocationProto.ObjectLocations =
         ObjectLocationProto.ObjectLocations.newBuilder()
             .addObjectLocations(
                 ObjectLocationProto.ObjectLocation.newBuilder()
