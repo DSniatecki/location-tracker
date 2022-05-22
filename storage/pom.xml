@@ -23,12 +23,24 @@
         <kotlin.version>1.6.21</kotlin.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+        <storage-internal-api.version>0.1.0-SNAPSHOT</storage-internal-api.version>
+        <storage-public-api.version>0.1.0-SNAPSHOT</storage-public-api.version>
         <commons.version>0.1.0-SNAPSHOT</commons.version>
         <test-containers.version>1.17.1</test-containers.version>
         <micrometer.version>1.9.0</micrometer.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.dsniatecki.locationtraceker</groupId>
+            <artifactId>storage-internal-api</artifactId>
+            <version>${storage-internal-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dsniatecki.locationtraceker</groupId>
+            <artifactId>storage-public-api</artifactId>
+            <version>${storage-public-api.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.dsniatecki.locationtraceker</groupId>
             <artifactId>commons</artifactId>

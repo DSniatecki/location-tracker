@@ -1,6 +1,7 @@
 package com.dsniatecki.locationtracker.storage.`object`
 
 import com.dsniatecki.locationtracker.commons.utils.TimeSupplier
+import com.dsniatecki.locationtracker.storage.utils.generateId
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 

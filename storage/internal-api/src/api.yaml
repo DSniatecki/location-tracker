@@ -32,7 +32,7 @@ paths:
     post:
       tags:
         - object-controller
-      operationId: saveObject
+      operationId: createObject
       requestBody:
         description: Object Data
         required: true
@@ -42,7 +42,11 @@ paths:
               $ref: '#/components/schemas/NewObject'
       responses:
         '201':
-          description: Object was saved
+          description: Object was created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectInstance'
         '400':
           description: Object is invalid
 

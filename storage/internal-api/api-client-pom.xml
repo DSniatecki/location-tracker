@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.dsniatecki.locationtraceker</groupId>
-    <artifactId>storage-internal-api</artifactId>
+    <artifactId>storage-internal-api-client</artifactId>
     <version>0.1.0-SNAPSHOT</version>
-    <name>Storage Internal API</name>
-    <description>Storage Internal OpenAPI definitions</description>
+    <name>Storage Internal API Client</name>
+    <description>Storage Internal OpenAPI Client definitions</description>
 
     <properties>
         <java.version>17</java.version>
@@ -78,8 +78,8 @@
                                 <groupId>${project.groupId}</groupId>
                                 <artifactVersion>${project.version}</artifactVersion>
                                 <dateLibrary>java8-localdatetime</dateLibrary>
-                                <apiPackage>com.dsniatecki.locationtracker.storage.api</apiPackage>
-                                <modelPackage>com.dsniatecki.locationtracker.storage.model</modelPackage>
+                                <apiPackage>com.dsniatecki.locationtracker.storage.api.internal</apiPackage>
+                                <modelPackage>com.dsniatecki.locationtracker.storage.model.internal</modelPackage>
                                 <invokerPackage>com.dsniatecki.locationtracker.storage</invokerPackage>
                                 <skipValidateSpec>true</skipValidateSpec>
                                 <java8>true</java8>
