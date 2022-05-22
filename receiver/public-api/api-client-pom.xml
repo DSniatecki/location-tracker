@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.dsniatecki.locationtraceker</groupId>
-    <artifactId>receiver-internal-api</artifactId>
+    <artifactId>receiver-public-api-client</artifactId>
     <version>0.1.0-SNAPSHOT</version>
-    <name>Receiver Internal API</name>
-    <description>Receiver Internal OpenAPI definitions</description>
+    <name>Receiver Public API Client</name>
+    <description>Receiver Public OpenAPI Client definitions</description>
 
     <properties>
         <java.version>17</java.version>
@@ -78,8 +78,8 @@
                                 <groupId>${project.groupId}</groupId>
                                 <artifactVersion>${project.version}</artifactVersion>
                                 <dateLibrary>java8-localdatetime</dateLibrary>
-                                <apiPackage>com.dsniatecki.locationtracker.receiver.api</apiPackage>
-                                <modelPackage>com.dsniatecki.locationtracker.receiver.model</modelPackage>
+                                <apiPackage>com.dsniatecki.locationtracker.receiver.api.pub</apiPackage>
+                                <modelPackage>com.dsniatecki.locationtracker.receiver.model.pub</modelPackage>
                                 <invokerPackage>com.dsniatecki.locationtracker.receiver</invokerPackage>
                                 <skipValidateSpec>true</skipValidateSpec>
                                 <java8>true</java8>
