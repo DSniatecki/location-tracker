@@ -2,7 +2,7 @@ package com.dsniatecki.locationtracker.performer.config
 
 import com.dsniatecki.locationtracker.archiver.ApiClient as ArchiverApiClient
 import com.dsniatecki.locationtracker.storage.ApiClient as StorageApiClient
-import com.dsniatecki.locationtracker.archiver.api.ObjectLocationControllerApi
+import com.dsniatecki.locationtracker.archiver.api.internal.ObjectLocationControllerApi
 import com.dsniatecki.locationtracker.commons.utils.TimeSupplier
 import com.dsniatecki.locationtracker.commons.utils.createTimeRecorderMetric
 import com.dsniatecki.locationtracker.commons.utils.withCounter
@@ -12,12 +12,11 @@ import com.dsniatecki.locationtracker.performer.locationsnapshot.LocationSnapsho
 import com.dsniatecki.locationtracker.performer.locationsnapshot.LocationSnapshotScheduledService
 import com.dsniatecki.locationtracker.performer.locationsnapshot.LocationSnapshotSender
 import com.dsniatecki.locationtracker.performer.sftp.SftpSender
-import com.dsniatecki.locationtracker.storage.api.ObjectControllerApi
+import com.dsniatecki.locationtracker.storage.api.internal.ObjectControllerApi
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.micrometer.core.instrument.MeterRegistry
 import org.springframework.context.annotation.Bean
 import org.springframework.mail.javamail.JavaMailSender
-import org.springframework.mail.javamail.JavaMailSenderImpl
 import org.thymeleaf.TemplateEngine
 
 class LocationSnapshotConfig(

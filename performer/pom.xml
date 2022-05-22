@@ -24,8 +24,8 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <commons.version>0.1.0-SNAPSHOT</commons.version>
-        <archiver-internal-api.version>0.1.0-SNAPSHOT</archiver-internal-api.version>
-        <storage-internal-api.version>0.1.0-SNAPSHOT</storage-internal-api.version>
+        <archiver-internal-api-client.version>0.1.0-SNAPSHOT</archiver-internal-api-client.version>
+        <storage-internal-api-client.version>0.1.0-SNAPSHOT</storage-internal-api-client.version>
         <micrometer.version>1.9.0</micrometer.version>
     </properties>
 
@@ -37,13 +37,13 @@
         </dependency>
         <dependency>
             <groupId>com.dsniatecki.locationtraceker</groupId>
-            <artifactId>archiver-internal-api</artifactId>
-            <version>${archiver-internal-api.version}</version>
+            <artifactId>archiver-internal-api-client</artifactId>
+            <version>${archiver-internal-api-client.version}</version>
         </dependency>
         <dependency>
             <groupId>com.dsniatecki.locationtraceker</groupId>
-            <artifactId>storage-internal-api</artifactId>
-            <version>${storage-internal-api.version}</version>
+            <artifactId>storage-internal-api-client</artifactId>
+            <version>${storage-internal-api-client.version}</version>
         </dependency>
         <!--    SPRING     -->
         <dependency>
