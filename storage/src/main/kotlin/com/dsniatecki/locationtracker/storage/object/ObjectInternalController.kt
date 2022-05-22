@@ -22,16 +22,26 @@ class ObjectInternalController(private val objectService: ObjectService) : Objec
             .map { ResponseEntity.ok(it.toInternalDto()) }
             .switchIfEmpty(Mono.error(NoSuchElementException("Object with id: '$objectId' does not exist.")))
 
-    override fun getObjects(objectIds: Optional<Set<String>>, exchange: ServerWebExchange): Mono<ResponseEntity<Flux<ObjectInstanceDto>>> =
+    override fun getObjects(
+        objectIds: Optional<Set<String>>,
+        exchange: ServerWebExchange
+    ): Mono<ResponseEntity<Flux<ObjectInstanceDto>>> =
         Mono.just(objectIds.map { objectService.getMultiple(it) }.orElseGet { objectService.getAll() })
             .map { flux -> flux.map { it.toInternalDto() } }
             .map { ResponseEntity.ok(it) }
 
-    override fun createObject(newObjectDto: Mono<NewObjectDto>, exchange: ServerWebExchange): Mono<ResponseEntity<ObjectInstanceDto>> =
+    override fun createObject(
+        newObjectDto: Mono<NewObjectDto>,
+        exchange: ServerWebExchange
+    ): Mono<ResponseEntity<ObjectInstanceDto>> =
         newObjectDto.flatMap { objectService.save(it.toNewObject()) }
             .map { ResponseEntity.status(HttpStatus.CREATED).body(it.toInternalDto()) }
 
-    override fun updateObject(objectId: String, objectUpdateDto: Mono<ObjectUpdateDto>, exchange: ServerWebExchange): Mono<ResponseEntity<ObjectInstanceDto>> =
+    override fun updateObject(
+        objectId: String,
+        objectUpdateDto: Mono<ObjectUpdateDto>,
+        exchange: ServerWebExchange
+    ): Mono<ResponseEntity<ObjectInstanceDto>> =
         objectUpdateDto.flatMap { objectService.update(objectId, it.toObjectUpdate()) }
             .map { ResponseEntity.ok(it.toInternalDto()) }
             .switchIfEmpty(Mono.error(NoSuchElementException("Object with id: '$objectId' does not exist.")))

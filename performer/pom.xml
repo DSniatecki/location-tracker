@@ -14,7 +14,7 @@
 
     <groupId>com.dsniatecki.locationtraceker</groupId>
     <artifactId>performer</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
     <name>Performer</name>
     <description>Service responsible for executing scheduled jobs</description>
 
@@ -23,9 +23,9 @@
         <kotlin.version>1.6.21</kotlin.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <commons.version>0.1.0-SNAPSHOT</commons.version>
-        <archiver-internal-api-client.version>0.1.0-SNAPSHOT</archiver-internal-api-client.version>
-        <storage-internal-api-client.version>0.1.0-SNAPSHOT</storage-internal-api-client.version>
+        <commons.version>0.1.0</commons.version>
+        <archiver-internal-api-client.version>0.1.0</archiver-internal-api-client.version>
+        <storage-internal-api-client.version>0.1.0</storage-internal-api-client.version>
         <micrometer.version>1.9.0</micrometer.version>
     </properties>
 

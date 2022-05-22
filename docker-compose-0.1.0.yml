@@ -3,7 +3,7 @@ networks:
   location-tracker-net:
 services:
   archiver:
-    image: dsniatecki/archiver:0.0.4
+    image: dsniatecki/archiver:0.1.0
     container_name: archiver
     environment:
       GUARD_CERT_URI: "http://guard:8080/realms/location-tracker/protocol/openid-connect/certs"
@@ -52,7 +52,7 @@ services:
     networks:
       - location-tracker-net
   receiver:
-    image: dsniatecki/receiver:0.0.4
+    image: dsniatecki/receiver:0.1.0
     container_name: receiver
     environment:
       GUARD_CERT_URI: "http://guard:8080/realms/location-tracker/protocol/openid-connect/certs"
@@ -71,7 +71,7 @@ services:
       - archiver
       - guard
   storage:
-    image: dsniatecki/storage:0.0.4
+    image: dsniatecki/storage:0.1.0
     container_name: storage
     environment:
       GUARD_CERT_URI: "http://guard:8080/realms/location-tracker/protocol/openid-connect/certs"
@@ -98,7 +98,7 @@ services:
     networks:
       - location-tracker-net
   performer:
-    image: dsniatecki/performer:0.0.4
+    image: dsniatecki/performer:0.1.0
     container_name: performer
     environment:
       SPRING_MAIL_HOST: "smtp-server"
@@ -121,7 +121,7 @@ services:
       - storage
       - archiver
   proxy:
-    image: dsniatecki/proxy:0.0.4
+    image: dsniatecki/proxy:0.1.0
     container_name: proxy
     volumes:
       - ./utils/proxy/nginx.conf:/etc/nginx/nginx.conf

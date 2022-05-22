@@ -14,7 +14,7 @@
 
     <groupId>com.dsniatecki.locationtraceker</groupId>
     <artifactId>receiver</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
     <name>Receiver</name>
     <description>Service responsible for receiving object locations</description>
 
@@ -23,10 +23,10 @@
         <kotlin.version>1.6.21</kotlin.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <receiver-internal-api.version>0.1.0-SNAPSHOT</receiver-internal-api.version>
-        <receiver-public-api.version>0.1.0-SNAPSHOT</receiver-public-api.version>
-        <archiver-msg.version>0.1.0-SNAPSHOT</archiver-msg.version>
-        <commons.version>0.1.0-SNAPSHOT</commons.version>
+        <receiver-internal-api.version>0.1.0</receiver-internal-api.version>
+        <receiver-public-api.version>0.1.0</receiver-public-api.version>
+        <archiver-msg.version>0.1.0</archiver-msg.version>
+        <commons.version>0.1.0</commons.version>
         <test-containers.version>1.17.1</test-containers.version>
         <micrometer.version>1.9.0</micrometer.version>
     </properties>

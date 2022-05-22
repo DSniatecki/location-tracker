@@ -24,18 +24,10 @@ fun ObjectInstance.toPublicDto(): ObjectInstancePublicDto =
         .updatedAt(this.updatedAt)
 
 fun NewObjectInternalDto.toNewObject(): NewObject =
-    NewObject(
-        id = this.id,
-        name = this.name,
-        imageUrl = this.imageUrl
-    )
+    NewObject(id = this.id, name = this.name, imageUrl = this.imageUrl)
 
 fun NewObjectPublicDto.toNewObject(): NewObject =
-    NewObject(
-        id = this.id,
-        name = this.name,
-        imageUrl = this.imageUrl
-    )
+    NewObject(id = this.id, name = this.name, imageUrl = this.imageUrl)
 
 fun ObjectUpdateInternalDto.toObjectUpdate(): ObjectUpdate = ObjectUpdate(this.name, this.imageUrl)
 

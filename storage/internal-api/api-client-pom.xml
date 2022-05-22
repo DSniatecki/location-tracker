@@ -6,7 +6,7 @@
 
     <groupId>com.dsniatecki.locationtraceker</groupId>
     <artifactId>storage-internal-api-client</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
     <name>Storage Internal API Client</name>
     <description>Storage Internal OpenAPI Client definitions</description>
 
