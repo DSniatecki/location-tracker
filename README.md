@@ -1,3 +1,5 @@
+# Location Tracker
+
 Location Tracker is a system responsible for tracking object locations.
 
 - Creator: Damian Śniatecki (https://www.linkedin.com/in/damiansn/)
