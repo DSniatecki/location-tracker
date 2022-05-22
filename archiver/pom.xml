@@ -23,6 +23,8 @@
         <kotlin.version>1.6.21</kotlin.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+        <archiver-internal-api.version>0.1.0-SNAPSHOT</archiver-internal-api.version>
+        <archiver-public-api.version>0.1.0-SNAPSHOT</archiver-public-api.version>
         <archiver-msg.version>0.1.0-SNAPSHOT</archiver-msg.version>
         <commons.version>0.1.0-SNAPSHOT</commons.version>
         <test-containers.version>1.17.1</test-containers.version>
@@ -30,6 +32,16 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.dsniatecki.locationtraceker</groupId>
+            <artifactId>archiver-internal-api</artifactId>
+            <version>${archiver-internal-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dsniatecki.locationtraceker</groupId>
+            <artifactId>archiver-public-api</artifactId>
+            <version>${archiver-public-api.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.dsniatecki.locationtraceker</groupId>
             <artifactId>archiver-msg</artifactId>

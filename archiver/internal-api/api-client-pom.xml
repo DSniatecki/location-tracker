@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.dsniatecki.locationtraceker</groupId>
-    <artifactId>archiver-public-api</artifactId>
+    <artifactId>archiver-internal-api-client</artifactId>
     <version>0.1.0-SNAPSHOT</version>
-    <name>Archiver Public API</name>
-    <description>Archiver Public OpenAPI definitions</description>
+    <name>Archiver Internal API Client</name>
+    <description>Archiver Internal OpenAPI Client definitions</description>
 
     <properties>
         <java.version>17</java.version>
@@ -78,8 +78,8 @@
                                 <groupId>${project.groupId}</groupId>
                                 <artifactVersion>${project.version}</artifactVersion>
                                 <dateLibrary>java8-localdatetime</dateLibrary>
-                                <apiPackage>com.dsniatecki.locationtracker.archiver.api</apiPackage>
-                                <modelPackage>com.dsniatecki.locationtracker.archiver.model</modelPackage>
+                                <apiPackage>com.dsniatecki.locationtracker.archiver.api.internal</apiPackage>
+                                <modelPackage>com.dsniatecki.locationtracker.archiver.model.internal</modelPackage>
                                 <invokerPackage>com.dsniatecki.locationtracker.archiver</invokerPackage>
                                 <skipValidateSpec>true</skipValidateSpec>
                                 <java8>true</java8>

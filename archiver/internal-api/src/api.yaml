@@ -117,9 +117,13 @@ components:
           example: '2022-02-11T12:45:08.495000'
         latitude:
           type: number
+          minimum: -90.0
+          maximum: 90.0
           example: '24.12124212'
         longitude:
           type: number
+          minimum: -180.0
+          maximum: 180.0
           example: '64.42127643'
       required:
         - objectId
